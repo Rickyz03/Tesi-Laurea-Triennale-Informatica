@@ -31,33 +31,45 @@ In sintesi, l'aziemda rappresenta un esempio di come le startup possano contribu
 
 \section{L'idea}
 
-Introduzione all'idea dello stage.
+L'idea dello stage è nata dalla necessità di sviluppare un sistema che consenta di generare automaticamente un report di analisi delle vendite per un'azienda di e-commerce. Questo report deve essere generato in modo autonomo, senza la necessità di intervento umano, e deve essere in grado di analizzare i dati delle vendite, identificare tendenze e fornire raccomandazioni per migliorare le performance aziendali.
+In aggiunta, dallo stesso dataset delle vendite, il sistema deve essere in grado di generare un sistema di raccomandazioni per i clienti, suggerendo prodotti in base alle loro preferenze e comportamenti di acquisto. Questo approccio mira a migliorare l'esperienza del cliente e aumentare le vendite attraverso raccomandazioni personalizzate. Il sistema deve anche suggerire possibili clienti a cui proporre i prodotti, in modo da ottimizzare le strategie di marketing e vendita.
+L'obiettivo finale è quello di creare un sistema integrato che possa automatizzare e ottimizzare i processi di analisi delle vendite e raccomandazione dei prodotti, contribuendo così a migliorare l'efficienza operativa dell'azienda e a massimizzare le opportunità di vendita.\\
+Ho scelto questo progetto di stage con il desiderio di approfondire le mie conoscenze nel campo dell'intelligenza artificiale e del machine learning, gli argomenti di cui sono più interessato, in particolare nell'ambito dell'analisi dei dati e delle raccomandazioni personalizzate.
 
 \section{Organizzazione del testo}
 
 \subsection{Struttura del documento}
 \label{sec:organizzazione-testo}
+Il presente documento è suddiviso in otto capitoli il cui contenuto è brevemente riassunto in seguito:
 
 \begin{description}
-    \item[{\hyperref[cap:processi-metodologie]{Il secondo capitolo}}] descrive ...
+    \item[{\hyperref[cap:descrizione-stage]{Il secondo capitolo}}] descrive nel dettaglio il progetto di stage, le tecnologie utilizzate e il modo di lavorare dell'azienda; inoltre, viene fornita un'analisi dei rischi e delle soluzioni adottate per affrontarli;
     
-    \item[{\hyperref[cap:descrizione-stage]{Il terzo capitolo}}] approfondisce ...
+    \item[{\hyperref[cap:analisi-requisiti]{Il terzo capitolo}}] approfondisce l'analisi dei requisiti del sistema, con particolare attenzione alla definizione dei casi d'uso e dei requisiti funzionali e non funzionali, con apposito tracciamento;
     
-    \item[{\hyperref[cap:analisi-requisiti]{Il quarto capitolo}}] approfondisce ...
+    \item[{\hyperref[cap:report-vendite]{Il quarto capitolo}}] approfondisce la teoria che sta ala base del report di analisi delle vendite, con particolare attenzione allo studio dei dati, delle tecniche di analisi utilizzate e dei grafici generati;
     
-    \item[{\hyperref[cap:progettazione-codifica]{Il quinto capitolo}}] approfondisce ...
+    \item[{\hyperref[cap:sistemi-raccomandazione]{Il quinto capitolo}}] approfondisce la teoria che sta alla base del sistema di raccomandazione, con particolare attenzione allo studio di sistemi reali e delle tecniche di raccomandazione e valutazione dei risultati utilizzate;
     
-    \item[{\hyperref[cap:verifica-validazione]{Il sesto capitolo}}] approfondisce ...
+    \item[{\hyperref[cap:progettazione-codifica]{Il sesto capitolo}}] approfondisce la progettazione e la codifica del sistema, con particolare attenzione alla scelta delle tecnologie utilizzate e alla loro implementazione;
     
-    \item[{\hyperref[cap:conclusioni]{Nel settimo capitolo}}] descrive ...
+    \item[{\hyperref[cap:verifica-validazione]{Il settimo capitolo}}] approfondisce le attività di verifica e validazione del sistema, con particolare attenzione ai test di unità sviluppati e all'approccio adottato per i test riguardanti l'LLM;
+    
+    \item[{\hyperref[cap:conclusioni]{L'ottavo capitolo}}] rappresenta una sintesi finale del lavoro svolto durante il periodo di tirocinio, descrivendo eventuali successi e difficoltà incontrate durante il percorso. Vengono inoltre analizzati i risultati ottenuti rispetto agli obiettivi iniziali così come l’insieme di competenze teoriche e pratiche acquisite nel corso del progetto. Il documento si conclude con una riflessione critica sull’operato e sulla crescita personale e professionale del laureando Riccardo Stefani durante il tirocinio. Infine, viene fornita una panoramica delle prospettive future per il progetto e per l'azienda, evidenziando le opportunità di sviluppo e miglioramento.
+
 \end{description}
 
 \subsection{Convenzioni tipografiche}
 \label{sec:convenzioni-tipografiche}
 
-Riguardo la stesura del testo, relativamente al documento sono state adottate le seguenti convenzioni tipografiche:
+In merito alla redazione del presente documento, sono state adottate le seguenti convenzioni tipografiche:
 \begin{itemize}
-	\item gli acronimi, le abbreviazioni e i termini ambigui o di uso non comune menzionati vengono definiti nel glossario, situato alla fine del presente documento;
-	\item per la prima occorrenza dei termini riportati nel glossario viene utilizzata la seguente nomenclatura: \emph{parola}\glsfirstoccur;
-	\item i termini in lingua straniera o facenti parti del gergo tecnico sono evidenziati con il carattere \emph{corsivo}.
+	\item Gli acronimi, le abbreviazioni e i termini ambigui o di uso non comune menzionati vengono definiti nel glossario, situato alla fine del presente documento;
+
+	\item Per la prima occorrenza dei termini riportati nel glossario viene utilizzato il seguente stile: \gls{api}\glsfirstoccur;
+
+	\item I termini particolarmente rilevanti in una sezione e quelli in lingua straniera non di uso comune o facenti parti del gergo tecnico sono evidenziati con il carattere \emph{corsivo}, fatta eccezione per le occorrenze presenti nei titoli delle sezioni o nelle didascalie;
+
+	\item I comandi di terminale, i frammenti di codice sorgente e i nomi di file o directory sono evidenziati con il carattere \texttt{monospaziato}.
+
 \end{itemize}
