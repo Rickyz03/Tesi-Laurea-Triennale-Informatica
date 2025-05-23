@@ -458,68 +458,59 @@ dove:
 \end{itemize}
 Nelle tabelle \ref{tab:requisiti-funzionali}, \ref{tab:requisiti-qualitativi} e \ref{tab:requisiti-vincolo} sono riassunti, rispettivamente, i requisiti funzionali, qualitativi e di vincolo, e l’eventuale loro tracciamento con i casi d'uso delineati in fase di analisi.
 
+
 \subsection{Requisiti funzionali}
 
-\begin{table}[h!]
-    \centering
-    \rowcolors{2}{gray!10}{white}
-    \renewcommand{\arraystretch}{1.6} % Per aumentare l'altezza delle righe
-    \begin{tabularx}{\textwidth}{|p{2cm}|X|p{4cm}|} \hline
-    \rowcolor{gray!75}
-    \textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
-    ROF-1 & Il sistema deve permettere all'utente di caricare un file CSV contenente gli ordini. & \hyperlink{UC1}{UC1} \\ \hline
-    ROF-2 & Il sistema deve permettere all'utente di selezionare la lingua da usare per generare il report, tra italiano, inglese, francese, spagnolo e tedesco. & \hyperlink{UC2}{UC2}, \hyperlink{UC3}{UC3}, \hyperlink{UC4}{UC4}, \hyperlink{UC5}{UC5}, \hyperlink{UC6}{UC6} e \hyperlink{UC7}{UC7} \\ \hline
-    ROF-3 & Il sistema deve permettere all'utente di selezionare la valuta da usare per generare il report, tra euro, dollaro e sterlina. & \hyperlink{UC8}{UC8}, \hyperlink{UC9}{UC9}, \hyperlink{UC10}{UC10} e \hyperlink{UC11}{UC11} \\ \hline
-    ROF-4 & Il sistema deve permettere all'utente di visualizzare il risultato dell'elaborazione della task. & \hyperlink{UC12}{UC12} \\ \hline
-    ROF-5 & Nel caso avvenga un imprevisto, il sistema deve permettere all'utente di visualizzare un messaggio che segnala un errore di elaborazione della task. & \hyperlink{UC13}{UC13} \\ \hline
-    ... & ... & ... \\ \hline
-    ROF-X & Il sistema deve permettere all'utente di inserire il nome del file CSV degli ordini originale, che era stato caricato nella task di analisi delle vendite. & \hyperlink{UC17}{UC17} \\ \hline
-    ROF-X & Il sistema deve permettere all'utente di selezionare il tipo di raccomandazione da svolgere, tra "raccomandare prodotti per un cliente" e "raccomandare clienti per un prodotto". & \hyperlink{UC18}{UC18}, \hyperlink{UC19}{UC19} e \hyperlink{UC20}{UC20} \\ \hline
-    RDF-X & Il sistema deve permettere all'utente di inserire il nome dell'elemento per cui desidera che venga eseguita la raccomandazione. & \hyperlink{UC21}{UC21} \\ \hline
-    RDF-X & Il sistema deve permettere all'utente di selezionare la lingua da usare per generare la raccomandazione, tra italiano, inglese, francese, spagnolo e tedesco. & \hyperlink{UC22}{UC22}, \hyperlink{UC23}{UC23}, \hyperlink{UC24}{UC24}, \hyperlink{UC25}{UC25}, \hyperlink{UC26}{UC26} e \hyperlink{UC27}{UC27} \\ \hline
-    RDF-X & Il sistema deve permettere all'utente di visualizzare la classifica degli elementi raccomandati. & \hyperlink{UC28}{UC28}, \hyperlink{UC30}{UC30} e \hyperlink{UC31}{UC31} \\ \hline
-    RDF-X & Nel caso avvenga un imprevisto, il sistema deve permettere all'utente di visualizzare un messaggio che segnala un errore di elaborazione della task. & \hyperlink{UC29}{UC29} \\ \hline
-    \end{tabularx}
-    \caption{Tabella di tracciamento dei requisiti funzionali}
-    \label{tab:requisiti-funzionali}
-\end{table}
+\RequisitiTable
+  {Tabella di tracciamento dei requisiti funzionali}
+  {tab:requisiti-funzionali}
+  {\textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti}}
+
+ROF-1 & Il sistema deve permettere all'utente di caricare un file CSV contenente gli ordini. & \hyperlink{UC1}{UC1} \\ \hline
+ROF-2 & Il sistema deve permettere all'utente di selezionare la lingua da usare per generare il report, tra italiano, inglese, francese, spagnolo e tedesco. & \hyperlink{UC2}{UC2}, \hyperlink{UC3}{UC3}, \hyperlink{UC4}{UC4}, \hyperlink{UC5}{UC5}, \hyperlink{UC6}{UC6} e \hyperlink{UC7}{UC7} \\ \hline
+ROF-3 & Il sistema deve permettere all'utente di selezionare la valuta da usare per generare il report, tra euro, dollaro e sterlina. & \hyperlink{UC8}{UC8}, \hyperlink{UC9}{UC9}, \hyperlink{UC10}{UC10} e \hyperlink{UC11}{UC11} \\ \hline
+ROF-4 & Il sistema deve permettere all'utente di visualizzare il risultato dell'elaborazione della task. & \hyperlink{UC12}{UC12} \\ \hline
+ROF-5 & Nel caso avvenga un imprevisto, il sistema deve permettere all'utente di visualizzare un messaggio che segnala un errore di elaborazione della task. & \hyperlink{UC13}{UC13} \\ \hline
+... & ... & ... \\ \hline
+ROF-X & Il sistema deve permettere all'utente di inserire il nome del file CSV degli ordini originale, che era stato caricato nella task di analisi delle vendite. & \hyperlink{UC17}{UC17} \\ \hline
+ROF-X & Il sistema deve permettere all'utente di selezionare il tipo di raccomandazione da svolgere, tra "raccomandare prodotti per un cliente" e "raccomandare clienti per un prodotto". & \hyperlink{UC18}{UC18}, \hyperlink{UC19}{UC19} e \hyperlink{UC20}{UC20} \\ \hline
+RDF-X & Il sistema deve permettere all'utente di inserire il nome dell'elemento per cui desidera che venga eseguita la raccomandazione. & \hyperlink{UC21}{UC21} \\ \hline
+RDF-X & Il sistema deve permettere all'utente di selezionare la lingua da usare per generare la raccomandazione, tra italiano, inglese, francese, spagnolo e tedesco. & \hyperlink{UC22}{UC22}, \hyperlink{UC23}{UC23}, \hyperlink{UC24}{UC24}, \hyperlink{UC25}{UC25}, \hyperlink{UC26}{UC26} e \hyperlink{UC27}{UC27} \\ \hline
+RDF-X & Il sistema deve permettere all'utente di visualizzare la classifica degli elementi raccomandati. & \hyperlink{UC28}{UC28}, \hyperlink{UC30}{UC30} e \hyperlink{UC31}{UC31} \\ \hline
+RDF-X & Nel caso avvenga un imprevisto, il sistema deve permettere all'utente di visualizzare un messaggio che segnala un errore di elaborazione della task. & \hyperlink{UC29}{UC29} \\ \hline
+
+\end{longtable}
+
 
 \subsection{Requisiti qualitativi}
 
-\begin{table}[h!]
-    \centering
-    \rowcolors{2}{gray!10}{white}
-    \renewcommand{\arraystretch}{1.6} % Per aumentare l'altezza delle righe
-    \begin{tabularx}{\textwidth}{|p{2cm}|X|p{4cm}|} \hline
-    \rowcolor{gray!75}
-    \textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonte} \\ \hline
-    ROQ-1 & Il lavoro svolto deve essere opportunamente documentato. & OO6 \\ \hline
-    ROQ-2 & Il codice prodotto deve essere completamente coperto da test di unità. & OO6 \\ \hline
-    ROQ-3 & Le risposte prodotte dall'LLM devono essere testate, dopo aver definito un opportuno metodo di test. & Azienda, OO6 \\ \hline
-    RDQ-4 & La task di raccomandazione di prodotti e clienti deve produrre un risultato in tempi ragionevoli. & Azienda, OD1 \\ \hline
-    RZQ-5 & Le raccomandazioni devono essere Explainable, in modo che l'utente possa comprendere il motivo per cui sono stati raccomandati determinati prodotti o clienti. & OZ2 \\ \hline
-    \end{tabularx}
-    \caption{Tabella di tracciamento dei requisiti qualitativi}
-    \label{tab:requisiti-qualitativi}
-\end{table}
+\RequisitiTable
+  {Tabella di tracciamento dei requisiti qualitativi}
+  {tab:requisiti-qualitativi}
+  {\textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti}}
+
+ROQ-1 & Il lavoro svolto deve essere opportunamente documentato. & OO6 \\ \hline
+ROQ-2 & Il codice prodotto deve essere completamente coperto da test di unità. & OO6 \\ \hline
+ROQ-3 & Le risposte prodotte dall'LLM devono essere testate, dopo aver definito un opportuno metodo di test. & Azienda, OO6 \\ \hline
+RDQ-4 & La task di raccomandazione di prodotti e clienti deve produrre un risultato in tempi ragionevoli. & Azienda, OD1 \\ \hline
+RZQ-5 & Le raccomandazioni devono essere Explainable, in modo che l'utente possa comprendere il motivo per cui sono stati raccomandati determinati prodotti o clienti. & OZ2 \\ \hline
+
+\end{longtable}
+
 
 \subsection{Requisiti di vincolo}
 
-\begin{table}[h!]
-    \centering
-    \rowcolors{2}{gray!10}{white}
-    \renewcommand{\arraystretch}{1.6} % Per aumentare l'altezza delle righe
-    \begin{tabularx}{\textwidth}{|p{2cm}|X|p{4cm}|} \hline
-    \rowcolor{gray!75}
-    \textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonte} \\ \hline
-    ROV-1 & Le funzionalità devono essere espresse mediante due task create usando la piattaforma Oribea. & OO3, OO4 \\ \hline
-    ROV-2 & I due progetti software delle due tasks devono essere inseriti nel campo function della schermata di creazione task della piattaforma Oribea. & Azienda, OO1 \\ \hline
-    ROV-3 & I due progetti software delle due tasks devono essere caricati sul profilo GitHub della piattaforma Oribea. & Azienda \\ \hline
-    ROV-4 & Le due task devono utilizzare, come archiviazione, il profilo Google Cloud dell'azienda Oribea. & Azienda, OO2 \\ \hline
-    RDV-5 & La task di analisi delle vendite deve permettere il download un report in formato PDF. & Azienda, OZ3 \\ \hline
-    RZV-6 & La task di analisi delle vendite deve permettere il download un report in formato HTML. & OZ3 \\ \hline
-    RZV-7 & La task di analisi delle vendite deve permettere l'invio del report via e-mail. & OZ3 \\ \hline
-    \end{tabularx}
-    \caption{Tabella di tracciamento dei requisiti di vincolo}
-    \label{tab:requisiti-vincolo}
-\end{table}
+\RequisitiTable
+  {Tabella di tracciamento dei requisiti di vincolo}
+  {tab:requisiti-vincolo}
+  {\textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti}}
+
+ROV-1 & Le funzionalità devono essere espresse mediante due task create usando la piattaforma Oribea. & OO3, OO4 \\ \hline
+ROV-2 & I due progetti software delle due tasks devono essere inseriti nel campo function della schermata di creazione task della piattaforma Oribea. & Azienda, OO1 \\ \hline
+ROV-3 & I due progetti software delle due tasks devono essere caricati nel repository GitHub della piattaforma Oribea. & Azienda \\ \hline
+ROV-4 & Le due task devono utilizzare, come archiviazione, il profilo Google Cloud dell'azienda Oribea. & Azienda, OO2 \\ \hline
+RDV-5 & La task di analisi delle vendite deve permettere il download del report in formato PDF. & Azienda, OZ3 \\ \hline
+RZV-6 & La task di analisi delle vendite deve permettere il download del report in formato HTML. & OZ3 \\ \hline
+RZV-7 & La task di analisi delle vendite deve permettere l'invio del report via e-mail. & OZ3 \\ \hline
+
+\end{longtable}

@@ -198,3 +198,30 @@
 }
 
 \newcommand{\classdesc}[2]{\item[\textbf{#1:}] #2}
+
+
+
+
+% Requirements table
+\newcommand{\RequisitiTable}[3]{%
+  \rowcolors{2}{gray!10}{white}
+  \renewcommand{\arraystretch}{1.6}
+
+  \begin{longtable}{|p{2cm}|p{8cm}|p{4cm}|}
+  \caption{#1} \label{#2} \\
+
+  \hline
+  \rowcolor{gray!75}
+  #3 \\ \hline
+  \endfirsthead
+
+  \hline
+  \rowcolor{gray!75}
+  #3 \\ \hline
+  \endhead
+
+  \multicolumn{3}{r}{\textit{Continua nella prossima pagina...}} \\
+  \endfoot
+
+  \endlastfoot
+}
