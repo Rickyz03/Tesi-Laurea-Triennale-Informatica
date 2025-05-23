@@ -54,6 +54,7 @@ scenari alternativi.\\
 I casi d’uso che sono stati definiti sono i seguenti:
 
 
+\hypertarget{UC1}{}
 \begin{usecase}{1}{Caricamento file CSV}
 
 \begin{figure}[!h] 
@@ -70,6 +71,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC2}{}
 \begin{usecase}{2}{Selezione lingua per il report}
 
 \begin{figure}[!h] 
@@ -87,6 +89,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC3}{}
 \begin{usecase}{3}{Selezione lingua italiano per il report}
 
 \usecaseactors{Utente}
@@ -97,6 +100,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC4}{}
 \begin{usecase}{4}{Selezione lingua inglese per il report}
 
 \usecaseactors{Utente}
@@ -107,6 +111,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC5}{}
 \begin{usecase}{5}{Selezione lingua francese per il report}
 
 \usecaseactors{Utente}
@@ -117,6 +122,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC6}{}
 \begin{usecase}{6}{Selezione lingua spagnolo per il report}
 
 \usecaseactors{Utente}
@@ -127,6 +133,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC7}{}
 \begin{usecase}{7}{Selezione lingua tedesco per il report}
 
 \usecaseactors{Utente}
@@ -137,6 +144,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC8}{}
 \begin{usecase}{8}{Selezione valuta per il report}
 
 \begin{figure}[!h] 
@@ -154,6 +162,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC9}{}
 \begin{usecase}{9}{Selezione valuta euro per il report}
 
 \usecaseactors{Utente}
@@ -164,6 +173,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC10}{}
 \begin{usecase}{10}{Selezione valuta dollaro per il report}
 
 \usecaseactors{Utente}
@@ -174,6 +184,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC11}{}
 \begin{usecase}{11}{Selezione valuta sterlina per il report}
 
 \usecaseactors{Utente}
@@ -184,6 +195,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC12}{}
 \begin{usecase}{12}{Visualizzazione risultato della task}
 
 \begin{figure}[!h]
@@ -205,6 +217,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 % 12.1, 12.2, 12.3 e 12.4 non li metto ancora perchè ho una domanda
 
 
+\hypertarget{UC13}{}
 \begin{usecase}{13}{Visualizzazione errore nell'elaborazione della task}
 
 \usecaseactors{Utente}
@@ -218,6 +231,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 % UC14, UC15, e UC16 non li metto ancora perchè ho una domanda
 
 
+\hypertarget{UC17}{}
 \begin{usecase}{17}{Inserimento del nome del file CSV degli ordini originale}
 
 \begin{figure}[!h] 
@@ -227,13 +241,14 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{figure}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente inserisce il nome del file CSV degli ordini originale}
 \usecasepost{Il sistema ricerca il file CSV corrispondente al nome inserito all'interno del database Google Cloud}
 \label{uc:inserimento-nome-file-csv}
 \end{usecase}
 
 
+\hypertarget{UC18}{}
 \begin{usecase}{18}{Selezione tipo di raccomandazione}
 
 \begin{figure}[!h] 
@@ -243,7 +258,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{figure}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona la tipologia di raccomandazione che desidera che venga eseguita}
 \usecasepost{Il sistema ha memorizzato il tipo di raccomandazione selezionato}
 \usespecial{UC19, UC20}
@@ -251,26 +266,29 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC19}{}
 \begin{usecase}{19}{Selezione di raccomandare prodotti per un cliente}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona il tipo di raccomandazione "raccomandare prodotti per un cliente"}
 \usecasepost{Il sistema ha memorizzato il tipo di raccomandazione "raccomandare prodotti per un cliente" selezionato}
 \label{uc:selezione-raccomandare-prodotti}
 \end{usecase}
 
 
+\hypertarget{UC20}{}
 \begin{usecase}{20}{Selezione di raccomandare clienti per un prodotto}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona il tipo di raccomandazione "raccomandare clienti per un prodotto"}
 \usecasepost{Il sistema ha memorizzato il tipo di raccomandazione "raccomandare clienti per un prodotto" selezionato}
 \label{uc:selezione-raccomandare-clienti}
 \end{usecase}
 
 
+\hypertarget{UC21}{}
 \begin{usecase}{21}{Inserimento nome elemento per cui raccomandare}
 
 \begin{figure}[!h] 
@@ -280,13 +298,14 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{figure}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente inserisce il nome dell'elemento per cui desidera che venga eseguita la raccomandazione}
 \usecasepost{Il sistema cerca l'elemento corrispondente al nome inserito all'interno del database Google Cloud}
 \label{uc:inserimento-nome-elemento}
 \end{usecase}
 
 
+\hypertarget{UC22}{}
 \begin{usecase}{22}{Selezione lingua per la raccomandazione}
 
 \begin{figure}[!h] 
@@ -296,7 +315,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{figure}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona la lingua in cui desidera generare la raccomandazione}
 \usecasepost{Il sistema ha memorizzato la lingua selezionata}
 \usespecial{UC23, UC24, UC25, UC26, UC27}
@@ -304,56 +323,62 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC23}{}
 \begin{usecase}{23}{Selezione lingua italiano per la raccomandazione}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona la lingua italiano perchè desidera generare la raccomandazione in italiano}
 \usecasepost{Il sistema ha memorizzato la lingua italiano selezionata}
 \label{uc:selezione-lingua-italiano-raccomandazione}
 \end{usecase}
 
 
+\hypertarget{UC24}{}
 \begin{usecase}{24}{Selezione lingua inglese per la raccomandazione}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona la lingua inglese perchè desidera generare la raccomandazione in inglese}
 \usecasepost{Il sistema ha memorizzato la lingua inglese selezionata}
 \label{uc:selezione-lingua-inglese-raccomandazione}
 \end{usecase}
 
 
+\hypertarget{UC25}{}
 \begin{usecase}{25}{Selezione lingua francese per la raccomandazione}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona la lingua francese perchè desidera generare la raccomandazione in francese}
 \usecasepost{Il sistema ha memorizzato la lingua francese selezionata}
 \label{uc:selezione-lingua-francese-raccomandazione}
 \end{usecase}
 
 
+\hypertarget{UC26}{}
 \begin{usecase}{26}{Selezione lingua spagnolo per la raccomandazione}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona la lingua spagnolo perchè desidera generare la raccomandazione in spagnolo}
 \usecasepost{Il sistema ha memorizzato la lingua spagnolo selezionata}
 \label{uc:selezione-lingua-spagnolo-raccomandazione}
 \end{usecase}
 
 
+\hypertarget{UC27}{}
 \begin{usecase}{27}{Selezione lingua tedesco per la raccomandazione}
 
 \usecaseactors{Utente}
-\usecasepre{L'utente ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona la lingua tedesco perchè desidera generare la raccomandazione in tedesco}
 \usecasepost{Il sistema ha memorizzato la lingua tedesco selezionata}
 \label{uc:selezione-lingua-tedesco-raccomandazione}
 \end{usecase}
 
 
+\hypertarget{UC28}{}
 \begin{usecase}{28}{Visualizzazione classifica elementi raccomandati}
 
 \begin{figure}[!h] 
@@ -372,6 +397,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC29}{}
 \begin{usecase}{29}{Visualizzazione errore di elaborazione della task}
 
 \usecaseactors{Utente}
@@ -382,6 +408,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC30}{}
 \begin{usecase}{30}{Visualizzazione classifica prodotti raccomandati}
 
 \usecaseactors{Utente}
@@ -392,6 +419,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
+\hypertarget{UC31}{}
 \begin{usecase}{31}{Visualizzazione classifica clienti raccomandati}
 
 \usecaseactors{Utente}
@@ -415,35 +443,48 @@ I casi d’uso che sono stati definiti sono i seguenti:
 
 \section{Tracciamento dei requisiti}
 
-Da un'attenta analisi dei requisiti e degli use case effettuata sul progetto è stata stilata la tabella che traccia i requisiti in rapporto agli use case.\\
+Da un'attenta analisi dei requisiti e dei casi d'uso effettuata sul progetto è stata stilata la tabella che traccia i requisiti in rapporto ai casi d'uso.\\
 Sono stati individuati diversi tipi di requisiti e si è quindi fatto utilizzo di un codice identificativo per distinguerli.\\
-Il codice dei requisiti è così strutturato R(F/Q/V)(N/D/O) dove:
-\begin{enumerate}
-	\item[R =] requisito
-    \item[F =] funzionale
-    \item[Q =] qualitativo
-    \item[V =] di vincolo
-    \item[N =] obbligatorio (necessario)
-    \item[D =] desiderabile
-    \item[Z =] opzionale
-\end{enumerate}
-Nelle tabelle \ref{tab:requisiti-funzionali}, \ref{tab:requisiti-qualitativi} e \ref{tab:requisiti-vincolo} sono riassunti i requisiti e il loro tracciamento con gli use case delineati in fase di analisi.
+Il codice dei requisiti è così strutturato:
+\begin{center}
+    \textbf{R[importanza][tipo]-[numero]}
+\end{center}
+dove:
+\begin{itemize}
+	\item L'importanza può essere O per i requisiti obbligatori oppure D per quelli desiderabili;
+	\item Il tipo può essere F per i requisiti funzionali, Q per quelli qualitativi oppure V per quelli di vincolo;
+	\item Il numero è un valore numerico progressivo che identifica univocamente un requisito.
+\end{itemize}
+Nelle tabelle \ref{tab:requisiti-funzionali}, \ref{tab:requisiti-qualitativi} e \ref{tab:requisiti-vincolo} sono riassunti, rispettivamente, i requisiti funzionali, qualitativi e di vincolo, e l’eventuale loro tracciamento con i casi d'uso delineati in fase di analisi.
 
-\newpage
+\subsection{Requisiti funzionali}
 
-\begin{table}%
-\caption{Tabella del tracciamento dei requisti funzionali}
-\label{tab:requisiti-funzionali}
-\begin{tabularx}{\textwidth}{lXl}
-\hline\hline
-\textbf{Requisito} & \textbf{Descrizione} & \textbf{Use Case}\\
-\hline
-RFN-1     & L'interfaccia permette di configurare il tipo di sonde del test & UC1 \\
-\hline
-\end{tabularx}
-\end{table}%
+% Prima parte della tabella
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{gray!10}{white}
+    \renewcommand{\arraystretch}{1.6} % Per aumentare l'altezza delle righe
+    \begin{tabularx}{\textwidth}{|p{2cm}|X|p{4cm}|} \hline
+    \rowcolor{gray!75}
+    \textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
+    ROF-1 & Il sistema deve permettere all'utente di caricare un file CSV contenente gli ordini. & \hyperlink{UC1}{UC1} \\ \hline
+    ROF-2 & Il sistema deve permettere all'utente di selezionare la lingua da usare per generare il report, tra italiano, inglese, francese, spagnolo e tedesco. & \hyperlink{UC2}{UC2}, \hyperlink{UC3}{UC3}, \hyperlink{UC4}{UC4}, \hyperlink{UC5}{UC5}, \hyperlink{UC6}{UC6} e \hyperlink{UC7}{UC7} \\ \hline
+    ROF-3 & Il sistema deve permettere all'utente di selezionare la valuta da usare per generare il report, tra euro, dollaro e sterlina. & \hyperlink{UC8}{UC8}, \hyperlink{UC9}{UC9}, \hyperlink{UC10}{UC10} e \hyperlink{UC11}{UC11} \\ \hline
+    ROF-4 & Il sistema deve permettere all'utente di visualizzare il risultato dell'elaborazione della task. & \hyperlink{UC12}{UC12} \\ \hline
+    ROF-5 & Nel caso avvenga un imprevisto, il sistema deve permettere all'utente di visualizzare un messaggio che segnala un errore di elaborazione della task. & \hyperlink{UC13}{UC13} \\ \hline
+    ... & ... & ... \\ \hline
+    ROF-X & Il sistema deve permettere all'utente di inserire il nome del file CSV degli ordini originale, che era stato caricato nella task di analisi delle vendite. & \hyperlink{UC17}{UC17} \\ \hline
+    ROF-X & Il sistema deve permettere all'utente di selezionare il tipo di raccomandazione da svolgere, tra "raccomandare prodotti per un cliente" e "raccomandare clienti per un prodotto". & \hyperlink{UC18}{UC18}, \hyperlink{UC19}{UC19} e \hyperlink{UC20}{UC20} \\ \hline
+    RDF-X & Il sistema deve permettere all'utente di inserire il nome dell'elemento per cui desidera che venga eseguita la raccomandazione. & \hyperlink{UC21}{UC21} \\ \hline
+    RDF-X & Il sistema deve permettere all'utente di selezionare la lingua da usare per generare la raccomandazione, tra italiano, inglese, francese, spagnolo e tedesco. & \hyperlink{UC22}{UC22}, \hyperlink{UC23}{UC23}, \hyperlink{UC24}{UC24}, \hyperlink{UC25}{UC25}, \hyperlink{UC26}{UC26} e \hyperlink{UC27}{UC27} \\ \hline
+    RDF-X & Il sistema deve permettere all'utente di visualizzare la classifica degli elementi raccomandati. & \hyperlink{UC28}{UC28}, \hyperlink{UC30}{UC30} e \hyperlink{UC31}{UC31} \\ \hline
+    RDF-X & Nel caso avvenga un imprevisto, il sistema deve permettere all'utente di visualizzare un messaggio che segnala un errore di elaborazione della task. & \hyperlink{UC29}{UC29} \\ \hline
+    \end{tabularx}
+    \caption{Tabella di tracciamento dei requisiti funzionali}
+    \label{tab:requisiti-funzionali}
+\end{table}
 
-\begin{table}%
+\begin{table}
 \caption{Tabella del tracciamento dei requisiti qualitativi}
 \label{tab:requisiti-qualitativi}
 \begin{tabularx}{\textwidth}{lXl}
@@ -453,7 +494,7 @@ RFN-1     & L'interfaccia permette di configurare il tipo di sonde del test & UC
 RQD-1    & Le prestazioni del simulatore hardware deve garantire la giusta esecuzione dei test e non la generazione di falsi negativi & - \\
 \hline
 \end{tabularx}
-\end{table}%
+\end{table}
 
 \begin{table}%
 \caption{Tabella del tracciamento dei requisiti di vincolo}
