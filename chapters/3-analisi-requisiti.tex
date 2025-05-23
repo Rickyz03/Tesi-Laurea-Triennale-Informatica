@@ -229,6 +229,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 
 
 % UC14, UC15, e UC16 non li metto ancora perchè ho una domanda
+% Attenzione: UC16 (HTML) è da mettere come "desiderabile"
 
 
 \hypertarget{UC17}{}
@@ -451,7 +452,7 @@ Il codice dei requisiti è così strutturato:
 \end{center}
 dove:
 \begin{itemize}
-	\item L'importanza può essere O per i requisiti obbligatori oppure D per quelli desiderabili;
+	\item L'importanza può essere O per i requisiti obbligatori, D per quelli desiderabili oppure Z per quelli opzionali;
 	\item Il tipo può essere F per i requisiti funzionali, Q per quelli qualitativi oppure V per quelli di vincolo;
 	\item Il numero è un valore numerico progressivo che identifica univocamente un requisito.
 \end{itemize}
@@ -491,11 +492,12 @@ Nelle tabelle \ref{tab:requisiti-funzionali}, \ref{tab:requisiti-qualitativi} e 
     \renewcommand{\arraystretch}{1.6} % Per aumentare l'altezza delle righe
     \begin{tabularx}{\textwidth}{|p{2cm}|X|p{4cm}|} \hline
     \rowcolor{gray!75}
-    \textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
-    ROQ-1 & Il lavoro svolto deve essere opportunamente documentato. & Azienda, ... \\ \hline
-    ROQ-2 & Il codice prodotto deve essere completamente coperto da test di unità. & Azienda, ... \\ \hline
-    ROQ-3 & La task di raccomandazione di prodotti e clienti deve produrre un risultato in tempi ragionevoli. & Azienda, ... \\ \hline
-    ROQ-4 & Le risposte prodotte dall'LLM devono essere testate, dopo aver definito un opportuno metodo di test. & Azienda, ... \\ \hline
+    \textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonte} \\ \hline
+    ROQ-1 & Il lavoro svolto deve essere opportunamente documentato. & OO6 \\ \hline
+    ROQ-2 & Il codice prodotto deve essere completamente coperto da test di unità. & OO6 \\ \hline
+    ROQ-3 & Le risposte prodotte dall'LLM devono essere testate, dopo aver definito un opportuno metodo di test. & Azienda, OO6 \\ \hline
+    RDQ-4 & La task di raccomandazione di prodotti e clienti deve produrre un risultato in tempi ragionevoli. & Azienda, OD1 \\ \hline
+    RZQ-5 & Le raccomandazioni devono essere Explainable, in modo che l'utente possa comprendere il motivo per cui sono stati raccomandati determinati prodotti o clienti. & OZ2 \\ \hline
     \end{tabularx}
     \caption{Tabella di tracciamento dei requisiti qualitativi}
     \label{tab:requisiti-qualitativi}
@@ -509,11 +511,14 @@ Nelle tabelle \ref{tab:requisiti-funzionali}, \ref{tab:requisiti-qualitativi} e 
     \renewcommand{\arraystretch}{1.6} % Per aumentare l'altezza delle righe
     \begin{tabularx}{\textwidth}{|p{2cm}|X|p{4cm}|} \hline
     \rowcolor{gray!75}
-    \textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
-    ROV-1 & Le funzionalità devono essere espresse mediante due task create usando la piattaforma Oribea. & Azienda, ... \\ \hline
-    ROV-2 & I due progetti software delle due tasks devono essere inseriti nel campo function della schermata di creazione task della piattaforma Oribea. & Azienda, ... \\ \hline
-    ROV-3 & I due progetti software delle due tasks devono essere caricati sul profilo GitHub della piattaforma Oribea. & Azienda, ... \\ \hline
-    ROV-4 & Le due task devono utilizzare, come archiviazione, il profilo Google Cloud dell'azienda Oribea. & Azienda, ... \\ \hline
+    \textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonte} \\ \hline
+    ROV-1 & Le funzionalità devono essere espresse mediante due task create usando la piattaforma Oribea. & OO3, OO4 \\ \hline
+    ROV-2 & I due progetti software delle due tasks devono essere inseriti nel campo function della schermata di creazione task della piattaforma Oribea. & Azienda, OO1 \\ \hline
+    ROV-3 & I due progetti software delle due tasks devono essere caricati sul profilo GitHub della piattaforma Oribea. & Azienda \\ \hline
+    ROV-4 & Le due task devono utilizzare, come archiviazione, il profilo Google Cloud dell'azienda Oribea. & Azienda, OO2 \\ \hline
+    RDV-5 & La task di analisi delle vendite deve permettere il download un report in formato PDF. & Azienda, OZ3 \\ \hline
+    RZV-6 & La task di analisi delle vendite deve permettere il download un report in formato HTML. & OZ3 \\ \hline
+    RZV-7 & La task di analisi delle vendite deve permettere l'invio del report via e-mail. & OZ3 \\ \hline
     \end{tabularx}
     \caption{Tabella di tracciamento dei requisiti di vincolo}
     \label{tab:requisiti-vincolo}
