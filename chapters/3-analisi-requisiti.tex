@@ -459,7 +459,6 @@ Nelle tabelle \ref{tab:requisiti-funzionali}, \ref{tab:requisiti-qualitativi} e 
 
 \subsection{Requisiti funzionali}
 
-% Prima parte della tabella
 \begin{table}[h!]
     \centering
     \rowcolors{2}{gray!10}{white}
@@ -484,26 +483,38 @@ Nelle tabelle \ref{tab:requisiti-funzionali}, \ref{tab:requisiti-qualitativi} e 
     \label{tab:requisiti-funzionali}
 \end{table}
 
-\begin{table}
-\caption{Tabella del tracciamento dei requisiti qualitativi}
-\label{tab:requisiti-qualitativi}
-\begin{tabularx}{\textwidth}{lXl}
-\hline\hline
-\textbf{Requisito} & \textbf{Descrizione} & \textbf{Use Case}\\
-\hline
-RQD-1    & Le prestazioni del simulatore hardware deve garantire la giusta esecuzione dei test e non la generazione di falsi negativi & - \\
-\hline
-\end{tabularx}
+\subsection{Requisiti qualitativi}
+
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{gray!10}{white}
+    \renewcommand{\arraystretch}{1.6} % Per aumentare l'altezza delle righe
+    \begin{tabularx}{\textwidth}{|p{2cm}|X|p{4cm}|} \hline
+    \rowcolor{gray!75}
+    \textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
+    ROQ-1 & Il lavoro svolto deve essere opportunamente documentato. & Azienda, ... \\ \hline
+    ROQ-2 & Il codice prodotto deve essere completamente coperto da test di unità. & Azienda, ... \\ \hline
+    ROQ-3 & La task di raccomandazione di prodotti e clienti deve produrre un risultato in tempi ragionevoli. & Azienda, ... \\ \hline
+    ROQ-4 & Le risposte prodotte dall'LLM devono essere testate, dopo aver definito un opportuno metodo di test. & Azienda, ... \\ \hline
+    \end{tabularx}
+    \caption{Tabella di tracciamento dei requisiti qualitativi}
+    \label{tab:requisiti-qualitativi}
 \end{table}
 
-\begin{table}%
-\caption{Tabella del tracciamento dei requisiti di vincolo}
-\label{tab:requisiti-vincolo}
-\begin{tabularx}{\textwidth}{lXl}
-\hline\hline
-\textbf{Requisito} & \textbf{Descrizione} & \textbf{Use Case}\\
-\hline
-RVO-1    & La libreria per l'esecuzione dei test automatici deve essere riutilizzabile & - \\
-\hline
-\end{tabularx}
-\end{table}%
+\subsection{Requisiti di vincolo}
+
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{gray!10}{white}
+    \renewcommand{\arraystretch}{1.6} % Per aumentare l'altezza delle righe
+    \begin{tabularx}{\textwidth}{|p{2cm}|X|p{4cm}|} \hline
+    \rowcolor{gray!75}
+    \textbf{Requisito} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
+    ROV-1 & Le funzionalità devono essere espresse mediante due task create usando la piattaforma Oribea. & Azienda, ... \\ \hline
+    ROV-2 & I due progetti software delle due tasks devono essere inseriti nel campo function della schermata di creazione task della piattaforma Oribea. & Azienda, ... \\ \hline
+    ROV-3 & I due progetti software delle due tasks devono essere caricati sul profilo GitHub della piattaforma Oribea. & Azienda, ... \\ \hline
+    ROV-4 & Le due task devono utilizzare, come archiviazione, il profilo Google Cloud dell'azienda Oribea. & Azienda, ... \\ \hline
+    \end{tabularx}
+    \caption{Tabella di tracciamento dei requisiti di vincolo}
+    \label{tab:requisiti-vincolo}
+\end{table}
