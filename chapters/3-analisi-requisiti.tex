@@ -241,11 +241,247 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-% UC15, UC16, UC17 e UC18
-% Attenzione: UC17 (HTML) è da mettere come "desiderabile"
-% Attenzione: UC18 (email) è da mettere come "opzionale"
+\hypertarget{UC15}{}
+\begin{usecase}{15}{Download report delle vendite}
 
-% UC18.1, UC18.2 e UC18.3
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{usecase/UC15 - Download report delle vendite.png}
+    \caption{UC15 - Download report delle vendite}
+\end{figure}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite}
+\usecasedesc{L'utente scarica il report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha scaricato il report delle vendite generato dalla task di analisi delle vendite}
+\usespecial{UC16, UC17}
+\label{uc:download-report-vendite}
+\end{usecase}
+
+
+\hypertarget{UC16}{}
+\begin{usecase}{16}{Download report delle vendite in PDF}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite}
+\usecasedesc{L'utente scarica il report delle vendite generato dalla task di analisi delle vendite in formato PDF}
+\usecasepost{L'utente ha scaricato il report delle vendite generato dalla task di analisi delle vendite in formato PDF}
+\label{uc:download-report-vendite-pdf}
+\end{usecase}
+
+
+\hypertarget{UC17}{}
+\begin{usecase}{17}{Download report delle vendite in HTML}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite}
+\usecasedesc{L'utente scarica il report delle vendite generato dalla task di analisi delle vendite in formato HTML}
+\usecasepost{L'utente ha scaricato il report delle vendite generato dalla task di analisi delle vendite in formato HTML}
+\label{uc:download-report-vendite-html}
+\end{usecase}
+
+
+\hypertarget{UC18}{}
+\begin{usecase}{18}{Visualizzazione di un'email contenente il report delle vendite}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{usecase/UC18 - Visualizzazione di un'email contenente il report delle vendite.png}
+    \caption{UC18 - Visualizzazione di un'email contenente il report delle vendite}
+\end{figure}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza un'email contenente il report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato un'email contenente il report delle vendite generato dalla task di analisi delle vendite}
+\useinclu{UC18.1, UC18.2, UC18.3}
+\label{uc:visualizzazione-email-report-vendite}
+\end{usecase}
+
+
+\hypertarget{UC18.1}{}
+\begin{usecase}{18.1}{Visualizzazione dati numerici}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{usecase/UC18.1 - Visualizzazione dati numerici.png}
+    \caption{UC18.1 - Visualizzazione dati numerici}
+\end{figure}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza i dati numerici contenuti nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato i dati numerici contenuti nel report delle vendite generato dalla task di analisi delle vendite}
+\useinclu{18.1.1, 18.1.2, 18.1.3, 18.1.4, 18.1.5}
+\label{uc:visualizzazione-dati-numerici}
+\end{usecase}
+
+
+\hypertarget{UC18.1.1}{}
+\begin{usecase}{18.1.1}{Visualizzazione fatturato totale}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il fatturato totale contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il fatturato totale contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-fatturato-totale}
+\end{usecase}
+
+
+\hypertarget{UC18.1.2}{}
+\begin{usecase}{18.1.2}{Visualizzazione ordini unici}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il numero di ordini unici contenuti nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il numero di ordini unici contenuti nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-ordini-unici}
+\end{usecase}
+
+
+\hypertarget{UC18.1.3}{}
+\begin{usecase}{18.1.3}{Visualizzazione clienti unici}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il numero di clienti unici contenuti nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il numero di clienti unici contenuti nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-clienti-unici}
+\end{usecase}
+
+
+\hypertarget{UC18.1.4}{}
+\begin{usecase}{18.1.4}{Visualizzazione prodotti unici}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il numero di prodotti unici contenuti nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il numero di prodotti unici contenuti nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-prodotti-unici}
+\end{usecase}
+
+
+\hypertarget{UC18.1.5}{}
+\begin{usecase}{18.1.5}{Visualizzazione spesa media per ordine}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza la spesa media per ordine contenuta nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato la spesa media per ordine contenuta nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-spesa-media-per-ordine}
+\end{usecase}
+
+
+\hypertarget{UC18.2}{}
+\begin{usecase}{18.2}{Visualizzazione lista di grafiici}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{usecase/UC18.2 - Visualizzazione lista di grafiici.png}
+    \caption{UC18.2 - Visualizzazione lista di grafiici}
+\end{figure}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza la lista di grafici contenuti nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato la lista di grafici contenuti nel report delle vendite generato dalla task di analisi delle vendite}
+\useinclu{18.2.1, 18.2.2, 18.2.3, 18.2.4, 18.2.5, 18.2.6, 18.2.7}
+\label{uc:visualizzazione-lista-grafici}
+\end{usecase}
+
+
+\hypertarget{UC18.2.1}{}
+\begin{usecase}{18.2.1}{Visualizzazione grafico a linea del trend mensile delle vendite}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il grafico a linea del trend mensile delle vendite contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il grafico a linea del trend mensile delle vendite contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-grafico-trend-mensile-vendite}
+\end{usecase}
+
+
+\hypertarget{UC18.2.2}{}
+\begin{usecase}{18.2.2}{Visualizzazione grafico a barre dei top 5 prodotti per fatturato}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il grafico a barre dei top 5 prodotti per fatturato contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il grafico a barre dei top 5 prodotti per fatturato contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-grafico-top-5-prodotti-fatturato}
+\end{usecase}
+
+
+\hypertarget{UC18.2.3}{}
+\begin{usecase}{18.2.3}{Visualizzazione grafico a barre dei top 5 clienti per spesa totale}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il grafico a barre dei top 5 clienti per spesa totale contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il grafico a barre dei top 5 clienti per spesa totale contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-grafico-top-5-clienti-spesa-totale}
+\end{usecase}
+
+
+\hypertarget{UC18.2.4}{}
+\begin{usecase}{18.2.4}{Visualizzazione grafico a linea del trend mensile dei nuovi clienti}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il grafico a linea del trend mensile dei nuovi clienti contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il grafico a linea del trend mensile dei nuovi clienti contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-grafico-trend-mensile-nuovi-clienti}
+\end{usecase}
+
+
+\hypertarget{UC18.2.5}{}
+\begin{usecase}{18.2.5}{Visualizzazione del grafico a linea del trend mensile della percentuale dei nuovi clienti}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il grafico a linea del trend mensile della percentuale dei nuovi clienti contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il grafico a linea del trend mensile della percentuale dei nuovi clienti contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-grafico-trend-mensile-percentuale-nuovi-clienti}
+\end{usecase}
+
+
+\hypertarget{UC18.2.6}{}
+\begin{usecase}{18.2.6}{Visualizzazione del grafico a barre delle top 5 date per fatturato}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il grafico a barre delle top 5 date per fatturato contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il grafico a barre delle top 5 date per fatturato contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-grafico-top-5-date-fatturato}
+\end{usecase}
+
+
+\hypertarget{UC18.2.7}{}
+\begin{usecase}{18.2.7}{Visualizzazione del grafico a barre delle top 5 settimane per fatturato}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il grafico a barre delle top 5 settimane per fatturato contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il grafico a barre delle top 5 settimane per fatturato contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-grafico-top-5-settimane-fatturato}
+\end{usecase}
+
+
+\hypertarget{UC18.3}{}
+\begin{usecase}{18.3}{Visualizzazione resoconto dell'analisi delle vendite}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{usecase/UC18.3 - Visualizzazione resoconto dell'analisi delle vendite.png}
+    \caption{UC18.3 - Visualizzazione resoconto dell'analisi delle vendite}
+\end{figure}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il resoconto dell'analisi delle vendite contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato il resoconto dell'analisi delle vendite contenuto nel report delle vendite generato dalla task di analisi delle vendite}
+\label{uc:visualizzazione-resoconto-analisi-vendite}
+\end{usecase}
 
 
 \hypertarget{UC19}{}
