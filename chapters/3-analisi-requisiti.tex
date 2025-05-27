@@ -196,29 +196,42 @@ I casi d’uso che sono stati definiti sono i seguenti:
 
 
 \hypertarget{UC12}{}
-\begin{usecase}{12}{Visualizzazione risultato della task}
+\begin{usecase}{12}{Inserimento indirizzo email a cui inviare il report}
 
 \begin{figure}[!h]
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/UC12 - Visualizzazione risultato della task.png}
-    \caption{UC12 - Visualizzazione risultato della task}
+    \includegraphics[width=0.9\columnwidth]{usecase/UC12 - Inserimento indirizzo email a cui inviare il report.png}
+    \caption{UC12 - Inserimento indirizzo email a cui inviare il report}
+\end{figure}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha avviato la task di analisi delle vendite}
+\usecasedesc{L'utente inserisce l'indirizzo email a cui desidera che venga inviato il report generato}
+\usecasepost{Il sistema ha memorizzato l'indirizzo email inserito}
+
+\end{usecase}
+
+
+\hypertarget{UC13}{}
+\begin{usecase}{13}{Visualizzazione esito positivo della task}
+
+\begin{figure}[!h]
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{usecase/UC13 - Visualizzazione esito positivo della task.png}
+    \caption{UC13 - Visualizzazione esito positivo della task}
 \end{figure}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite}
-\usecasedesc{L'utente visualizza il risultato della task di analisi delle vendite}
-\usecasepost{L'utente ha visualizzato il risultato della task di analisi delle vendite}
-\usecasealt{UC13}
-\useinclu{UC12.1, UC12.2, UC12.3, UC12.4}  % Ricordati di modificare qua, se dovesse cambiare qualcosa
-\label{uc:visualizzazione-risultato-task}
+\usecasedesc{L'utente visualizza l'esito positivo della task di analisi delle vendite}
+\usecasepost{L'utente ha visualizzato l'esito positivo della task di analisi delle vendite}
+\usecasealt{UC14}
+\label{uc:visualizzazione-esito-positivo-task}
 \end{usecase}
 
 
-% 12.1, 12.2, 12.3 e 12.4 non li metto ancora perchè ho una domanda
-
-
-\hypertarget{UC13}{}
-\begin{usecase}{13}{Visualizzazione errore nell'elaborazione della task}
+\hypertarget{UC14}{}
+\begin{usecase}{14}{Visualizzazione errore nell'elaborazione della task}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite}
@@ -228,17 +241,20 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-% UC14, UC15, e UC16 non li metto ancora perchè ho una domanda
-% Attenzione: UC16 (HTML) è da mettere come "desiderabile"
+% UC15, UC16, UC17 e UC18
+% Attenzione: UC17 (HTML) è da mettere come "desiderabile"
+% Attenzione: UC18 (email) è da mettere come "opzionale"
+
+% UC18.1, UC18.2 e UC18.3
 
 
-\hypertarget{UC17}{}
-\begin{usecase}{17}{Inserimento del nome del file CSV degli ordini originale}
+\hypertarget{UC19}{}
+\begin{usecase}{19}{Inserimento del nome del file CSV degli ordini originale}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/UC17 - Inserimento nome CSV degli ordini originale.png}
-    \caption{UC17 - Inserimento del nome del file CSV degli ordini originale}
+    \includegraphics[width=0.9\columnwidth]{usecase/UC19 - Inserimento nome CSV degli ordini originale.png}
+    \caption{UC19 - Inserimento del nome del file CSV degli ordini originale}
 \end{figure}
 
 \usecaseactors{Utente}
@@ -249,26 +265,26 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC18}{}
-\begin{usecase}{18}{Selezione tipo di raccomandazione}
+\hypertarget{UC20}{}
+\begin{usecase}{20}{Selezione tipo di raccomandazione}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/UC18 - Selezione tipo di raccomandazione.png}
-    \caption{UC18 - Selezione tipo di raccomandazione}
+    \includegraphics[width=0.9\columnwidth]{usecase/UC20 - Selezione tipo di raccomandazione.png}
+    \caption{UC20 - Selezione tipo di raccomandazione}
 \end{figure}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona la tipologia di raccomandazione che desidera che venga eseguita}
 \usecasepost{Il sistema ha memorizzato il tipo di raccomandazione selezionato}
-\usespecial{UC19, UC20}
+\usespecial{UC21, UC22}
 \label{uc:selezione-tipo-elemento}
 \end{usecase}
 
 
-\hypertarget{UC19}{}
-\begin{usecase}{19}{Selezione di raccomandare prodotti per un cliente}
+\hypertarget{UC21}{}
+\begin{usecase}{21}{Selezione di raccomandare prodotti per un cliente}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -278,8 +294,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC20}{}
-\begin{usecase}{20}{Selezione di raccomandare clienti per un prodotto}
+\hypertarget{UC22}{}
+\begin{usecase}{22}{Selezione di raccomandare clienti per un prodotto}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -289,13 +305,13 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC21}{}
-\begin{usecase}{21}{Inserimento nome elemento per cui raccomandare}
+\hypertarget{UC23}{}
+\begin{usecase}{23}{Inserimento nome elemento per cui raccomandare}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/UC21 - Inserimento nome elemento a cui raccomandare.png}
-    \caption{UC21 - Inserimento nome elemento per cui raccomandare}
+    \includegraphics[width=0.9\columnwidth]{usecase/UC23 - Inserimento nome elemento a cui raccomandare.png}
+    \caption{UC23 - Inserimento nome elemento per cui raccomandare}
 \end{figure}
 
 \usecaseactors{Utente}
@@ -306,26 +322,26 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC22}{}
-\begin{usecase}{22}{Selezione lingua per la raccomandazione}
+\hypertarget{UC24}{}
+\begin{usecase}{24}{Selezione lingua per la raccomandazione}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/UC22 - Selezione lingua per la raccomandazione.png}
-    \caption{UC22 - Selezione lingua per la raccomandazione}
+    \includegraphics[width=0.9\columnwidth]{usecase/UC24 - Selezione lingua per la raccomandazione.png}
+    \caption{UC24 - Selezione lingua per la raccomandazione}
 \end{figure}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona la lingua in cui desidera generare la raccomandazione}
 \usecasepost{Il sistema ha memorizzato la lingua selezionata}
-\usespecial{UC23, UC24, UC25, UC26, UC27}
+\usespecial{UC25, UC26, UC27, UC28, UC29}
 \label{uc:selezione-lingua-raccomandazione}
 \end{usecase}
 
 
-\hypertarget{UC23}{}
-\begin{usecase}{23}{Selezione lingua italiano per la raccomandazione}
+\hypertarget{UC25}{}
+\begin{usecase}{25}{Selezione lingua italiano per la raccomandazione}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -335,8 +351,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC24}{}
-\begin{usecase}{24}{Selezione lingua inglese per la raccomandazione}
+\hypertarget{UC26}{}
+\begin{usecase}{26}{Selezione lingua inglese per la raccomandazione}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -346,8 +362,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC25}{}
-\begin{usecase}{25}{Selezione lingua francese per la raccomandazione}
+\hypertarget{UC27}{}
+\begin{usecase}{27}{Selezione lingua francese per la raccomandazione}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -357,8 +373,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC26}{}
-\begin{usecase}{26}{Selezione lingua spagnolo per la raccomandazione}
+\hypertarget{UC28}{}
+\begin{usecase}{28}{Selezione lingua spagnolo per la raccomandazione}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -368,8 +384,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC27}{}
-\begin{usecase}{27}{Selezione lingua tedesco per la raccomandazione}
+\hypertarget{UC29}{}
+\begin{usecase}{29}{Selezione lingua tedesco per la raccomandazione}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -379,27 +395,27 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC28}{}
-\begin{usecase}{28}{Visualizzazione classifica elementi raccomandati}
+\hypertarget{UC30}{}
+\begin{usecase}{30}{Visualizzazione classifica elementi raccomandati}
 
-\begin{figure}[!h] 
+\begin{figure}[!h]
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/UC28 - Visualizzazione classifica elementi raccomandati.png}
-    \caption{UC28 - Visualizzazione classifica elementi raccomandati}
+    \includegraphics[width=0.9\columnwidth]{usecase/UC30 - Visualizzazione classifica elementi raccomandati.png}
+    \caption{UC30 - Visualizzazione classifica elementi raccomandati}
 \end{figure}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente visualizza la classifica degli elementi raccomandati}
 \usecasepost{L'utente ha visualizzato la classifica degli elementi raccomandati}
-\usecasealt{UC29}
-\usespecial{UC30, UC31}
+\usecasealt{UC31}
+\usespecial{UC32, UC33}
 \label{uc:visualizzazione-classifica-elementi-raccomandati}
 \end{usecase}
 
 
-\hypertarget{UC29}{}
-\begin{usecase}{29}{Visualizzazione errore di elaborazione della task}
+\hypertarget{UC31}{}
+\begin{usecase}{31}{Visualizzazione errore di elaborazione della task}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di raccomandazione di prodotti e clienti}
@@ -409,8 +425,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC30}{}
-\begin{usecase}{30}{Visualizzazione classifica prodotti raccomandati}
+\hypertarget{UC32}{}
+\begin{usecase}{32}{Visualizzazione classifica prodotti raccomandati}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di raccomandazione di prodotti e clienti}
@@ -420,8 +436,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC31}{}
-\begin{usecase}{31}{Visualizzazione classifica clienti raccomandati}
+\hypertarget{UC33}{}
+\begin{usecase}{33}{Visualizzazione classifica clienti raccomandati}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di raccomandazione di prodotti e clienti}
@@ -509,8 +525,8 @@ ROV-1 & Le funzionalità devono essere espresse mediante due task create usando 
 ROV-2 & I due progetti software delle due tasks devono essere inseriti nel campo function della schermata di creazione task della piattaforma Oribea. & Azienda, OO1 \\ \hline
 ROV-3 & I due progetti software delle due tasks devono essere caricati come due repository nel profilo GitHub dell'azienda Oribea. & Azienda \\ \hline
 ROV-4 & Le due task devono utilizzare, come archiviazione, il profilo Google Cloud dell'azienda Oribea. & Azienda, OO2 \\ \hline
-RDV-5 & La task di analisi delle vendite deve permettere il download del report in formato PDF. & Azienda, OZ3 \\ \hline
-RZV-6 & La task di analisi delle vendite deve permettere il download del report in formato HTML. & OZ3 \\ \hline
+ROV-5 & La task di analisi delle vendite deve permettere il download del report in formato PDF. & Azienda, OZ3 \\ \hline
+RDV-6 & La task di analisi delle vendite deve permettere il download del report in formato HTML. & OZ3 \\ \hline
 RZV-7 & La task di analisi delle vendite deve permettere l'invio del report via e-mail. & OZ3 \\ \hline
 
 \end{longtable}
