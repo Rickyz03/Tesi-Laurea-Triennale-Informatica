@@ -66,7 +66,7 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \usecaseactors{Utente}
 \usecasepre{L'utente ha avviato la task di analisi delle vendite}
 \usecasedesc{L'utente carica un file CSV contenente i dati delle vendite}
-\usecasepost{Il sistema ha caricato il file CSV e lo ha memorizzato in un database Google Cloud}
+\usecasepost{Il sistema ha caricato il file CSV e lo ha memorizzato in un bucket del Google Cloud Storage}
 \label{uc:caricamento-file-csv}
 \end{usecase}
 
@@ -227,6 +227,17 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \usecasepost{L'utente ha visualizzato l'esito positivo della task di analisi delle vendite}
 \usecasealt{UC14}
 \label{uc:visualizzazione-esito-positivo-task}
+\end{usecase}
+
+
+\hypertarget{UC13.1}{}
+\begin{usecase}{13.1}{Visualizzazione del token identificativo del file degli ordini}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite}
+\usecasedesc{L'utente visualizza il token identificativo del file degli ordini caricato}
+\usecasepost{L'utente ha visualizzato il token identificativo del file degli ordini caricato}
+\label{uc:visualizzazione-token-file-ordini}
 \end{usecase}
 
 
@@ -484,19 +495,38 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC19}{}
-\begin{usecase}{19}{Inserimento del nome del file CSV degli ordini originale}
+\hypertarget{UC18.4}{}
+\begin{usecase}{18.4}{Visualizzazione del token identificativo del file degli ordini}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/UC19 - Inserimento nome CSV degli ordini originale.png}
-    \caption{UC19 - Inserimento del nome del file CSV degli ordini originale}
+    \includegraphics[width=0.9\columnwidth]{usecase/UC18.4 - Visualizzazione del token identificativo del file degli ordini.png}
+    \caption{UC18.4 - Visualizzazione del token identificativo del file degli ordini}
+\end{figure}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di analisi delle vendite, e poi ha visitato la propria casella di posta elettronica e cliccato sull'email ricevuta contenente il report delle vendite}
+\usecasedesc{L'utente visualizza il token identificativo del file degli ordini caricato}
+\usecasepost{L'utente ha visualizzato il token identificativo del file degli ordini caricato}
+\label{uc:visualizzazione-token-file-ordini-mail}
+\end{usecase}
+
+\end{usecase}
+
+
+\hypertarget{UC19}{}
+\begin{usecase}{19}{Inserimento del token identificativo del file degli ordini}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{usecase/UC19 - Inserimento del token identificativo del file degli ordini.png}
+    \caption{UC19 - Inserimento del token identificativo del file degli ordini}
 \end{figure}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
-\usecasedesc{L'utente inserisce il nome del file CSV degli ordini originale}
-\usecasepost{Il sistema ricerca il file CSV corrispondente al nome inserito all'interno del database Google Cloud}
+\usecasedesc{L'utente inserisce il token identificativo del file degli ordini, che era stato generato dalla task di analisi delle vendite}
+\usecasepost{Il sistema ricerca il bucket corrispondente al token identificativo all'interno del Google Cloud Storage}
 \label{uc:inserimento-nome-file-csv}
 \end{usecase}
 
@@ -542,42 +572,59 @@ I casi d’uso che sono stati definiti sono i seguenti:
 
 
 \hypertarget{UC23}{}
-\begin{usecase}{23}{Inserimento nome elemento per cui raccomandare}
+\begin{usecase}{23}{Inserimento nome elemento a cui raccomandare}
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=0.9\columnwidth]{usecase/UC23 - Inserimento nome elemento a cui raccomandare.png}
-    \caption{UC23 - Inserimento nome elemento per cui raccomandare}
+    \caption{UC23 - Inserimento nome elemento a cui raccomandare}
 \end{figure}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
-\usecasedesc{L'utente inserisce il nome dell'elemento per cui desidera che venga eseguita la raccomandazione}
-\usecasepost{Il sistema cerca l'elemento corrispondente al nome inserito all'interno del database Google Cloud}
+\usecasedesc{L'utente inserisce il nome dell'elemento a cui desidera che vengano raccomandati prodotti o clienti, a seconda del tipo di raccomandazione selezionato}
+\usecasepost{Il sistema cerca l'elemento corrispondente al nome inserito all'interno del file salvato nel Google Cloud Storage}
 \label{uc:inserimento-nome-elemento}
 \end{usecase}
 
 
 \hypertarget{UC24}{}
-\begin{usecase}{24}{Selezione lingua per la raccomandazione}
+\begin{usecase}{24}{Inserimento del numero di raccomandazioni desiderate}
 
 \begin{figure}[!h] 
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/UC24 - Selezione lingua per la raccomandazione.png}
-    \caption{UC24 - Selezione lingua per la raccomandazione}
+    \includegraphics[width=0.9\columnwidth]{usecase/UC24 - Inserimento del numero di raccomandazioni desiderate.png}
+    \caption{UC24 - Inserimento del numero di raccomandazioni desiderate}
+\end{figure}
+
+\usecaseactors{Utente}
+\usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
+\usecasedesc{L'utente inserisce il numero di raccomandazioni che desidera che vengano generate}
+\usecasepost{Il sistema ha memorizzato il numero di raccomandazioni desiderate}
+\label{uc:inserimento-numero-raccomandazioni}
+\end{usecase}
+
+
+\hypertarget{UC25}{}
+\begin{usecase}{25}{Selezione lingua per la raccomandazione}
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{usecase/UC25 - Selezione lingua per la raccomandazione.png}
+    \caption{UC25 - Selezione lingua per la raccomandazione}
 \end{figure}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente seleziona la lingua in cui desidera generare la raccomandazione}
 \usecasepost{Il sistema ha memorizzato la lingua selezionata}
-\usespecial{UC25, UC26, UC27, UC28, UC29}
+\usespecial{UC26, UC27, UC28, UC29, UC30}
 \label{uc:selezione-lingua-raccomandazione}
 \end{usecase}
 
 
-\hypertarget{UC25}{}
-\begin{usecase}{25}{Selezione lingua italiano per la raccomandazione}
+\hypertarget{UC26}{}
+\begin{usecase}{26}{Selezione lingua italiano per la raccomandazione}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -587,8 +634,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC26}{}
-\begin{usecase}{26}{Selezione lingua inglese per la raccomandazione}
+\hypertarget{UC27}{}
+\begin{usecase}{27}{Selezione lingua inglese per la raccomandazione}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -598,8 +645,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC27}{}
-\begin{usecase}{27}{Selezione lingua francese per la raccomandazione}
+\hypertarget{UC28}{}
+\begin{usecase}{28}{Selezione lingua francese per la raccomandazione}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -609,8 +656,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC28}{}
-\begin{usecase}{28}{Selezione lingua spagnolo per la raccomandazione}
+\hypertarget{UC29}{}
+\begin{usecase}{29}{Selezione lingua spagnolo per la raccomandazione}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -620,8 +667,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC29}{}
-\begin{usecase}{29}{Selezione lingua tedesco per la raccomandazione}
+\hypertarget{UC30}{}
+\begin{usecase}{30}{Selezione lingua tedesco per la raccomandazione}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha eseguito con successo la task di analisi delle vendite e poi ha avviato la task di raccomandazione di prodotti e clienti}
@@ -631,27 +678,27 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC30}{}
-\begin{usecase}{30}{Visualizzazione classifica elementi raccomandati}
+\hypertarget{UC31}{}
+\begin{usecase}{31}{Visualizzazione classifica elementi raccomandati}
 
 \begin{figure}[!h]
     \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/UC30 - Visualizzazione classifica elementi raccomandati.png}
-    \caption{UC30 - Visualizzazione classifica elementi raccomandati}
+    \includegraphics[width=0.9\columnwidth]{usecase/UC31 - Visualizzazione classifica elementi raccomandati.png}
+    \caption{UC31 - Visualizzazione classifica elementi raccomandati}
 \end{figure}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di raccomandazione di prodotti e clienti}
 \usecasedesc{L'utente visualizza la classifica degli elementi raccomandati}
 \usecasepost{L'utente ha visualizzato la classifica degli elementi raccomandati}
-\usecasealt{UC31}
-\usespecial{UC32, UC33}
+\usecasealt{UC32}
+\usespecial{UC33, UC34}
 \label{uc:visualizzazione-classifica-elementi-raccomandati}
 \end{usecase}
 
 
-\hypertarget{UC31}{}
-\begin{usecase}{31}{Visualizzazione errore di elaborazione della task}
+\hypertarget{UC32}{}
+\begin{usecase}{32}{Visualizzazione errore di elaborazione della task}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di raccomandazione di prodotti e clienti}
@@ -661,8 +708,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC32}{}
-\begin{usecase}{32}{Visualizzazione classifica prodotti raccomandati}
+\hypertarget{UC33}{}
+\begin{usecase}{33}{Visualizzazione classifica prodotti raccomandati}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di raccomandazione di prodotti e clienti}
@@ -672,8 +719,8 @@ I casi d’uso che sono stati definiti sono i seguenti:
 \end{usecase}
 
 
-\hypertarget{UC33}{}
-\begin{usecase}{33}{Visualizzazione classifica clienti raccomandati}
+\hypertarget{UC34}{}
+\begin{usecase}{34}{Visualizzazione classifica clienti raccomandati}
 
 \usecaseactors{Utente}
 \usecasepre{L'utente ha cliccato sul pulsante di esecuzione della task di raccomandazione di prodotti e clienti}
