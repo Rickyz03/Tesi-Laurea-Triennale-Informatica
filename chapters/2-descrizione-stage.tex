@@ -39,14 +39,33 @@ Gli strumenti principali utilizzati includono:
 Durante la fase di analisi iniziale sono stati individuati alcuni possibili rischi a cui si potrà andare incontro.
 Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a tali rischi.\\
 
-\begin{risk}{Assenza di dataset di addestramento}
-    \riskdescription{s}
-    \risksolution{a}
-    \label{risk:dataset-absence} 
+\begin{risk}{Cambiamento dei requisiti in corso di sviluppo}
+    \riskdescription{i requisiti del progetto potrebbero cambiare durante lo sviluppo dello
+stesso. Alcuni dei motivi potrebbero essere delle modifiche alle esigenze del progetto, un errore di analisi iniziale oppure motivi legati alle tecnologie scelte}
+    \risksolution{è utile adottare l’utilizzo di una metodologia agile per tollerare i cambiamenti ai requisiti. È inoltre di fondamentale importanza mantenere una comunicazione costante con il tutor aziendale, in modo da procedere con lo sviluppo del progetto con maggior sicurezza e in modo più organizzato}
+    \label{risk:requirements-change} 
+\end{risk}
+
+\begin{risk}{Numero e qualità dei dataset di addestramento}
+    \riskdescription{per il corretto funzionamento del sistema di raccomandazione è necessario disporre non solo di dataset di qualità, ma anche di una quantità sufficiente di dataset di addestramento che rappresentino diversi scenari e casi d’uso. L’utilizzo di un solo dataset, anche se ben strutturato, potrebbe non essere sufficiente per addestrare il sistema in modo efficace e garantire risultati affidabili e generalizzabili. Oribea ha fornito un dataset di esempio, ma la presenza di un unico dataset limita la capacità del sistema di adattarsi a situazioni diverse e può ridurre la robustezza delle raccomandazioni generate}
+    \risksolution{è possibile utilizzare tecniche di data augmentation per aumentare la varietà e la quantità dei dati disponibili, oppure ricorrere a dataset pubblici pertinenti al dominio del progetto. Inoltre, si può valutare la raccolta di ulteriori dataset reali, anche in collaborazione con l’azienda committente, per coprire un maggior numero di casi d’uso e migliorare la generalizzazione del sistema di raccomandazione}
+    \label{risk:dataset-absence}
 \end{risk}
 
 \begin{risk}{Risposta dell'LLM imprecisa}
-    \riskdescription{s}
-    \risksolution{a}
-    \label{risk:bad-llm-response} 
+    \riskdescription{l'LLM (Large Language Model) utilizzato per generare il report delle vendite potrebbe produrre risposte imprecise o non pertinenti, a causa di una cattiva interpretazione del file degli ordini o di una mancanza di contesto. Questo potrebbe portare a report errati o fuorvianti, che potrebbero influenzare negativamente le decisioni aziendali. Inoltre, nell'ambito del preprocessing dei dati, l'LLM potrebbe non essere in grado di riconoscere correttamente le colonne da etichettare semanticamente, causando errori nella generazione del report e del sistema di raccomandazione}
+    \risksolution{è importante testare l'LLM con diversi esempi di file degli ordini e verificare la qualità delle risposte generate. In caso di risposte imprecise, è possibile migliorare il prompt utilizzato per l'LLM, fornendo istruzioni più chiare e dettagliate. Inoltre, è utile implementare un sistema di validazione dei dati in ingresso, per garantire che il file degli ordini sia formattato correttamente e contenga le informazioni necessarie. Infine, si può considerare l'utilizzo di tecniche di post-elaborazione per correggere eventuali errori nelle risposte dell'LLM}
+    \label{risk:bad-llm-response}
+\end{risk}
+
+\begin{risk}{Ritardi nello sviluppo}
+    \riskdescription{durante lo sviluppo del progetto potrebbero verificarsi imprevisti come problemi tecnici o un’eccessiva complessità del tema affrontato, che potrebbero portare a ritardi nello sviluppo del prodotto}
+    \risksolution{è importante pianificare il progetto in modo realistico, tenendo conto dei tempi necessari per lo sviluppo e per la risoluzione di eventuali problemi. Inoltre, è utile monitorare costantemente lo stato di avanzamento del progetto e adottare una metodologia Agile per gestire i cambiamenti e le difficoltà che potrebbero sorgere. In caso di ritardi significativi, è possibile rivedere le priorità del progetto e concentrarsi sulle funzionalità essenziali, rimandando eventuali miglioramenti o funzionalità aggiuntive a fasi successive}
+    \label{risk:development-delay} 
+\end{risk}
+
+\begin{risk}{Inesperienza tecnologica}
+    \riskdescription{il progetto prevede l’utilizzo di tecnologie di cui non si ha piena esperienza e conoscenza, soprattutto le tecnologie legate al Cloud Computing, rendendo più difficoltosa la comprensione e l’applicazione delle stesse in fase di implementazione}
+    \risksolution{è utile dedicare del tempo all'apprendimento delle tecnologie utilizzate, consultando la documentazione ufficiale, seguendo corsi online o chiedendo supporto a colleghi più esperti. Inoltre, è importante non esitare a chiedere aiuto al tutor aziendale in caso di difficoltà, in modo da risolvere i problemi in modo tempestivo e ridurre al minimo l'impatto sull'avanzamento del progetto. Infine, si può considerare l'utilizzo di risorse online come forum e community per ottenere supporto e condividere esperienze con altri sviluppatori}
+    \label{risk:inexperience} 
 \end{risk}
