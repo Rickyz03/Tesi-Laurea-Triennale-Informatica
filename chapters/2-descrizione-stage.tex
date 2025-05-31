@@ -1,11 +1,19 @@
 \chapter{Descrizione dello stage}
 \label{cap:descrizione-stage}
 
-\intro{Breve introduzione al capitolo}\\
+\intro{In questa sezione viene presentata una descrizione dell’idea e delle tecnologie utilizzate durante il percorso di stage, e una panoramica del modo di lavorare dell'azienda. Viene inoltre presentata un'analisi dei rischi e delle problematiche riscontrate durante lo sviluppo del progetto.}\\
 
 \section{Introduzione al progetto}
 
-% Lavoro da casa eccetera
+Nel contesto attuale, i report delle vendite e i sistemi di raccomandazione rivestono un ruolo fondamentale per le aziende che operano in mercati competitivi e digitalizzati. I report delle vendite consentono di monitorare l’andamento commerciale, identificare trend, valutare le performance dei prodotti e prendere decisioni strategiche basate su dati concreti. Questi strumenti permettono di individuare rapidamente eventuali criticità o opportunità di crescita, ottimizzando così le strategie di vendita e marketing.\\
+
+Parallelamente, i sistemi di raccomandazione sono diventati essenziali per migliorare l’esperienza utente e incrementare le vendite, soprattutto nelle piattaforme di e-commerce e nei servizi digitali. Attraverso l’analisi dei dati di acquisto e delle preferenze degli utenti, questi sistemi suggeriscono prodotti o servizi personalizzati, aumentando la probabilità di acquisto e la fidelizzazione del cliente. L’integrazione di report delle vendite e sistemi di raccomandazione consente quindi alle aziende di offrire un servizio più mirato ed efficiente, rafforzando la propria posizione sul mercato.\\
+
+In questo contesto, la startup Oribea, che propone soluzioni digitali intelligenti per le aziende, ha ricevuto una commissione da parte di un'azienda di e-commerce per la creazione di strumenti che automatizzino la generazione di report delle vendite e sistemi di raccomandazione. Oribea ha quindi deciso di integrare queste due funzionalità all’interno della propria piattaforma omonima, che consente di usufruire delle cosiddette Task: strumenti che permettono di automatizzare e semplificare specifiche attività aziendali quotidiane.\\
+Il progetto di stage si inserisce in questo scenario, con l'obiettivo di sviluppare una Task che consenta di generare un report delle vendite e un sistema di raccomandazione a partire da un file degli ordini, e un’altra Task che permetta di sfruttare il sistema di raccomandazione per generare suggerimenti personalizzati per un determinato cliente o prodotto.\\
+
+Le Task di Oribea sono implementate come funzioni serverless, ovvero funzioni che vengono eseguite in modo autonomo e scalabile, senza la necessità di gestire l'infrastruttura sottostante, e sono caricate ed eseguite su Google Cloud Functions. Lo stato delle funzioni viene salvato in Google Cloud Storage. Il compito di stage prevede quindi lo sviluppo di due Cloud Functions serverless che implementano le funzionalità richieste, la loro comunicazione tramite Cloud Storage e la loro integrazione con la piattaforma Oribea.\\
+
 
 \section{Way of working e strumenti utilizzati}
 \label{sec:way-of-working}
