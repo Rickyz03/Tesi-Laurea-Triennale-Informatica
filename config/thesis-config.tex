@@ -63,19 +63,21 @@
 % \setlength\bibitemsep{1.5\itemsep}  % Non funziona: se cambi il valori numerico, non cambia nulla
 \AtBeginBibliography{\setlength{\itemsep}{12pt plus 2pt minus 2pt}}
 
-\DeclareBibliographyCategory{opere}
+\DeclareBibliographyCategory{libri}
+\DeclareBibliographyCategory{articoli}
 \DeclareBibliographyCategory{web}
 
-\addtocategory{opere}{womak:lean-thinking}
-\addtocategory{opere}{womak:serendipity-recommender-systems}
-\addtocategory{opere}{womak:introduction-information-retrieval}
+\addtocategory{libri}{womak:lean-thinking}
+\addtocategory{articoli}{womak:serendipity-recommender-systems}
+\addtocategory{libri}{womak:introduction-information-retrieval}
 \addtocategory{web}{site:agile-manifesto}
 \addtocategory{web}{site:rrf-explained}
 \addtocategory{web}{site:collaborative-filtering}
 \addtocategory{web}{site:cosine-similarity}
 
-\defbibheading{opere}{\section*{Riferimenti bibliografici}}
-\defbibheading{web}{\section*{Siti Web consultati}}
+%\defbibheading{opere}{\section*{Riferimenti bibliografici}}
+%\defbibheading{web}{\section*{Siti Web consultati}}
+% Questi titoli delle sezioni sono ridondanti, perchè sono già presenti come "title" in \printbibliography
 
 
 \captionsetup{
