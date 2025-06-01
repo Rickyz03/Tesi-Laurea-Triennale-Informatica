@@ -4,7 +4,15 @@
 \nocite{*}
 
 % Print book bibliography
-\printbibliography[heading=subbibliography,title={Riferimenti bibliografici},type=book]
+\begin{refsegment}
+\section*{Opere}
+%\printbibliography[heading=subbibliography,title={Riferimenti bibliografici},type=book,resetnumbers=true]
+\printbibliography[heading=none,category=opere,resetnumbers=true]
+\end{refsegment}
 
 % Print site bibliography
-\printbibliography[heading=subbibliography,title={Siti web consultati},type=online]
+\begin{refsegment}
+\section*{Siti web consultati}
+%\printbibliography[heading=subbibliography,title={Siti web consultati},type=online,,resetnumbers=true]
+\printbibliography[heading=none,category=web,resetnumbers=true]
+\end{refsegment}
