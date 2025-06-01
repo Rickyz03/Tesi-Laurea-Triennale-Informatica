@@ -60,12 +60,14 @@
 }
 
 % Spacing between entries
-\setlength\bibitemsep{1.5\itemsep}
+% \setlength\bibitemsep{1.5\itemsep}  % Non funziona
+\AtBeginBibliography{\setlength{\itemsep}{12pt plus 2pt minus 2pt}}
 
 \DeclareBibliographyCategory{opere}
 \DeclareBibliographyCategory{web}
 
 \addtocategory{opere}{womak:lean-thinking}
+\addtocategory{opere}{womak:serendipity-recommender-systems}
 \addtocategory{web}{site:agile-manifesto}
 
 \defbibheading{opere}{\section*{Riferimenti bibliografici}}
