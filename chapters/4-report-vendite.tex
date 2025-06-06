@@ -3,10 +3,77 @@
 
 \intro{In questo capitolo, vengono descritte le teorie e le tecniche utilizzate per l'analisi delle vendite, con particolare attenzione allo studio dei dati, delle statistiche utili e dei grafici generati. Viene inoltre discusso il beneficio dell'automazione dell'analisi delle vendite in confronto all'alternativa manuale.}
 
+
+\section{Benefici dell’automazione dell’analisi delle vendite}
+
+
 \section{Studio delle colonne del dataset}
+\label{sec:studio-colonne-dataset}
+Per poter analizzare le vendite, è fondamentale comprendere le colonne del dataset o della classe di dataset dei quali si dispone. Inizialmente, è stato disponibile un unico dataset, fornito dall'azienda di e-commerce committente, dunque le colonne di questo dataset, che d'ora in poi denominerò \emph{orders-export} sono state studiate in dettaglio e prese come riferimento per l'analisi delle vendite e per la selezione dei successivi dataset. Le colonne originali di \emph{orders-export} sono le seguenti:
+\begin{itemize}
+    \item \textbf{Numero Ordine}: identificativo univoco dell'ordine;
+    \item \textbf{Data Ordine}: data dell'ordine, che riporta anche il timestamp esatto;
+    \item \textbf{ID Cliente}: identificativo univoco del cliente;
+    \item \textbf{Nome Cliente}: nome del cliente;
+    \item \textbf{Cognome Cliente}: cognome del cliente;
+    \item \textbf{Company}: azienda del cliente, se presente;
+    \item \textbf{SKU Prodotto}: codice univoco del prodotto (Stock Keeping Unit);
+    \item \textbf{ID Prodotto}: identificativo univoco del prodotto;
+    \item \textbf{Descrizione Prodotto}: descrizione del prodotto;
+    \item \textbf{Quantità}: quantità di prodotto ordinata;
+    \item \textbf{Prezzo Unitario}: prezzo unitario del prodotto;
+    \item \textbf{Valore Riga}: importo totale dell'acquisto del prodotto. Ciò si deduce solo dai valori contenuti nella colonna, perchè il nominativo della colonna non è stato scelto in modo corretto.
+\end{itemize}
+
+Dopo un primo sguardo alle colonne, è apparso chiara la necessità di operare un preprocessing dei dati, in modo da poter analizzare le vendite in modo più standard efficace. Ne è l'esempio la colonna \emph{Valore Riga}, che non fa comprendere il suo contenuto a prima vista.\\
+
+Dopo aver esaminato le colonne del dataset \emph{orders-export}, è stato sviluppato un sistema di preprocessing, descritto più nel dettaglio a livello implementativo in \ref{sec:preprocessing}. In questa fase, sono state scelte le seguenti colonne per l'analisi delle vendite, e il loro nome è stato tradotto in inglese per uniformità con il resto del progetto:
+\begin{itemize}
+    \item \textbf{Order ID}: identificativo univoco dell'ordine;
+    \item \textbf{Order Timestamp}: data e ora esatta dell'ordine;
+    \item \textbf{Customer ID}: identificativo univoco del cliente;
+    \item \textbf{Customer Name}: nome e cognome del cliente;
+    \item \textbf{Product SKU}: codice univoco del prodotto (Stock Keeping Unit);
+    \item \textbf{Product Name}: nome o descrizione del prodotto;
+    \item \textbf{Unit Price}: prezzo unitario del prodotto;
+    \item \textbf{Quantity}: quantità di prodotto ordinata;
+    \item \textbf{Total Price}: importo totale relativo all'acquisto del prodotto.
+\end{itemize}
+
+Queste colonne sono state dunque prese come riferimento per cercare ulteriori dataset, che potessero essere utili per l'analisi delle vendite. In particolare, sono stati cercati dataset pubblici nella piattaforma Kaggle che contenessero le stesse colonne o colonne riconducibili a quelle standardizzate di \emph{orders-export}. Sono stati trovati i seguenti dataset, nominati in base al nome dell'utente che li ha caricati su Kaggle:
+\begin{itemize}
+    \item \textbf{Anwer};
+    \item \textbf{Cornelius};
+    \item \textbf{Dee};
+    \item \textbf{Delikkaya};
+    \item \textbf{Feroze};
+    \item \textbf{Segura};
+    \item \textbf{Shaw};
+    \item \textbf{Swillm};
+    \item \textbf{Vaghasiya}.
+\end{itemize}
+
+Ogni dataset è stato dunque trattato per ottenere le stesse colonne standardizzate, in modo da poterle confrontare e analizzare in modo efficace
+Inoltre, sono state successivamente aggiunte le seguenti colonne, ricavate dalla colonna "Order Timestamp", per facilitare alcune successive operazioni di analisi:
+\begin{itemize}
+    \item \textbf{Order Day}: giorno dell'ordine (1-31);
+    \item \textbf{Order Week}: settimana dell'anno in cui è stato effettuato l'ordine (1-53);
+    \item \textbf{Order Month}: mese in cui è stato effettuato l'ordine (1-12);
+    \item \textbf{Order Year}: anno in cui è stato effettuato l'ordine (YYYY);
+    \item \textbf{ISO Date}: data dell'ordine in formato ISO (YYYY-MM-DD);
+    \item \textbf{ISO Month}: mese dell'ordine in formato ISO (YYYY-MM).
+\end{itemize}
+
+Fatto ciò, in parallelo con lo studio delle statistiche utili e dei grafici, si è visto necessario introdurre delle ulteriori colonne legate alla data, descrittive invece che numeriche, per allinearsi con il linguaggio naturale del report. Il contenuto di tale colonne dipende dalla lingua del report, dunque le loro creazione è ulteriormente descritta a livello implementativo nella sezione \ref{sec:language-processing}. Le colonne aggiuntive sono le seguenti:
+\begin{itemize}
+    \item \textbf{Date}: data dell'ordine in formato naturale, ad esempio "1 gennaio 2023";
+    \item \textbf{Month}: mese dell'ordine in formato naturale, ad esempio "gennaio 2023";
+    \item \textbf{Week}: settimana dell'anno in formato naturale, unendo assieme le date del lunedì e della domenica di tale settimana, ad esempio "3 febbraio 2025 - 9 febbraio 2025".
+\end{itemize}
+
+A questo punto, i dataset preprocessati sono pronti per essere analizzati, e le colonne standardizzate sono pronte per essere utilizzate per le statistiche utili e i grafici.
+
 
 \section{Valutazione delle statistiche utili}
 
 \section{Valutazione dei grafici utili}
-
-\section{Benefici dell’automazione dell’analisi delle vendite}
