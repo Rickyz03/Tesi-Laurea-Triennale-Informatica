@@ -1,83 +1,138 @@
 % Acronyms
-\newacronym[description={\glslink{apig}{Application Program Interface}}]
-    {api}{API}{Application Program Interface}
+\newacronym[description={\glslink{api}{Application Program Interface}}]
+    {api_acr}{API}{Application Program Interface}
 
-\newacronym[description={\glslink{umlg}{Unified Modeling Language}}]
-    {uml}{UML}{Unified Modeling Language}
+\newacronym[description={\glslink{uml}{Unified Modeling Language}}]
+    {uml_acr}{UML}{Unified Modeling Language}
 
 \newacronym[description={\glslink{llm}{Large Language Model}}]
-    {llm}{LLM}{Large Language Model}
+    {llm_acr}{LLM}{Large Language Model}
 
 \newacronym[description={\glslink{rrf}{Reciprocal Rank Fusion}}]
-    {rrf}{RRF}{Reciprocal Rank Fusion}
+    {rrf_acr}{RRF}{Reciprocal Rank Fusion}
+
+\newacronym[description={\glslink{mapatk}{Mean Average Precision@\emph{k}}}]
+    {mapatk_acr}{MAP@\emph{k}}{Mean Average Precision@\emph{k}}
+
+\newacronym[description={\glslink{mrratk}{Mean Reciprocal Rank@\emph{k}}}]
+    {mrratk_acr}{MRR@\emph{k}}{Mean Reciprocal Rank@\emph{k}}
 
 % Glossary entries
-\newglossaryentry{apig} {
-    name=\glslink{api}{API},
-    text=Application Program Interface,
+\newglossaryentry{api} {
+    name=\glslink{api_acr}{API},
+    text=API,
     sort=api,
-    description={in informatica con il termine \emph{Application Programming Interface API} (ing. interfaccia di programmazione di un'applicazione) si indica ogni insieme di procedure disponibili al programmatore, di solito raggruppate a formare un set di strumenti specifici per l'espletamento di un determinato compito all'interno di un certo programma. La finalità è ottenere un'astrazione, di solito tra l'hardware e il programmatore o tra software a basso e quello ad alto livello semplificando così il lavoro di programmazione}
+    description={in informatica con il termine \emph{Application Programming Interface (API)} (ing. interfaccia di programmazione di un'applicazione) si indica ogni insieme di procedure disponibili al programmatore, di solito raggruppate a formare un set di strumenti specifici per l'espletamento di un determinato compito all'interno di un certo programma. La finalità è ottenere un'astrazione, di solito tra l'hardware e il programmatore o tra software a basso e quello ad alto livello semplificando così il lavoro di programmazione}
 }
 
-\newglossaryentry{umlg} {
-    name=\glslink{uml}{UML},
+\newglossaryentry{uml} {
+    name=\glslink{uml_acr}{UML},
     text=UML,
     sort=uml,
     description={in ingegneria del software \emph{UML, Unified Modeling Language} (ing. linguaggio di modellazione unificato) è un linguaggio di modellazione e specifica basato sul paradigma object-oriented. L'\emph{UML} svolge un'importantissima funzione di ``lingua franca'' nella comunità della progettazione e programmazione a oggetti. Gran parte della letteratura di settore usa tale linguaggio per descrivere soluzioni analitiche e progettuali in modo sintetico e comprensibile a un vasto pubblico}
 }
 
-\newglossaryentry{llmg} {
-    name=\glslink{llm}{LLM},
+\newglossaryentry{llm} {
+    name=\glslink{llm_acr}{LLM},
     text=LLM,
     sort=llm,
     description={\emph{Large Language Model}, modello di linguaggio di grandi dimensioni addestrato su grandi quantità di dati testuali per comprendere e generare testo in linguaggio naturale}
 }
 
-\newglossaryentry{agileg} {
+\newglossaryentry{agile} {
     name=Agile,
     text=Agile,
     sort=agile,
     description={insieme di metodologie di sviluppo software basate su iterazioni brevi, collaborazione continua e adattamento ai cambiamenti, secondo i principi del Manifesto Agile}
 }
 
-\newglossaryentry{scrumg} {
+\newglossaryentry{scrum} {
     name=Scrum,
     text=Scrum,
     sort=scrum,
     description={framework Agile per la gestione e lo sviluppo di progetti complessi, che suddivide il lavoro in iterazioni chiamate sprint e promuove la collaborazione tra team cross-funzionali}
 }
 
-\newglossaryentry{cloudfunctionsg} {
+\newglossaryentry{cloudfunctions} {
     name=Cloud Functions,
     text=Cloud Functions,
     sort=cloudfunctions,
     description={servizio di cloud computing che consente di eseguire codice in risposta a eventi senza dover gestire server, tipico dell'architettura serverless}
 }
 
-\newglossaryentry{cloudstorageg} {
+\newglossaryentry{cloudstorage} {
     name=Cloud Storage,
     text=Cloud Storage,
     sort=cloudstorage,
     description={servizio che permette di archiviare e gestire dati su server remoti accessibili tramite Internet, fornendo scalabilità e affidabilità}
 }
 
-\newglossaryentry{cloudcomputingg} {
+\newglossaryentry{cloudcomputing} {
     name=Cloud Computing,
     text=Cloud Computing,
     sort=cloudcomputing,
     description={modello di erogazione di risorse informatiche (come server, storage, database, networking, software) tramite Internet, su richiesta e con pagamento a consumo}
 }
 
-\newglossaryentry{similaritag} {
+\newglossaryentry{similarita} {
     name=Similarità,
     text=similarità,
     sort=similarita,
     description={misura della somiglianza tra due o più oggetti, spesso utilizzata in informatica per confrontare testi, immagini o altri dati}
 }
 
-\newglossaryentry{rrfg} {
-    name=\glslink{rrf}{RRF},
+\newglossaryentry{rrf} {
+    name=\glslink{rrf_acr}{RRF},
     text=RRF,
     sort=rrf,
     description={metodo di combinazione dei risultati di più sistemi di recupero dell'informazione, che assegna un punteggio a ciascun elemento in base alla posizione nelle classifiche parziali, favorendo i risultati che appaiono in più classifiche}
+}
+
+\newglossaryentry{recallatk} {
+    name=Recall@\emph{k},
+    text=Recall@\emph{k},
+    sort=recallatk,
+    description={metrica che misura la frazione di elementi rilevanti recuperati tra i primi \emph{k} risultati restituiti da un sistema di ranking, rispetto al totale degli elementi rilevanti disponibili}
+}
+
+\newglossaryentry{precisionatk} {
+    name=Precision@\emph{k},
+    text=Precision@\emph{k},
+    sort=precisionatk,
+    description={metrica che misura la frazione di elementi rilevanti tra i primi \emph{k} risultati restituiti da un sistema di ranking}
+}
+
+\newglossaryentry{mapatk} {
+    name=\glslink{map_acr}{MAP@\emph{k}},
+    text=MAP@\emph{k},
+    sort=mapatk,
+    description={Mean Average Precision@\emph{k}, media delle precisioni calcolate a ogni posizione in cui un elemento rilevante appare tra i primi \emph{k} risultati}
+}
+
+\newglossaryentry{mrratk} {
+    name=\glslink{mrratk_acr}{MRR@\emph{k}},
+    text=MRR@\emph{k},
+    sort=mrratk,
+    description={Mean Reciprocal Rank@\emph{k}, media dei reciproci della posizione degli elementi rilevanti tra i primi \emph{k} risultati}
+}
+
+\newglossaryentry{unserendipityatk} {
+    name=Unserendipity@\emph{k},
+    text=Unserendipity@\emph{k},
+    sort=unserendipityatk,
+    description={metrica che misura la mancanza di serendipità tra i primi \emph{k} risultati, ovvero la tendenza a raccomandare elementi già noti o attesi dall'utente}
+}
+
+\newglossaryentry{averageitemsimilarity} {
+    name=Average Item Similarity,
+    text=Average Item Similarity,
+    sort=averageitemsimilarity,
+    description={media delle similarità tra gli elementi raccomandati e gli elementi rilevanti}
+}
+
+\newglossaryentry{meanpopularityatk} {
+    name=Mean Popularity@\emph{k},
+    text=Mean Popularity@\emph{k},
+    sort=meanpopularityatk,
+    description={media della popolarità (ad esempio, numero di interazioni o visualizzazioni) degli elementi raccomandati tra i primi \emph{k} risultati}
 }
