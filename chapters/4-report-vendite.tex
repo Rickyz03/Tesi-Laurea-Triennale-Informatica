@@ -4,6 +4,7 @@
 \intro{In questo capitolo, vengono descritte le teorie e le tecniche utilizzate per l'analisi delle vendite, con particolare attenzione allo studio dei dati, delle statistiche utili e dei grafici generati. Viene inoltre discusso il beneficio dell'automazione dell'analisi delle vendite in confronto all'alternativa manuale.}
 
 
+
 \section{Benefici dell’automazione dell’analisi delle vendite}
 
 La \gls{busintel}\glsfirstoccur{} è un insieme di tecnologie e pratiche che consentono alle aziende di raccogliere, analizzare e presentare dati per supportare il processo decisionale. L'automazione dell'analisi delle vendite rappresenta un passo avanti significativo rispetto all'analisi manuale, offrendo numerosi vantaggi:
@@ -86,12 +87,13 @@ Fatto ciò, in parallelo con lo studio delle statistiche utili e dei grafici, si
 A questo punto, i dataset preprocessati sono pronti per essere analizzati, e le colonne standardizzate sono pronte per essere utilizzate per ricavare le statistiche utili e i grafici.
 
 
+
 \section{Valutazione delle statistiche utili}
 
 Per poter analizzare le vendite, è fondamentale comprendere quali statistiche siano utili per ottenere informazioni significative. L'azienda committente, consapevole di ciò, ha fornito un esempio di report delle vendite, visibile nell'immagine \ref{fig:oribea-report-example}, che è stato utilizzato come base per la valutazione delle statistiche utili.
 
-\begin{figure}[!h] 
-    \centering 
+\begin{figure}[!h]
+    \centering
     \includegraphics[width=0.9\columnwidth]{Oribea - Esempio di report delle vendite.png}
     \caption{Esempio di report delle vendite fornito da Oribea.}
     \label{fig:oribea-report-example}
@@ -99,44 +101,45 @@ Per poter analizzare le vendite, è fondamentale comprendere quali statistiche s
 
 Il report contiene le seguenti statistiche:
 \begin{itemize}
-    \item \textbf{Fatturato Totale}: il totale delle vendite effettuate in un determinato periodo di tempo;
-    \item \textbf{Ordini Unici}: il numero di ordini unici effettuati in un determinato periodo di tempo; questa statistica è necessaria perchè più righe contenenti lo stesso ordine possono essere presenti nel dataset, a causa della presenza di più prodotti nello stesso ordine;
-    \item \textbf{Clienti Unici}: il numero di clienti unici che hanno effettuato ordini in un determinato periodo di tempo; questa statistica è necessaria perchè più righe contenenti lo stesso cliente possono essere presenti nel dataset, a causa della presenza di più ordini effettuati dallo stesso cliente.
+    \item \textbf{Fatturato Totale}: il totale delle vendite effettuate nel dataset;
+    \item \textbf{Ordini Unici}: il numero di ordini unici effettuati nel dataset; questa statistica è necessaria perchè più righe contenenti lo stesso ordine possono essere presenti nel dataset, a causa della possibile presenza di più prodotti nello stesso ordine;
+    \item \textbf{Clienti Unici}: il numero di clienti unici che hanno effettuato ordini nel dataset; questa statistica è necessaria perchè più righe contenenti lo stesso cliente possono essere presenti nel dataset, a causa della possibile presenza di più ordini effettuati dallo stesso cliente.
 \end{itemize}
 
-Queste statistiche sono state scelte come base per l'analisi delle vendite, e sono state implementate nel sistema di analisi automatizzato. successivamente, sono state aggiunte altre statistiche utili, che sono state scelte in base alla loro rilevanza per l'analisi delle vendite e alla loro capacità di fornire informazioni significative. Le statistiche aggiuntive sono le seguenti:
+Queste statistiche sono state scelte come base per l'analisi delle vendite, e sono state implementate nel sistema di analisi automatizzato. Successivamente, sono state aggiunte altre statistiche utili, che sono state scelte in base alla loro rilevanza per l'analisi delle vendite e alla loro capacità di fornire informazioni significative. Le statistiche aggiuntive sono le seguenti:
 \begin{itemize}
-    \item \textbf{Prodotti Unici}: il numero di prodotti unici venduti in un determinato periodo di tempo; questa statistica è necessaria perchè più righe contenenti lo stesso prodotto possono essere presenti nel dataset, a causa della presenza di più ordini effettuati dallo stesso cliente;
+    \item \textbf{Prodotti Unici}: il numero di prodotti unici venduti nel dataset; questa statistica è necessaria perchè più righe contenenti lo stesso prodotto possono essere presenti nel dataset, a causa della presenza di più ordini effettuati dallo stesso cliente;
     \item \textbf{Spesa Media per Ordine}: la spesa media per ordine, calcolata come il fatturato totale diviso per il numero di ordini unici; questa statistica è utile per comprendere quanto i clienti spendono mediamente per ogni ordine.
 \end{itemize}
 
-successivamente, sono state pensate delle altre elaborazioni statistiche, che però non sono state implementate nel sistema di analisi automatizzato per le ragioni spiegate di seguito.
+Successivamente, sono state pensate delle altre elaborazioni statistiche, che però non sono state implementate nel sistema di analisi automatizzato per le ragioni spiegate di seguito nelle sezioni \S\ref{sec:recognition-brands} e \S\ref{sec:recognition-categories}.
 
 \subsection{Riconoscimento delle marche}
 \label{sec:recognition-brands}
 
-Per poter analizzare le vendite in modo più dettagliato, è stato pensato di introdurre una colonna "Marca" nei dataset, che potesse contenere il nome della marca del prodotto. Per ottenere ciò, era dunque necessario sviluppare un sistema di riconoscimento delle marche. Sono state provate le seguenti strategie:
+Per poter analizzare le vendite in modo più dettagliato, è stato pensato di introdurre una colonna "Marca" nei dataset, che potesse contenere il nome della marca del prodotto presente in tale riga. Per ottenere ciò, era dunque necessario sviluppare un sistema di riconoscimento delle marche. Sono state provate le seguenti strategie:
 \begin{itemize}
     \item \textbf{Riconoscimento tramite dizionario}: è stato creato un dizionario contenente le marche più comuni, ma si è rivelato poco efficace, poiché molte marche non erano presenti nel dizionario e il riconoscimento era limitato;
     \item \textbf{Riconoscimento tramite regex}: è stato provato a utilizzare delle espressioni regolari per riconoscere le marche, ma si è rivelato poco efficace, poiché molte marche non seguivano uno schema comune e il riconoscimento era limitato;
-    \item \textbf{Riconoscimento tramite modelli di machine learning}: è stato pensato di creare un modello di machine learning per riconoscere le marche, ma si è rivelato poco efficace, poiché il dataset non era sufficientemente grande e vario per addestrare un modello affidabile, e soprattuto non erano disponibili le etichette necessarie per un addestramento supervisionato;
-    \item \textbf{Riconoscimento tramite modelli di Named Entity Recognition (NER)}: è stato provato a utilizzare un modello di NER sulle descrizioni dei prodotti e a selezionare le entità segnalate di tipo \emph{ORG} (organizzazione), ma si è rivelato poco efficace, poiché il modello non era stato addestrato specificamente per questo compito e il riconoscimento era limitato;
-    \item \textbf{Riconoscimento tramite LLM}: è stato provato a utilizzare un modello di linguaggio di grandi dimensioni (LLM) per riconoscere le marche, ma si è rivelato poco efficace, non perchè non funzionasse, anzi, si è rivelato molto efficace, ma il riconoscimento di ciascuna marca richiedeva troppo tempo e tantissime chiamate \gls{API}\glsfirstoccur{}; è stato fatto un tentativo di raggruppamento di più descrizioni da inviare assieme per il riconoscimento di più marche contemporaneamente, ma si è rivelato poco efficace, poiché il modello ogni tanto si dimenticava di alcune marche o ne aggiungeva una in più, totalmente senza motivo (avvenivano cioè le cosidette "allucinazioni").
+    \item \textbf{Riconoscimento tramite modelli di \gls{ml}\glsfirstoccur{}}: è stato pensato di creare un modello di \gls{ml} per riconoscere le marche, ma si è rivelato poco efficace, poiché il dataset non era sufficientemente grande e vario per addestrare un modello affidabile, e soprattuto non erano disponibili le etichette necessarie per un addestramento supervisionato;
+    \item \textbf{Riconoscimento tramite modelli di \gls{ner}\glsfirstoccur{}}: è stato provato ad utilizzare un modello di \gls{ner} sulle descrizioni dei prodotti e a selezionare le entità segnalate di tipo \emph{ORG} (organizzazione), ma si è rivelato poco efficace, poiché il modello non era stato addestrato specificamente per questo compito e il riconoscimento era limitato;
+    \item \textbf{Riconoscimento tramite \gls{llm}\glsfirstoccur{}}: è stato provato ad utilizzare un modello di linguaggio di grandi dimensioni (\gls{llm}) per riconoscere le marche, e si è rivelato mediamente efficace, ma il riconoscimento di ciascuna marca richiedeva troppo tempo e tantissime chiamate \gls{api}\glsfirstoccur{}; allora, è stato fatto un tentativo di raggruppamento di più descrizioni da inviare assieme per il riconoscimento di più marche contemporaneamente, ma si è rivelato poco efficace, poiché il modello ogni tanto si dimenticava di alcune marche o ne aggiungeva qualcuna in più, totalmente senza motivo (avvenivano cioè le cosidette "allucinazioni").
 \end{itemize}
 
 Dunque, si è deciso di non implementare il riconoscimento delle marche nel sistema di analisi automatizzato, poiché non era possibile garantire un riconoscimento affidabile e preciso.
 
+
 \subsection{Riconoscimento delle categorie}
 \label{sec:recognition-categories}
 
-Per poter analizzare le vendite in modo più dettagliato, è stato pensato di introdurre una colonna "Categoria" nei dataset, che potesse contenere il nome della categoria del prodotto. Per ottenere ciò, era dunque necessario sviluppare un sistema di riconoscimento delle categorie.
+Per poter analizzare le vendite in modo più dettagliato, è stato pensato di introdurre una colonna "Categoria" nei dataset, che potesse contenere il nome della categoria del prodotto presente in tale riga. Per ottenere ciò, era dunque necessario sviluppare un sistema di riconoscimento delle categorie.
 
-Escluse le opzioni già descritte nella sezione \ref{sec:recognition-brands} per il riconoscimento delle marche, è stato pensato di utilizzare un modello k-means per raggruppare i prodotti in base alle loro descrizioni, in modo da ottenere delle categorie. Tuttavia, si è rivelato poco efficace, poiché il modello non era in grado di raggruppare i prodotti in categorie in modo affidabile e preciso, e il numero di categorie era troppo elevato per poterle gestire manualmente.
+Escluse le opzioni già descritte nella sezione \ref{sec:recognition-brands} per il riconoscimento delle marche, è stato pensato di utilizzare un modello \gls{kmeans}\glsfirstoccur{} per raggruppare i prodotti in base alle loro descrizioni, in modo da ottenere delle categorie. Tuttavia, ciò si è rivelato poco efficace, poiché il modello non era in grado di raggruppare i prodotti in categorie in modo affidabile e preciso, e il numero di categorie era troppo elevato per poterle gestire manualmente.
 
 Dunque, si è deciso di non implementare il riconoscimento delle categorie nel sistema di analisi automatizzato, poiché non era possibile garantire un riconoscimento affidabile e preciso.\\
 
 
-A valle di ciò, seppure siano state pensate delle statistiche utili aggiuntive, si è deciso di non implementarle nel sistema di analisi automatizzato. Sono rimaste dunque le cinque statistiche utili descritte in precedenza, che sono state implementate nel sistema di analisi automatizzato e sono state utilizzate per generare il report delle vendite. Queste statistiche sono state scelte in base alla loro rilevanza per l'analisi delle vendite e alla loro capacità di fornire informazioni significative, e sono state ritenute sufficienti per ottenere un'analisi delle vendite efficace e utile.
+A valle di ciò, seppure siano state pensate delle statistiche utili aggiuntive, si è deciso di non implementarle nel sistema di analisi automatizzato, per i succitati motivi. Sono rimaste dunque le cinque statistiche utili descritte in precedenza, che sono state implementate nel sistema di analisi automatizzato e sono state utilizzate per generare il report delle vendite. Queste statistiche sono state scelte in base alla loro rilevanza per l'analisi delle vendite e alla loro capacità di fornire informazioni significative, e sono state ritenute sufficienti per ottenere un'analisi delle vendite efficace e utile.
 
 
 
