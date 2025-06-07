@@ -101,14 +101,14 @@ Per poter analizzare le vendite, è fondamentale comprendere quali statistiche s
 
 Il report contiene le seguenti statistiche:
 \begin{itemize}
-    \item \textbf{Fatturato Totale}: il totale delle vendite effettuate nel dataset;
-    \item \textbf{Ordini Unici}: il numero di ordini unici effettuati nel dataset; questa statistica è necessaria perchè più righe contenenti lo stesso ordine possono essere presenti nel dataset, a causa della possibile presenza di più prodotti nello stesso ordine;
-    \item \textbf{Clienti Unici}: il numero di clienti unici che hanno effettuato ordini nel dataset; questa statistica è necessaria perchè più righe contenenti lo stesso cliente possono essere presenti nel dataset, a causa della possibile presenza di più ordini effettuati dallo stesso cliente.
+    \item \textbf{Fatturato Totale}: il totale delle vendite effettuate nel periodo racchiuso nel dataset;
+    \item \textbf{Ordini Unici}: il numero di ordini unici effettuati nel periodo racchiuso nel dataset; questa statistica è necessaria perchè più righe contenenti lo stesso ordine possono essere presenti nel dataset, a causa della possibile presenza di più prodotti nello stesso ordine;
+    \item \textbf{Clienti Unici}: il numero di clienti unici che hanno effettuato ordini nel periodo racchiuso nel dataset; questa statistica è necessaria perchè più righe contenenti lo stesso cliente possono essere presenti nel dataset, a causa della possibile presenza di più ordini effettuati dallo stesso cliente.
 \end{itemize}
 
 Queste statistiche sono state scelte come base per l'analisi delle vendite, e sono state implementate nel sistema di analisi automatizzato. Successivamente, sono state aggiunte altre statistiche utili, che sono state scelte in base alla loro rilevanza per l'analisi delle vendite e alla loro capacità di fornire informazioni significative. Le statistiche aggiuntive sono le seguenti:
 \begin{itemize}
-    \item \textbf{Prodotti Unici}: il numero di prodotti unici venduti nel dataset; questa statistica è necessaria perchè più righe contenenti lo stesso prodotto possono essere presenti nel dataset, a causa della presenza di più ordini effettuati dallo stesso cliente;
+    \item \textbf{Prodotti Unici}: il numero di prodotti unici venduti nel periodo racchiuso nel dataset; questa statistica è necessaria perchè più righe contenenti lo stesso prodotto possono essere presenti nel dataset, a causa della presenza di più ordini effettuati dallo stesso cliente;
     \item \textbf{Spesa Media per Ordine}: la spesa media per ordine, calcolata come il fatturato totale diviso per il numero di ordini unici; questa statistica è utile per comprendere quanto i clienti spendono mediamente per ogni ordine.
 \end{itemize}
 
@@ -119,3 +119,28 @@ A valle di ciò, seppure siano state pensate delle statistiche utili aggiuntive,
 
 
 \section{Valutazione dei grafici utili}
+
+Per poter analizzare le vendite, è fondamentale comprendere quali grafici siano utili per ottenere informazioni significative. Nell'esempio di report delle vendite succitato nell'immagine \ref{fig:oribea-report-example}, sono presenti anche alcuni grafici, che sono stati utilizzati come base per la valutazione dei grafici utili.
+I grafici consigliati sono i seguenti:
+\begin{itemize}
+    \item \textbf{Trend mensile delle vendite}: un grafico a linee che mostra l'andamento delle vendite nel tempo, suddiviso per mese. Questo grafico consente di visualizzare le fluttuazioni delle vendite e di identificare eventuali tendenze stagionali;
+    \item \textbf{Top 5 prodotti per fatturato}: un grafico a barre che mostra i cinque prodotti più venduti in termini di fatturato. Questo grafico consente di identificare i prodotti più popolari e redditizi.
+\end{itemize}
+
+Il report di esempio ha dunque suggerito l'utilizzo di questi due grafici, che sono stati implementati nel sistema di analisi automatizzato. Non solamente ciò, tale report ha anche suggerito le tipologie di grafici consigliate dall'azienda committente, cioè grafici a linee e a barre, che sono stati quindi scelti per il report per la loro semplicità e chiarezza nella visualizzazione dei dati.
+
+A questo punto, sono stati pensati altri grafici utili, che sono stati implementati nel sistema di analisi automatizzato in parallelo con lo studio del colonne del dataset e del \gls{preprocessing}. I grafici aggiuntivi sono i seguenti:
+\begin{itemize}
+    \item \textbf{Top 5 clienti per spesa totale}: un grafico a barre che mostra i cinque clienti che hanno speso di più nel periodo racchiuso nel dataset. Questo grafico consente di identificare i clienti più redditizi e di valutare le strategie di fidelizzazione;
+    \item \textbf{Trend mensile dei nuovi clienti}: un grafico a linee che mostra l'andamento del numero di nuovi clienti acquisiti nel tempo, suddiviso per mese. Questo grafico consente di valutare l'efficacia delle strategie di marketing e di acquisizione clienti;
+    \item \textbf{Trend mennsile della percentuale di nuovi clienti}: un grafico a linee che mostra l'andamento della percentuale di nuovi clienti rispetto al totale dei clienti nel tempo, suddiviso per mese. Questo grafico consente di valutare l'efficacia delle strategie di marketing e di acquisizione clienti in relazione al numero totale di clienti; il valore della percentuale del primo mese è ovviamente 100\%, poiché il numero di nuovi clienti è uguale al numero totale di clienti fino ad allora;
+    \item \textbf{Top 5 date per fatturato}: un grafico a barre che mostra le cinque date in cui si è registrato il fatturato più alto. Questo grafico consente di identificare le date più redditizie e di valutare l'efficacia delle strategie di vendita;
+    \item \textbf{Top 5 settimane per fatturato}: un grafico a barre che mostra le cinque settimane in cui si è registrato il fatturato più alto. Questo grafico consente di identificare le settimane più redditizie e di valutare l'efficacia delle strategie di vendita.
+\end{itemize}
+
+Si nota come sono stati scelti grafici unicamente legati al fatturato, e non a "quantità" o "numero", poiché il fatturato è stata considerata la metrica più importante per l'azienda, cioè quella che fornisce le informazioni più significative. Al contrario, grafici legati a "quantità" o "numero" non sono stati implementati poiché non sono stati ritenuti utili per l'analisi delle vendite.
+
+Molti grafici scelti sono stati legati alla data, poiché si è ritenuto che l'analisi temporale delle vendite fosse fondamentale per comprendere le tendenze e le fluttuazioni delle vendite nel tempo. Da ciò si spiegano le operazioni contemporanee di aggiunta delle colonne legate alla data, descritte sopra nella sezione \S\ref{sec:studio-colonne-dataset}.
+
+Infine, i grafici implementati nel sistema di analisi automatizzato, scelti in base alla loro rilevanza per l'analisi delle vendite e alla loro capacità di fornire informazioni significative, sono stati dunque ritenuti sufficienti per ottenere un'analisi delle vendite efficace e utile.
+
