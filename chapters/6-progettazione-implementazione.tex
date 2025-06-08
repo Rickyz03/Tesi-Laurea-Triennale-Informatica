@@ -5,6 +5,34 @@
 
 \section{Flusso delle attività}
 
+\begin{figure}[!h]
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{activity/Task di analisi delle vendite.png}
+    \caption{Flusso delle attività della task di analisi delle vendite}
+    \label{fig:activity-sales-analysis}
+\end{figure}
+
+Il flusso delle attività per la task di analisi delle vendite è rappresentato nella figura \ref{fig:activity-sales-analysis}. Le attività in sequenza previste dalla task dal lato dell'utente sono:
+\begin{itemize}
+    \item \textbf{Compilazione dei campi di input}: l'utente deve compilare i campi di input richiesti, cioè deve selezionare il file CSV contenente i dati delle vendite, selezionare la lingua del report e la valuta da utilizzare per i prezzi, e inserire l'indirizzo email a cui inviare il report;
+    \item \textbf{Possibili output}: nel caso in cui l'utente abbia inserito correttamente i campi di input e nel caso la task non abbia riscontrato errori, l'utente visualizzerà un messaggio di esito positivo ed un invito a controllare la propria email per il report generato. Viene inoltre segnalata la generazione delle matrici di raccomandazione, e viene visualizzato il token che serve copiare per poter usufruire della task di raccomandazione. In caso la task non vada a buon fine, l'utente visualizzerà un messaggio di errore;
+    \item \textbf{I file generati}: la task genera un file PDF ed un file HTML contenenti il report delle vendite, e l'utente ha la possibilità di scaricarli dall'apposita schermata del portale Oribea;
+    \item \textbf{La ricezione della mail}: l'utente riceve una mail all'indirizzo email inserito in precedenza, il cui body contiene l'HTML del report, e riporta come allegati il report delle vendite in formato PDF ed HTML; inoltre, viene mostrato anche qui il token che serve copiare per poter usufruire della task di raccomandazione.
+\end{itemize}
+
+\begin{figure}[!h]
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{activity/Task di raccomandazione di prodotti e clienti.png}
+    \caption{Flusso delle attività della task di raccomandazione di prodotti e clienti}
+    \label{fig:activity-recommendation-products-customers}
+\end{figure}
+
+Il flusso delle attività per la task di raccomandazione di prodotti e clienti è rappresentato nella figura \ref{fig:activity-recommendation-products-customers}. Le attività in sequenza previste dalla task dal lato dell'utente sono:
+\begin{itemize}
+    \item \textbf{Compilazione dei campi di input}: l'utente deve compilare i campi di input richiesti, cioè deve inserire il token ricevuto nella mail della task di analisi delle vendite, selezionare il tipo di raccomandazione tra "Raccomandare prodotti per un cliente" e "Raccomandare clienti per un prodotto", inserire il nome dell'elemento a cui raccomandare, inserire il numero di raccomandazioni desiderate, e selezionare la lingua con cui presentare la classifica di raccomandazioni;
+    \item \textbf{Possibili output}: nel caso in cui l'utente abbia inserito correttamente i campi di input e nel caso la task non abbia riscontrato errori, l'utente visualizzerà la classifica di raccomandazioni generata. In caso la task non vada a buon fine, l'utente visualizzerà un messaggio di errore.
+\end{itemize}
+
 
 \section{Tecnologie e strumenti}
 \label{sec:tecnologie-strumenti}
