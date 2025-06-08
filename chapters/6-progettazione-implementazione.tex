@@ -37,12 +37,60 @@ Il flusso delle attività per la task di raccomandazione di prodotti e clienti �
 \section{Tecnologie e strumenti}
 \label{sec:tecnologie-strumenti}
 
-Di seguito viene data una panoramica delle tecnologie e strumenti utilizzati.
+Di seguito viene data una panoramica delle tecnologie e strumenti utilizzati per lo sviluppo delle due task di analisi delle vendite e raccomandazione di prodotti e clienti. Le tecnologie sono state scelte in base alle esigenze del progetto, alla facilità d'uso e alla compatibilità con le altre componenti del sistema.
 
-\subsection{Tecnologia 1}
-Descrizione Tecnologia 1.
+\subsection{Pandas}
+Pandas è una libreria Python per l'analisi dei dati, che fornisce strutture dati e funzioni per la manipolazione e l'analisi dei dati. È stata utilizzata per leggere i file CSV contenenti i dati delle vendite e per elaborare i dati in fase di preprocessing.
 
-\subsection{Tecnologia 2}
+\subsection{Babel}
+Babel è una libreria Python per la gestione della localizzazione e internazionalizzazione delle applicazioni. È stata utilizzata per gestire le date nel report, in modo da poterle visualizzare nel formato corretto in base alla lingua selezionata dall'utente.
+
+\subsection{Anthropic}
+Anthropic è una libreria che consente di interagire con i modelli di linguaggio di grandi dimensioni (\gls{llm}) sviluppati dall'azienda Anthropic tramite le loro API. In particolare, è stato usato il modello Claude 3.7 Sonnet per riconoscere le colonne del file CSV contenente i dati delle vendite, e per generare il resoconto finale che fa da ultimo passaggio del report delle vendite.
+
+\subsection{Matplotlib}
+Matplotlib è una libreria Python per la creazione di grafici e visualizzazioni dei dati. È stata utilizzata per generare i grafici presenti nel report delle vendite, in modo da rendere i dati più comprensibili e visivamente accattivanti.
+
+\subsection{Pillow}
+Pillow è una libreria Python per la manipolazione delle immagini. È stata utilizzata per generare le immagini dei grafici creati con Matplotlib e per la loro conversione in base64, in modo da poterli inserire nel report delle vendite in formato PDF ed HTML.
+
+\subsection{ReportLab}
+ReportLab è una libreria Python per la generazione di documenti PDF, che fornisce una disposizione dinamica del contenuto in pagine. È stata utilizzata per creare il report delle vendite in formato PDF, in modo da renderlo scaricabile dal portale Oribea e da poterlo inviare via email all'utente.
+
+\subsection{Jinja2}
+Jinja2 è un motore di template per Python, che consente di generare documenti HTML in modo dinamico. È stata utilizzata per creare il report delle vendite in formato HTML, in modo da renderlo visualizzabile direttamente nel browser e da poterlo anche inviare via email all'utente.
+
+\subsection{Server SMTP interno}
+Descrizione Tecnologia 2
+
+\subsection{Sentence Transformers}
+Descrizione Tecnologia 2. Cita il nome del modello: all-MiniLM-L6-v2
+
+\subsection{Scikit-learn}
+Descrizione Tecnologia 2. Cita la cosine similarity.
+
+\subsection{Zarr}
+Descrizione Tecnologia 2
+
+\subsection{Google Cloud Storage}
+Descrizione Tecnologia 2. Cita google.cloud.storage vs gcsfs.
+
+\subsection{Google Cloud Functions}
+Descrizione Tecnologia 2
+
+\subsection{Numpy}
+Descrizione Tecnologia 2
+
+\subsection{Black}
+Descrizione Tecnologia 2
+
+\subsection{Ruff}
+Descrizione Tecnologia 2
+
+\subsection{MyPy}
+Descrizione Tecnologia 2
+
+\subsection{Pytest}
 Descrizione Tecnologia 2
 
 
