@@ -61,37 +61,37 @@ ReportLab è una libreria Python per la generazione di documenti PDF, che fornis
 Jinja2 è un motore di template per Python, che consente di generare documenti HTML in modo dinamico. È stata utilizzata per creare il report delle vendite in formato HTML, in modo da renderlo visualizzabile direttamente nel browser e da poterlo anche inviare via email all'utente.
 
 \subsection{Server SMTP interno}
-Descrizione Tecnologia 2
+Per l'invio di email, è stato utilizzato un server SMTP messo a disposizione da Oribea, che consente di inviare mail personalizzate senza avere la necessità di utilizzare un indirizzo mail esistente o di collegarsi ad un servizio esterno a pagamento. 
 
 \subsection{Sentence Transformers}
-Descrizione Tecnologia 2. Cita il nome del modello: all-MiniLM-L6-v2
+SentenceTransformers è una libreria Python per la creazione di modelli di linguaggio basati su trasformatori, che consente di generare rappresentazioni vettoriali di frasi e documenti. È stata utilizzata per calcolare le similarità tra le descrizioni dei prodotti e i nomi dei prodotti, in modo da poter generare le raccomandazioni. In particolare, è stato utilizzato il modello \emph{all-MiniLM-L6-v2} per generare le rappresentazioni vettoriali delle descrizioni dei prodotti e dei nomi dei prodotti, e per calcolare la similarità tra di essi.
 
 \subsection{Scikit-learn}
-Descrizione Tecnologia 2. Cita la cosine similarity.
+Scikit-learn è una libreria Python per il machine learning, che fornisce strumenti per la creazione e l'addestramento di modelli di apprendimento automatico. È stata utilizzata per calcolare la similarità tra le descrizioni dei prodotti e i nomi dei prodotti, in modo da poter generare le raccomandazioni. In particolare, è stato utilizzato il metodo \emph{cosine similarity} per calcolare la similarità tra i vettori delle descrizioni dei prodotti e i vettori dei nomi dei prodotti.
 
 \subsection{Zarr}
-Descrizione Tecnologia 2
+Zarr è una libreria Python per la gestione di array multidimensionali, che consente di memorizzare e gestire grandi quantità di dati in modo efficiente. È stata utilizzata per memorizzare su cloud le matrici di raccomandazione generate dalla prima task, in modo da poterle utilizzare successivamente per le raccomandazioni nella seconda task.
 
 \subsection{Google Cloud Storage}
-Descrizione Tecnologia 2. Cita google.cloud.storage vs gcsfs.
+Google Cloud Storage è un servizio di archiviazione di oggetti su cloud fornito da Google. È stato utilizzato per memorizzare i file generati dalla task di analisi delle vendite, come il report in formato PDF ed HTML, e le matrici di raccomandazione generate dalla task di raccomandazione di prodotti e clienti. In particolare, sono stati utilizzati i pacchetti \emph{google.cloud.storage} e \emph{gcsfs} per interagire con il servizio: \emph{google.cloud.storage} è stato utilizzato per scrivere i file, mentre \emph{gcsfs} è stato utilizzato per leggerli.
 
 \subsection{Google Cloud Functions}
-Descrizione Tecnologia 2
+Google Cloud Functions è un servizio di calcolo serverless fornito da Google, che consente di eseguire codice in risposta a eventi. È stato utilizzato per caricarvi il codice delle due task di analisi delle vendite e raccomandazione di prodotti e clienti, in modo da poterle eseguire in modo scalabile e senza doversi preoccupare della gestione dei server. Il portale Oribea è configurato per invocare le funzioni di Google Cloud Functions quando l'utente richiede l'esecuzione delle task.
 
 \subsection{Numpy}
-Descrizione Tecnologia 2
+Numpy è una libreria Python per il calcolo scientifico, che fornisce strutture dati e funzioni per la manipolazione di array multidimensionali. È stata utilizzata per calcolare le metriche di valutazione delle raccomandazioni.
 
 \subsection{Black}
-Descrizione Tecnologia 2
+Black è un formattatore di codice Python che consente di mantenere uno stile di codifica coerente e leggibile. È stato utilizzato per formattare il codice delle due task, in modo da renderlo più leggibile e mantenere uno stile di codifica uniforme.
 
 \subsection{Ruff}
-Descrizione Tecnologia 2
+Ruff è un linter per Python che consente di rilevare errori di sintassi e problemi di stile nel codice. È stato utilizzato per verificare la correttezza del codice delle due task, in modo da garantire che fosse privo di errori e conforme agli standard di codifica.
 
 \subsection{MyPy}
-Descrizione Tecnologia 2
+MyPy è un tipo di controllo per Python che consente di verificare la correttezza dei tipi di dati nel codice. È stato utilizzato per verificare la correttezza dei tipi di dati delle due task, in modo da garantire che il codice fosse privo di errori di tipo e conforme agli standard di codifica.
 
 \subsection{Pytest}
-Descrizione Tecnologia 2
+Pytest è un framework di testing per Python che consente di scrivere e eseguire test automatizzati. È stato utilizzato per testare le due task, in modo da garantire che funzionassero correttamente e fossero prive di errori. I test sono stati scritti in modo da coprire i casi d'uso principali delle due task, e sono stati eseguiti automaticamente durante lo sviluppo per garantire la qualità del codice.
 
 
 \section{Architettura del sistema}
