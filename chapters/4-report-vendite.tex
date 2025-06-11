@@ -22,7 +22,7 @@ Di conseguenza, compito di questo progetto è stato quello di sviluppare un sist
 
 \section{Studio delle colonne del dataset}
 \label{sec:studio-colonne-dataset}
-Per poter analizzare le vendite, è fondamentale comprendere le colonne dei dataset dei quali si dispone. Inizialmente, è stato reso disponibile un unico dataset, che d'ora in poi denominerò \emph{orders-export}, fornito dall'azienda di e-commerce committente, dunque le colonne di questo dataset sono state studiate in dettaglio e prese come riferimento per l'analisi delle vendite e per la selezione dei successivi dataset. Le colonne originali di \emph{orders-export} sono le seguenti:
+Per poter analizzare le vendite, è fondamentale comprendere le colonne dei dataset dei quali si dispone. Inizialmente, è stato reso disponibile un unico dataset, che d'ora in poi denominerò \emph{Orders\_export}, fornito dall'azienda di e-commerce committente, dunque le colonne di questo dataset sono state studiate in dettaglio e prese come riferimento per l'analisi delle vendite e per la selezione dei successivi dataset. Le colonne originali di \emph{Orders\_export} sono le seguenti:
 \begin{itemize}
     \item \textbf{Numero Ordine}: identificativo univoco dell'ordine;
     \item \textbf{Data Ordine}: data dell'ordine, che riporta anche il timestamp esatto;
@@ -40,7 +40,7 @@ Per poter analizzare le vendite, è fondamentale comprendere le colonne dei data
 
 Dopo un primo sguardo alle colonne, è apparsa chiara la necessità di operare un \gls{preprocessing}\glsfirstoccur{} delle stesse, in modo da poter analizzare le vendite in modo standard ed efficace. Ne è l'esempio la colonna \emph{Valore Riga}, che non fa comprendere il suo contenuto a prima vista, e dunque necessita di un cambio di nominativo.
 
-Dopo aver esaminato le colonne del dataset \emph{orders-export}, è stato sviluppato un sistema di preprocessing, descritto più nel dettaglio a livello implementativo nella sezione \S\ref{sec:preprocessing}. In questa fase, sono state scelte le seguenti colonne per l'analisi delle vendite, e il loro nome è stato tradotto in inglese per uniformità con il resto del progetto:
+Dopo aver esaminato le colonne del dataset \emph{Orders\_export}, è stato sviluppato un sistema di preprocessing, descritto più nel dettaglio a livello implementativo nella sezione \S\ref{sec:preprocessing}. In questa fase, sono state scelte le seguenti colonne per l'analisi delle vendite, e il loro nome è stato tradotto in inglese per uniformità con il resto del progetto:
 \begin{itemize}
     \item \textbf{Order ID}: identificativo univoco dell'ordine;
     \item \textbf{Order Timestamp}: data e ora esatta dell'ordine;
@@ -53,18 +53,29 @@ Dopo aver esaminato le colonne del dataset \emph{orders-export}, è stato svilup
     \item \textbf{Total Price}: importo totale relativo all'acquisto del prodotto.
 \end{itemize}
 
-Queste colonne sono state dunque prese come riferimento per cercare ulteriori dataset, che potessero essere utili per l'analisi delle vendite. In particolare, sono stati cercati dataset pubblici nella piattaforma Kaggle che contenessero le stesse colonne o colonne riconducibili a quelle standardizzate di \emph{orders-export}. Sono stati trovati i seguenti dataset, nominati con il nome dell'utente che li ha caricati su Kaggle:
-\begin{itemize}
-    \item \textbf{Anwer};
-    \item \textbf{Cornelius};
-    \item \textbf{Dee};
-    \item \textbf{Delikkaya};
-    \item \textbf{Feroze};
-    \item \textbf{Segura};
-    \item \textbf{Shaw};
-    \item \textbf{Swillm};
-    \item \textbf{Vaghasiya}.
-\end{itemize}
+Queste colonne sono state dunque prese come riferimento per cercare ulteriori dataset, che potessero essere utili per l'analisi delle vendite. In particolare, sono stati cercati dataset pubblici nella piattaforma Kaggle che contenessero le stesse colonne o colonne riconducibili a quelle standardizzate di \emph{Orders\_export}. I dataset trovati sono stati nominati con il nome dell'utente che li ha caricati su Kaggle.
+La tabella \ref{tab:dataset-riassunto} mostra tutti i dataset che sono stati utilizzati per il progetto, con il loro numero di righe, numero di clienti unici e numero di prodotti unici:
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Dataset} & \textbf{Numero righe} & \textbf{Clienti} & \textbf{Prodotti} \\
+        \midrule
+        Anwer          & 51.290 & 795   & 10.292 \\
+        Cornelius      & 15.000 & 14.095 & 15.000 \\
+        Dee            & 2.747  & 89    & 109 \\
+        Delikkaya      & 44.804 & 35.389 & 1.000 \\
+        Feroze         & 250   & 10    & 10 \\
+        Orders\_export & 26.862 & 23.252 & 4.114 \\
+        Segura         & 2.823  & 92    & 109 \\
+        Shaw           & 3.203  & 686   & 1.494 \\
+        Swillm         & 50.000 & 8.157  & 47 \\
+        Vaghasiya      & 5.000  & 2.172  & 268 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Dataset utilizzati per l’analisi delle vendite, con numero di righe, clienti e prodotti.}
+    \label{tab:dataset-riassunto}
+\end{table}
 
 Ogni dataset è stato dunque trattato per ottenere le stesse colonne standardizzate, in modo da poterle confrontare e analizzare in modo efficace.
 Inoltre, sono state successivamente aggiunte le seguenti colonne, ricavate dalla colonna "Order Timestamp", per facilitare alcune operazioni di analisi:
