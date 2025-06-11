@@ -200,7 +200,7 @@ Considerati l'elevato consumo di spazio e la lentezza di accesso ai dati delle m
     \item \textbf{Zarr}: Zarr è un formato per la memorizzazione di array multidimensionali che supporta la compressione e l'accesso parallelo ai dati. È stato valutato per la sua scalabilità, flessibilità e facilità di integrazione con sistemi cloud.
 \end{itemize}
 
-Sono stati dunque sviluppati dei test automatizzati per confrontare le prestazioni di lettura dei vari formati e lo spazio occupato su disco. I tempi di scrittura non sono stati considerati, poiché le matrici di raccomandazione vengono generate una sola volta e poi salvate su Google Cloud Storage, dove rimangono per essere utilizzate in seguito. I dataset che sono stati utilizzati per i test sono stati scelti cercando di variare la dimensione e la densità delle matrici, e sono qui di seguito elencati in ordine crescente di dimensione:
+Sono stati dunque sviluppati dei test automatizzati per confrontare le prestazioni di lettura dei vari formati e lo spazio occupato su disco. I tempi di scrittura non sono stati considerati, poiché le matrici di raccomandazione vengono generate una sola volta e poi salvate su Google Cloud Storage, dove rimangono per essere utilizzate in seguito. I dataset che sono stati utilizzati per i test sono stati scelti cercando di variare la dimensione e la densità delle matrici, e sono qui di seguito elencati in ordine crescente di dimensione della matrice:
 \begin{table}[h]
     \centering
     \begin{tabular}{|l|c|}
@@ -218,6 +218,54 @@ Sono stati dunque sviluppati dei test automatizzati per confrontare le prestazio
     \caption{Dataset utilizzati per il confronto dei formati di archiviazione delle matrici di raccomandazione}
     \label{tab:dataset-matrici}
 \end{table}
+
+I risultati dei test di memoria occupata su disco sono stati i seguenti:
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{benchmark/memory_usage_by_dataset_and_format.png}
+    \caption{Utilizzo della memoria dei formati di archiviazione delle matrici di raccomandazione}
+    \label{fig:memory-usage-recommendation-matrices}
+\end{figure}
+
+Si evince dunque che i dataset sono classificabili all'incirca così in ordine crescente di spazio occupato su disco:
+\begin{enumerate}
+    \item Parquet;
+    \item Zarr;
+    \item NPY;
+    \item HDF5;
+    \item CSV.
+\end{enumerate}
+
+I risultati dei test di velocità di lettura dei vari formati sono stati i seguenti:
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{benchmark/read_time_by_dataset_and_format.png}
+    \caption{Velocità di lettura dei formati di archiviazione delle matrici di raccomandazione}
+    \label{fig:read-speed-recommendation-matrices}
+\end{figure}
+
+Si evince dunque che i dataset sono classificabili all'incirca così in ordine crescente di velocità di lettura:
+\begin{enumerate}
+    \item NPY;
+    \item Zarr;
+    \item HDF5;
+    \item Parquet;
+    \item CSV.
+\end{enumerate}
+
+Il grafico finale che mette assieme i risultati dei test di memoria occupata su disco e velocità di lettura è il seguente:
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{benchmark/time_vs_memory.png}
+    \caption{Utilizzo della memoria e velocità di lettura dei formati di archiviazione delle matrici di raccomandazione}
+    \label{fig:memory-usage-and-read-speed-recommendation-matrices}
+\end{figure}
+
+Mettendo i valori di memoria usata e velocità di lettura assieme, si evince che il formato Zarr è il migliore per le matrici di raccomandazione, poiché offre un buon compromesso tra spazio occupato su disco e velocità di lettura. Zarr è un formato progettato per la gestione di array multidimensionali e supporta la compressione e l'accesso parallelo ai dati, rendendolo adatto per l'archiviazione delle matrici. Inoltre, Zarr è ottimizzato per l'uso su cloud, il che lo rende compatibile con Google Cloud Storage, dove le matrici di raccomandazione saranno archiviate.
+
+Dunque, si è deciso di utilizzare il formato Zarr per l'archiviazione delle matrici di raccomandazione, poiché offre un buon compromesso tra spazio occupato su disco e velocità di lettura, ed è compatibile con Google Cloud Storage.
 
 
 \section{La predizione e rank fusion}
