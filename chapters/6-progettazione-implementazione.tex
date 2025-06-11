@@ -202,6 +202,9 @@ Escluse le opzioni già descritte nella sezione \ref{sec:recognition-brands} per
 Dunque, si è deciso di non implementare il riconoscimento delle categorie nel sistema di analisi automatizzato, poiché non era possibile garantire un riconoscimento affidabile e preciso.
 
 
+E' stata svolta anche un'altra operazione di preprocessing, che però non è stata implementata nel modulo dedicato. Infatti, durante lo sviluppo dei grafici per il report delle vendite, è stato necessario gestire il caso in cui prodotti diversi abbiano lo stesso nome: è stato deciso di inserire un suffisso numerico (es.: (1), (2), ...) ai nomi di prodotto identici, in modo da poterli distinguere. Questa modifica si è però rivelata molto lenta ed inefficiente da svolgere su tutto il dataframe, e quindi è stato deciso di svolgerla solo sui nomi dei prodotti che venivano utilizzati per i grafici. Questa operazione è stata dunque svolta direttamente nel modulo \emph{report/calculations\_charts}, dove vengono generati i grafici, e non nel modulo \emph{preparation/preprocessing}, dove viene svolto il preprocessing dei dati delle vendite.
+
+
 
 \section{Language processing}
 \label{sec:language-processing}
