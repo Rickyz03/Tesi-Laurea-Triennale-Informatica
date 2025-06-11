@@ -209,6 +209,21 @@ E' stata svolta anche un'altra operazione di preprocessing, che però non è sta
 \section{Language processing}
 \label{sec:language-processing}
 
+In ogni applicazione che gestisce testi in lingue diverse, è fondamentale avere un sistema di processamento del linguaggio naturale che consenta di gestire correttamente le lingue e le loro specificità. Nel caso della task di analisi delle vendite, è stato necessario implementare un sistema di language processing che consentisse di gestire correttamente le date e i testi in base alla lingua selezionata dall'utente.
+
+Le lingue italiano, inglese, francese, spagnolo e tedesco sono le uniche permesse nel sistema: ne viene selezionata una dall'utente tramite un menù a tendina presente nell'interfaccia grafica del portale Oribea. Esse sono state scelte in quanto sono le lingue più parlate al mondo e le più comuni tra gli utenti del portale.
+
+Per quanto riguarda le date, è stato necessario implementare un sistema di formattazione delle date che consentisse di gestire correttamente le date in base alla lingua selezionata dall'utente. In particolare, oltre ad avere le date in formato ISO (le cui relative colonne sono state ottenute nell'elaborazione descritta in \ref{sec:preprocessing}), in modo da poterle utilizzare per i calcoli, occorreva anche un sistema che consentisse di gestire le date in formato locale, in modo da poterle visualizzare correttamente nel report delle vendite.
+Le relative colonne sono state ottenuto utilizzando la libreria \emph{babel} di Python, che consente di gestire le lingue e le loro specificità. In particolare, è stato utilizzato il modulo \emph{babel.dates} e la funzione \emph{format_dates} per formattare le date in base alla lingua selezionata dall'utente.
+
+Per quanto riguarda i testi presenti nel report delle vendite, è stato necessario implementare un sistema di selezione dei testi in base alla lingua selezionata dall'utente. Considerata la relativa semplicità del report, è stato deciso di non utilizzare dei file di lingua, bensì sono stati semplicemente scritti i testi in modo hardcoded direttamente nel codice, in modo da poterli selezionare in base alla lingua richiesta dall'utente.
+La funzione dedicata ha dunque il compito di restituire un dizionario che presenta i testi nella lingua corretta accessibili tramite le chiavi corrispondenti. Ad esempio, per inserire il titolo del report, si deve accedere alla chiave \emph{title} del dizionario \texttt{report_language_dependent_data} per ottenere il titolo nella lingua selezionata dall'utente.
+
+Un'altra operazione di language processing riguarda la selezione del testo che la task deve riportare in output per descrivere le operazioni svolte, presentare i risultati ottenuti e invitare l'utente a usufruire delle matrici di raccomandazione mediante la task apposita. Per quest'ultimo proposito, in questo testo viene anche riportato il token che l'utente deve utilizzare per accedere alle matrici, che sono state salvate su Google Cloud Storage.
+L'ultima operazione di language processing riguarda la selezione dell'oggetto e del body per la mail che viene inviata all'utente allegando il report delle vendite in formato PDF ed HTML.
+Anche in questi ultimi due casi, per semplicità è stato deciso di non utilizzare dei file di lingua, bensì sono stati semplicemente hardcodati i testi direttamente nel codice.
+
+
 \section{Report}
 \subsection{PDF}
 \subsection{HTML}
