@@ -11,6 +11,8 @@
 \usepackage[T1]{fontenc}                % codifica dei font:
                                         % NOTA BENE! richiede una distribuzione *completa* di LaTeX
 
+\usepackage{lmodern}                    % font Latin Modern (estensione di Computer Modern). Aggiunto per evitare l'errore: "pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.". L'espansione automatica (microtype) funziona solo con font Type1 o OpenType, non con bitmap. Spesso il problema nasce dall’uso implicito di font bitmap, così invece si va ad esplicitamente usare un font Type1 sicuro, come ad esempio Latino Modern (lmodern)
+
 \usepackage[utf8]{inputenc}             % codifica di input; anche [latin1] va bene
                                         % NOTA BENE! va accordata con le preferenze dell'editor
 
