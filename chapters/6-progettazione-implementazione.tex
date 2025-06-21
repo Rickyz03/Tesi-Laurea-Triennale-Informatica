@@ -98,7 +98,7 @@ Pytest è un framework di testing per Python che consente di scrivere e eseguire
 
 Prima di cominciare a sviluppare le due task, è stata svolta un'analisi preliminare per definire l'architettura del sistema e le interazioni tra le varie componenti. Siccome le task rappresentano due funzionalità distinte, è stato deciso di svilupparle come due funzioni separate su Google Cloud Functions, e quindi come due diversi progetti il più separati possibile, in modo da poterle gestire indipendentemente e poterle testare separatamente.
 Per entrambi i progetti, è stato deciso di utilizzare il linguaggio Python, in modo da poter sfruttare le librerie e gli strumenti già descritti nella sezione \ref{sec:tecnologie-strumenti}.
-Inoltre, per entrambi è stato scelto un approccio procedurale a discapito di un approccio orientato agli oggetti, poiché le task sono relativamente semplici e non richiedono una struttura complessa. Tuttavia, è stato deciso di creare dei moduli per organizzare il codice e renderne più facile la lettura e la manutenzione.
+Inoltre, per entrambi è stato scelto un approccio procedurale a discapito di un approccio orientato agli oggetti, poiché le task sono relativamente semplici e non richiedono una struttura complessa. In aggiunta, è stato deciso di creare dei moduli per organizzare il codice e renderne più facile la lettura e la manutenzione.
 I moduli in Python sono rappresentati da cartelle e da file con estensione \emph{.py}, e sono stati utilizzati per raggruppare le funzioni correlate e per separare le responsabilità del codice. In particolare, sono stati creati i moduli descritti di seguito.
 
 Per quanto riguarda la task di analisi delle vendite, sono stati creati i seguenti moduli:
