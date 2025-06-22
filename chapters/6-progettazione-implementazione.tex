@@ -143,11 +143,10 @@ Sono stati appena descritti i moduli contenuti dentro la cartella \emph{src} del
     \item \textbf{tests}: questa cartella contiene i test automatizzati per le due task, che vengono eseguiti automaticamente durante lo sviluppo per garantire la qualità del codice. I test sono scritti utilizzando il framework Pytest, e sono organizzati in moduli separati per ciascuna task;
     \item \textbf{main.py}: questo file contiene il codice principale per collegarsi al servizio Cloud Functions, e richiama la funzione principale della task corrispondente;
     \item \textbf{logger.py}: questo file contiene la configurazione dell'oggetto logger delle due task, che viene utilizzato per tracciarne l'esecuzione e per facilitarne il debug in caso di errori. I log vengono scritti su console e possono essere visualizzati tramite il servizio di logging di Google Cloud;
+    \item \textbf{.env}: questo file contiene le variabili d'ambiente necessarie per l'esecuzione delle task;
     \item \textbf{pyproject.toml}: questo file contiene la configurazione del progetto, come il nome del progetto, la versione, la descrizione e le dipendenze necessarie per l'esecuzione delle task. Inoltre, contiene le configurazioni per i tool di formattazione e linting del codice, come Black, Ruff e MyPy;
     \item \textbf{pytest.ini}: questo file contiene la configurazione per Pytest, il framework di testing utilizzato per i test automatizzati delle due task. In particolare, contiene la configurazione della coverage a 75\% per i test, e la configurazione per eseguire i test per l'\gls{llm} separatamente rispetto ai test "classici";
-    \item \textbf{file .bat}: script per l'esecuzione dell'analisi statica del codice, che eseguono i tool di formattazione e linting Black, Ruff e MyPy. Questi script sono stati creati per facilitare l'esecuzione di questi ultimi tool, in modo da poterli consultare facilmente durante lo sviluppo;
-    \item \textbf{.gitignore}: questo file contiene le regole per ignorare i file e le cartelle che non devono essere tracciati da Git, come i file di test e i file di configurazione locali;
-    \item \textbf{.env}: questo file contiene le variabili d'ambiente necessarie per l'esecuzione delle task;
+    \item \textbf{file run_*.bat}: script per l'esecuzione dell'analisi statica del codice, che eseguono i tool di formattazione e linting Black, Ruff e MyPy. Questi script sono stati creati per facilitare l'esecuzione di questi ultimi tool, in modo da poterli consultare facilmente durante lo sviluppo;
     \item \textbf{deploy.bat}: questo file contiene lo script per l'esecuzione del complesso comando di deployment su Google Cloud Functions.
 \end{itemize}
 
