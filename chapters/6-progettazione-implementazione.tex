@@ -33,6 +33,8 @@ Il flusso delle attività per la task di raccomandazione di prodotti e clienti �
     \item \textbf{Possibili output}: nel caso in cui l'utente abbia inserito correttamente i campi di input e nel caso la task non abbia riscontrato errori, l'utente visualizzerà la classifica di raccomandazioni generata. In caso la task non vada a buon fine, l'utente visualizzerà un messaggio di errore.
 \end{itemize}
 
+Si segnala brevemente, tuttavia, che gli output delle due task non sono stati alla fine l'esatta emulazione di quanto modellato nei diagrammi di attività, ma sono stati modificati in corso d'opera a causa della difficoltà di integrazione con la piattaforma Oribea. In particolare, il download del report delle vendite in formato PDF ed HTML è in realtà stato implementato come download di un file zip (contenente PDF + HTML), poichè la piattaforma Oribea non consente di scaricare più di un file unico come output di una task. Inoltre, il token per accedere alla task di raccomandazione è stato inserito nel file README presente nel file zip, invece che essere mostrato a video come inizialmente previsto. Per quanto riguarda la task di raccomandazione, altrettanto l'output è rappresentato da un file zip, poichè le raccomandazioni sono state generate sia in formato PDF sia in formato JSON, con quest'ultimo che è stato introdotto per favorire una futura estrazione via web dei dati.
+
 
 \section{Tecnologie e strumenti}
 \label{sec:tecnologie-strumenti}
