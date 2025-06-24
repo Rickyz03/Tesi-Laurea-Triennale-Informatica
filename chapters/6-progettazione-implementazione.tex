@@ -412,5 +412,25 @@ Successivamente, durante la progettazione delle interfacce, si è scelto, di com
     \item \textbf{Interfaccia di raccomandazione}: l'analisi del caso d'uso del servizio ha portato a progettare un'interfaccia ottimizzata per la visualizzazione su una finestrella di dimensioni ridotte. Infatti, è stato pensato il servizio come parte integrata di un'applicazione di e-commerce, che possa essere usata da un utente che sta navigando tra i prodotti e vuole ricevere delle raccomandazioni, oppure da un tecnico aziendale che, navigando tra gli stessi prodotti, vuole prevedere a quali utenti potrebbero interessare. In questo caso, l'interfaccia deve essere semplice, piccola e veloce da utilizzare, senza troppi fronzoli, in modo da non distrarre l'utente dalla navigazione.
 \end{itemize}
 
+Un altro aspetto affrontato durante lo sviluppo dell'interfaccia di analisi vendite è stata la scelta di integrare un'anteprima del file csv appena caricato, che ne mostrasse i nomi delle colonne e le prime righe, in modo da permettere all'utente di verificare che il file sia stato caricato correttamente e che contenga i dati attesi. Questa funzionalità è stata implementata utilizzando la libreria React Hook Form per la gestione del form di caricamento del file, e la libreria Papaparse per il parsing del file CSV e la visualizzazione dei dati in anteprima.
+
+Un'anteprima del risultato finale delle interfacce grafiche sviluppate è mostrata nelle figure \ref{fig:frontend-sales-analysis} e \ref{fig:frontend-recommendation}.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{frontend/Frontend Sales Analysis.png}
+    \caption{Interfaccia di analisi delle vendite}
+    \label{fig:frontend-sales-analysis}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.3\columnwidth]{frontend/Frontend Recommendation.png}
+    \caption{Interfaccia di raccomandazione}
+    \label{fig:frontend-recommendation}
+\end{figure}
+
+
+\newpage
 
 \section{Ottimizzazione}
