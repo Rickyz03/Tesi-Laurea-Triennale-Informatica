@@ -380,7 +380,31 @@ Dunque, si è deciso di utilizzare il formato Zarr per l'archiviazione delle mat
 \subsection{Google Cloud Storage}
 \subsection{Google Cloud Functions}
 
-\section{Ottimizzazione}
-
 \section{Frontend}
 \label{sec:frontend}
+
+Dopo aver caricato le due Functions di analisi delle vendite e di raccomandazione su Google Cloud Functions ed averle integrate nella piattaforma Oribea, si è deciso di provare a soddisfare anche il requisito desiderabile che prevede di sviluppare due interfacce grafiche per permettere agli utenti di interagire con le task in modo più semplice e intuitivo. Il reale obiettivo di queste interfacce è quello di garantire una validazione dell'input, assente nella piattaforma Oribea, in modo da evitare errori di contenuto nei file caricati oppure valori errati nei campi di testo, che potrebbero causare errori durante l'esecuzione delle task.
+
+A causa delle difficoltà nello sviluppo di un backend che permetta l'integrazione con Google Cloud Functions, si è deciso di sviluppare due interfacce grafiche scollegate dalla logica funzionale, che possano essere dunque solamente un template personalizzabile che l'azienda Oribea potrà utilizzare per sviluppare le proprie interfacce grafiche in futuro.
+
+Il contenuto effettivo di queste interfacce, data la natura delle tasks, è costituito unicamente da due form di input. Questo requisito ha dunque svolto una parte fondamentale nella scelta delle tecnologie da utilizzare per lo sviluppo.
+Un altro requisito è stato quello che le interfacce fossero accessibili tramite un browser web, in modo da poter essere utilizzate da qualsiasi dispositivo connesso a Internet.
+
+I framework di sviluppo web che sono stati presi in considerazione per lo sviluppo delle interfacce grafiche sono stati i seguenti:
+\begin{itemize}
+    \item \textbf{Angular}: Angular è un framework web completo sviluppato da Google, basato su TypeScript. Offre una struttura robusta e scalabile per lo sviluppo di applicazioni web complesse, con un'architettura basata su componenti, dependency injection integrato, e un ecosistema ricco di strumenti. È particolarmente adatto per progetti enterprise di grandi dimensioni;
+    \item \textbf{React}: React è una libreria JavaScript sviluppata da Facebook per la costruzione di interfacce utente interattive. Si basa su un approccio dichiarativo e utilizza un DOM virtuale per ottimizzare le prestazioni. La sua architettura a componenti e la vasta community lo rendono ideale per progetti di varie dimensioni, dalle applicazioni semplici a quelle complesse;
+    \item \textbf{Vue}: Vue è un framework JavaScript progressivo che combina la semplicità di utilizzo con la potenza necessaria per applicazioni complesse. Offre una curva di apprendimento graduale, un sistema di reattività intuitivo e una documentazione eccellente. È particolarmente apprezzato per la sua facilità d'uso e la capacità di integrarsi facilmente in progetti esistenti.
+\end{itemize}
+
+Data la grande semplicità delle interfacce grafiche da sviluppare, qualsiasi framework sarebbe stato in grado di soddisfare i requisiti. Allora, la differenza l'ha fatta il consiglio fornito da compagni di corso di laurea che avevano già avuto esperienza con questi framework, che hanno segnalati l'esistenza in React delle seguenti librerie dedicate ai form:
+\begin{itemize}
+    \item \textbf{React Hook Form}: è una libreria per la gestione efficiente dei form in React che si basa sull'utilizzo di hook. Offre prestazioni elevate minimizzando i re-render dei componenti, validazione integrata, e un'API semplice e intuitiva. È particolarmente apprezzata per la sua leggerezza e per la facilità di integrazione con librerie di validazione esterne;
+    \item \textbf{Zod}: è una libreria di validazione schema-first per TypeScript e JavaScript che consente di definire schemi di validazione type-safe. Permette di validare dati in runtime garantendo al contempo la sicurezza dei tipi in fase di compilazione. È ideale per la validazione di form, API response e input utente;
+    \item \textbf{Shadcn/ui}: è una collezione di componenti UI riutilizzabili costruiti con Radix UI e Tailwind CSS. Non è propriamente una libreria da installare, ma piuttosto un set di componenti che possono essere copiati e personalizzati direttamente nel progetto. Offre componenti moderni, accessibili e completamente customizzabili che seguono le migliori pratiche di design. In particolare, sono stati consigliati i componenti legati alla creazione di form, come i campi di input, i pulsanti e le etichette.
+\end{itemize}
+
+Dunque, grazie a questi consigli e alla semplicità delle interfacce grafiche da sviluppare, si è deciso di utilizzare React come framework di sviluppo, e di usufruire delle librerie React Hook Form, Zod e Shadcn/ui per la gestione dei form e la validazione degli input.
+
+
+\section{Ottimizzazione}
