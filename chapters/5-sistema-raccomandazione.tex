@@ -5,6 +5,16 @@
 
 \section{Requisiti per il dataset}
 
+Perchè sia possibile implementare un sistema di raccomandazione per e-commerce, è necessario che il dataset contenga le informazioni necessarie per poter effettuare le raccomandazioni. In particolare, è necessario che il dataset contenga:
+\begin{itemize}
+    \item \textbf{ID Cliente}: un identificativo univoco per ogni cliente, che permette di distinguere tra i diversi clienti del servizio di e-commerce;
+    \item \textbf{SKU Prodotto}: un identificativo univoco per ogni prodotto, che permette di distinguere tra i diversi prodotti del servizio di e-commerce;
+    \item \textbf{Nome Cliente}: il nome del cliente, che permette di identificare il cliente in modo più intuitivo; a differenza dell'ID Cliente, il nome del cliente non deve necessariamente essere univoco, cioè può essere condiviso da più clienti;
+    \item \textbf{Nome Prodotto}: il nome del prodotto, che permette di identificare il prodotto in modo più intuitivo; a differenza dello SKU Prodotto, il nome del prodotto non deve necessariamente essere univoco, cioè può essere condiviso da più prodotti.
+\end{itemize}
+
+Queste informazioni vengono dunque richieste in input come colonne del file CSV che contiene il dataset. L'\gls{llm} ha il compito di riconoscere quali colonne del file CSV ne sono rappresentanti, dopodichè i nomi corrispondenti vengono standardizzati rispettivamente in: \texttt{"Customer ID"}, \texttt{"Product SKU"}, \texttt{"Customer Name"} e \texttt{"Product Name"}. Queste colonne vengono dunque poi utilizzate per implementare le tecniche di raccomandazione, che si basano sull'analisi delle interazioni tra i clienti e i prodotti e sulla loro similarità.
+
 \section{Collaborative filtering}
 
 \section{Similarità}
