@@ -434,3 +434,49 @@ Un'anteprima del risultato finale delle interfacce grafiche sviluppate è mostra
 \newpage
 
 \section{Ottimizzazione}
+
+L'ultima attività svolta durante lo sviluppo della task di analisi delle vendite è stata l'ottimizzazione del codice, in modo da migliorare le prestazioni e ridurre i tempi di esecuzione. In particolare, sono state implementate le seguenti migliorie:
+
+\begin{itemize}
+    \item \textbf{Introduzione delle Pandas Vectorized Ops}: per migliorare le prestazioni delle operazioni sui dataframe, sono state utilizzate le Pandas Vectorized Ops, che consentono di eseguire operazioni su interi array di dati in modo più efficiente rispetto alle operazioni iterabili, come ad esempio un ciclo for. Questo ha portato a un notevole miglioramento delle prestazioni durante il preprocessing dei dati, il calcolo delle statistiche e la generazione dei grafici;
+    \item \textbf{Eliminazione delle operazioni apply}: sono state eliminate le operazioni apply, che sono meno efficienti rispetto alle operazioni vettorializzate, e sono state sostituite appunto con queste ultime. Questo ha portato ad un ulteriore miglioramento delle prestazioni nel calcolo delle statistiche e ad un efficientamento nella formattazione delle date e dei prezzi;
+    \item \textbf{Miglioramento dell'algoritmo delle etichette}: l'algoritmo per la disambiguazione dei prodotti con lo stesso nome utilizzando etichette ("(1), (2), ..."), utilizzato per il grafico dei top 5 prodotti per fatturato, è stato migliorato in modo da essere più efficiente e veloce. In particolare, è stata creata una funzione dedicata (\texttt{create\_unique\_product\_names}), che utilizza un approccio a due fasi: prima calcola la frequenza di ciascun nome prodotto utilizzando \texttt{value\_counts()}, poi itera una sola volta sui nomi mantenendo un contatore per i duplicati e aggiungendo il suffisso numerico solo ai nomi che compaiono più volte. Questo approccio evita iterazioni multiple e controlli ridondanti, portando a un notevole miglioramento delle prestazioni durante la generazione del grafico.
+\end{itemize}
+
+Dopo aver svolto queste ottimizzazioni, sono stati eseguiti dei test di performance per verificare i miglioramenti ottenuti: è stato cioè misurato il tempo di esecuzione della task di analisi vendite prima e dopo l'ottimizzazione. Per ottenere la versione della cloud function non ancora ottimizzata è stato fatto uso del comando \texttt{git switch}, che ha permesso di tornare all'ultimo commit prima dell'ottimizzazione, e sono stati eseguiti i test di performance su quella versione. Poi, è bastato rieseguire \texttt{git switch} verso il commit più recente per fare i test sulla versione ottimizzata. I test cronometrati sono stati eseguiti su tutti i dieci dataset disponibili.
+I risultati dei test sono mostrati nella seguente tabella (\ref{tab:performance-tests}).
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Dataset} & \textbf{Tempo pre-otti} & \textbf{Tempo post-otti} & \textbf{Miglioramento (\%)} \\
+        \hline
+        Swillm & 01:50 & 01:08 & 38,2\% \\
+        Dee & 00:58 & 00:38 & 34,5\% \\
+        Anwer & 03:01 & 02:00 & 33,7\% \\
+        Orders\_export & 03:40 & 02:48 & 23,6\% \\
+        Cornelius & 05:21 & 04:34 & 14,6\% \\
+        Vaghasiya & 00:53 & 00:49 & 7,5\% \\
+        Segura & 00:50 & 00:47 & 6,0\% \\
+        Shaw & 00:55 & 00:53 & 3,6\% \\
+        Feroze & 00:40 & 00:39 & 2,5\% \\
+        Delikkaya & 02:02 & 02:07 & -4,1\% \\
+        \hline
+    \end{tabular}
+    \caption{Risultati dei test di performance prima e dopo l'ottimizzazione}
+    \label{tab:performance-tests}
+\end{table}
+
+\newpage
+
+Dall'analisi di questi risultati, si distinguono tre fasce di variazione del tempo di esecuzione:
+\begin{itemize}
+    \item \textbf{Miglioramento elevato}: i dataset Swillm, Dee e Anwer hanno mostrato un miglioramento significativo, con una riduzione del tempo di esecuzione superiore al 30\%. Questo indica che le ottimizzazioni hanno avuto un impatto notevole su dataset di dimensioni maggiori o con una struttura più complessa;
+    \item \textbf{Miglioramento moderato}: i dataset Orders\_export, Cornelius, Vaghasiya, Segura e Shaw hanno mostrato un miglioramento compreso tra il 6\% e il 23\%. Questi risultati suggeriscono che le ottimizzazioni hanno avuto un effetto positivo, ma non così marcato come nei casi precedenti;
+    \item \textbf{Miglioramento minimo o negativo}: i dataset Feroze e Delikkaya hanno mostrato un miglioramento minimo (2,5\%) o addirittura un peggioramento (-4,1\%). Questo potrebbe essere dovuto alla natura specifica di questi dataset o alla presenza di operazioni che non sono state significativamente influenzate dalle ottimizzazioni.
+\end{itemize}
+
+In generale, le ottimizzazioni hanno portato a un miglioramento significativo delle prestazioni della task di analisi delle vendite, con una riduzione media del tempo di esecuzione superiore al 20\%. Tuttavia, è importante notare che i risultati possono variare a seconda della natura specifica dei dataset e delle operazioni svolte su di essi.
+
+Il requisito di ottimizzazione è stato dunque soddisfatto, e le prestazioni della task sono state notevolmente migliorate, rendendo il sistema più efficiente e veloce nell'elaborazione dei dati delle vendite.
