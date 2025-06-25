@@ -3,10 +3,42 @@
 
 \intro{In questo capitolo, vengono descritte le scelte riguardanti i test effettuati per verificare e validare il sistema sviluppato. Si inizia con una panoramica delle scelte generali, seguita da una descrizione dei test di unità e dei test specifici per \gls{llm}.}
 
+
 \section{Scelte riguardanti i test}
+
+Per garantire la qualità del sistema sviluppato, è stato deciso di seguire la pratica dell'ingegneria del software di effettuare test in parallelo allo sviluppo. Questo approccio consente di identificare e correggere i bug in modo tempestivo, migliorando la stabilità e l'affidabilità del sistema.
+
+Tuttavia, essendo il sistema molto semplice, in particolare considerato l'approccio procedurale con la conseguente assenza di classi, si è deciso di non implementare l'intera suite di test automatizzati prevista dalla teoria (test di unità, test di integrazione, test di sistema, test di accettazione). Invece, si è optato per un approccio più snello, concentrandosi sui test di unità.
+
+Tuttavia, considerando l'importanza della qualità delle risposte del modello \gls{llm} utilizzato, il fallimento del quale comporterebbe il fallimento totale del sistema, sono stati implementati test specifici per verificare il corretto funzionamento del modello stesso. Questi test, a differenza dei test di unità, non utilizzano un mock per il modello \gls{llm}, ma bensì si basano sul modello reale utilizzato in produzione.
+
+Inoltre, durante lo sviluppo delle interfacce frontend, nonostante non fosse richiesto, si è comunque deciso di implementare dei test per verificare il corretto funzionamento dei componenti, essendo una buona pratica dello sviluppo software in generale.
+
 
 \section{Test di unità}
 
+I test di unità sono stati implementati per verificare il corretto funzionamento delle singole funzioni e moduli del sistema. Per ogni file di codice sorgente, è stato scritto un corrispettivo file di test, emulando la stessa struttura di cartelle. Questi test sono stati scritti utilizzando i seguenti framework:
+\begin{itemize}
+    \item \textbf{pytest}: framework di testing per Python che offre una sintassi semplice e intuitiva. Permette di scrivere test con asserzioni standard di Python e fornisce funzionalità avanzate come fixture, parametrizzazione dei test e un sistema di plugin estensibile;
+    \item \textbf{unittest}: modulo standard di Python per il testing unitario, basato sul framework xUnit. Utilizza una struttura orientata agli oggetti dove i test sono definiti come metodi di classi che ereditano da \texttt{unittest.TestCase}.
+\end{itemize}
+
+È stato poi scelto, per ciascuna function, di scrivere un file \texttt{pytest.ini} per configurare il framework \texttt{pytest} per calcolare la copertura del codice ad ogni esecuzione dei test. Questo file contiene le impostazioni per il calcolo della copertura del codice, specificando le directory e i file da includere o escludere dal report di copertura. È stata decisa, di comune accordo con il tutor, una copertura minima del 90\% per ogni file di codice sorgente, in modo da garantire un buon livello di test e ridurre il rischio di bug non rilevati.
+
+Alla fine, è stata ottenuta una copertura del codice del 100\% per tutti i file di codice sorgente di entrambe le functions, il che significa che ogni riga di codice è stata eseguita almeno una volta durante i test. Questo è un risultato molto positivo, poiché indica che tutte le funzionalità implementate sono state testate e verificate.
+Questo risultato è stato riportato tramite badge nel \texttt{README.md} del repository, come visibile nella figura \ref{fig:coverage-badges}, in modo da fornire una visione chiara della qualità del codice e della copertura dei test.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/Badges di coverage delle functions.png}
+    \caption{Badge di copertura del codice per le functions}
+    \label{fig:coverage-badges}
+\end{figure}
+
+
 \section{Test dell’LLM}
+
+
+
 
 \section{Test del frontend}
