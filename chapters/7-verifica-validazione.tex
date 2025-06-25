@@ -38,7 +38,25 @@ Questo risultato è stato riportato tramite badge nel \texttt{README.md} del rep
 
 \section{Test dell’LLM}
 
+Per garantire la qualità delle risposte fornite dal modello \gls{llm} utilizzato, sono stati implementati test specifici per verificare il corretto funzionamento del modello stesso. Questi test sono stati scritti utilizzando il framework \texttt{pytest} e si basano sul modello reale utilizzato in produzione, senza l'utilizzo di mock.
 
+Inoltre, siccome l'\gls{llm} è un servizio a pagamento, per evitare di spendere denaro ad ogni esecuzione dell'intera suite di test, è stato deciso di marcare appositamente questi test con il decoratore \texttt{pytest.mark.llm}, e, soprattutto, è stato configurato \texttt{pytest} per escludere tale decoratore dall'esecuzione principale prevista dal comando \texttt{pytest}.
+In questo modo, è possibile eseguire solo i test relativi al modello \gls{llm} quando necessario, utilizzando il comando \texttt{pytest -m llm}, ed è possibile eseguire i test rimanenti con il normale comando \texttt{pytest} senza dover pagare alcunchè.
+
+L'\gls{llm} viene chiamato due volte nel sistema: una volta per riconoscere le colonne dentro il file CSV e una volta per generare un resoconto delle statistiche e dei grafici del report delle vendite. Per ciascuna di queste chiamate, sono stati implementati test specifici con vari differenti input per verificare che il modello risponda correttamente e che le risposte siano coerenti con le aspettative.
 
 
 \section{Test del frontend}
+
+Durante lo sviluppo delle interfacce frontend, sono stati implementati test per verificare il corretto funzionamento dei componenti. 
+
+Come framework di test, sono state valutate le seguenti possibilità:
+\begin{itemize}
+    \item \textbf{Jest}: un framework di test JavaScript sviluppato da Facebook, ampiamente utilizzato per testare applicazioni React. Offre funzionalità come snapshot testing, mocking e copertura del codice;
+    \item \textbf{Vitest}: un framework di test moderno e veloce per JavaScript e TypeScript, progettato per essere compatibile con Jest. Supporta il testing di componenti React e offre funzionalità simili a Jest.
+\end{itemize}
+
+Siccome le applicazioni React sviluppate si basano su Vite, un moderno strumento di build per applicazioni web, si è deciso di utilizzare Vitest come framework di test. Vitest è progettato per essere veloce e leggero, sfruttando le stesse tecnologie di Vite, e offre una sintassi simile a Jest, rendendo facile la scrittura e l'esecuzione dei test.
+
+Per entrambi i progetti frontend, è stato deciso di non fissare a priori una copertura minima del codice, ma di puntare bensì a testare le funzionalità principali e i casi d'uso più rilevanti. Questo approccio consente di mantenere un buon livello di test senza appesantire lo sviluppo con requisiti di copertura troppo rigidi.
+Nel caso del frontend di analisi delle vendite, è stato comunque ottenuto un buon livello di copertura del codice, con una copertura pari al 62\%. Per il frontend di raccomandazione invece, a causa di un diverso approccio nell'uso dei mock che non ha previsto l'usufrutto del codice dei tipi di dato \texttt{Shadcn/ui} (i quali sono considerati tra le righe di codice da coprire pur essendo stati generati automaticamente), la coverage è stata ottenuta pari al solo 34\%. Tuttavia, anche in questo caso, i componenti principali e le funzionalità più rilevanti sono stati testati, garantendo un buon livello di affidabilità.
