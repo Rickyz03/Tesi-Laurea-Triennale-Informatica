@@ -431,6 +431,8 @@ Un'anteprima del risultato finale delle interfacce grafiche sviluppate è mostra
 \end{figure}
 
 
+\newpage
+
 \subsection{Gestione dinamica del submit}
 
 I submit dei due form delle interfacce grafiche sono stati gestiti in modo dinamico, in modo da poter gestire l'invio dei dati in modo diverso a seconda delle variabili d'ambiente configurate.
@@ -455,7 +457,6 @@ Dunque, a seconda della variabile d'ambiente \texttt{VITE\_SUBMIT\_STRATEGY} con
 Attualmente, il submit non è ancora stato integrato con Google Cloud Functions, poiché si è deciso di sviluppare le interfacce grafiche come template personalizzabili, e quindi non sono state implementate le chiamate \gls{api} per l'invio dei dati. Tuttavia, la struttura del codice è già pronta per essere integrata con le \gls{api} di Google Cloud Functions in futuro, semplicemente modificando la variabile d'ambiente \texttt{VITE\_SUBMIT\_STRATEGY} in "\texttt{api}" e aggiornando l'apposito \texttt{hook}.
 
 
-\newpage
 
 \section{Ottimizzazione}
 
