@@ -380,13 +380,6 @@ Dunque, si è deciso di utilizzare il formato Zarr per l'archiviazione delle mat
 
 1) Spiegare situazione Oribea e cloud. Tasks e functions
 
-\subsection{Google Cloud Storage}
-
-1) Introduzione: bisogno di tenere salvato materiale da una task all'altra
-2) Spiegare come si è scelto di gestire i bucket
-3) Spiegare come inizialmente si voleva identificare con il nome del csv, poi con la mail dell'utente. Poi si è capito che era tutto ambiguo, allora si è accettato di perdere family friendlieness e di mostrare un lungo token da copiare.
-4) Spiegare differenza tra google.cloud.storage e gcsfs
-
 \subsection{Google Cloud Functions}
 
 1) Spiegare l'iniziale difficoltà dovuta al send\_file di cui non si era capita l'importanza
@@ -394,6 +387,14 @@ Dunque, si è deciso di utilizzare il formato Zarr per l'archiviazione delle mat
 3) Spiegare l'importanza della tanta RAM (32 GB invece di 256 MB)
 4) Spiegare come è stato fondamentale mettere Python 3.13 perchè Zarr funzionasse
 5) Configurazione di logging particolare per la stampa dei log
+
+\subsection{Google Cloud Storage}
+
+1) Introduzione: bisogno di tenere salvato materiale da una task all'altra
+2) Spiegare come si è scelto di gestire i bucket
+3) Spiegare come inizialmente si voleva identificare con il nome del csv, poi con la mail dell'utente. Poi si è capito che era tutto ambiguo, allora si è accettato di perdere family friendlieness e di mostrare un lungo token da copiare.
+4) Spiegare differenza tra google.cloud.storage e gcsfs
+
 
 \section{Frontend}
 \label{sec:frontend}
