@@ -10,7 +10,7 @@ Per garantire la qualità del sistema sviluppato, è stato deciso di seguire la 
 
 Tuttavia, essendo il sistema molto semplice, in particolare considerato l'approccio procedurale con la conseguente assenza di classi, si è deciso di non implementare l'intera suite di test automatizzati prevista dalla teoria (test di unità, test di integrazione, test di sistema, test di accettazione). Invece, si è optato per un approccio più snello, concentrandosi sui test di unità.
 
-Tuttavia, considerando l'importanza della qualità delle risposte del modello \gls{llm} utilizzato, il fallimento del quale comporterebbe il fallimento totale del sistema, sono stati implementati test specifici per verificare il corretto funzionamento del modello stesso. Questi test, a differenza dei test di unità, non utilizzano un mock per il modello \gls{llm}, ma bensì si basano sul modello reale utilizzato in produzione.
+Tuttavia, considerando l'importanza della qualità delle risposte del modello LLM utilizzato, il fallimento del quale comporterebbe il fallimento totale del sistema, sono stati implementati test specifici per verificare il corretto funzionamento del modello stesso. Questi test, a differenza dei test di unità, non utilizzano un mock per il modello LLM, ma bensì si basano sul modello reale utilizzato in produzione.
 
 Inoltre, durante lo sviluppo delle interfacce frontend, nonostante non fosse richiesto, si è comunque deciso di implementare dei test per verificare il corretto funzionamento dei componenti, essendo una buona pratica dello sviluppo software in generale.
 
@@ -38,12 +38,12 @@ Questo risultato è stato riportato tramite badge nel \texttt{README.md} del rep
 
 \section{Test dell’LLM}
 
-Per garantire la qualità delle risposte fornite dal modello \gls{llm} utilizzato, sono stati implementati test specifici per verificare il corretto funzionamento del modello stesso. Questi test sono stati scritti utilizzando il framework \texttt{pytest} e si basano sul modello reale utilizzato in produzione, senza l'utilizzo di mock.
+Per garantire la qualità delle risposte fornite dal modello LLM utilizzato, sono stati implementati test specifici per verificare il corretto funzionamento del modello stesso. Questi test sono stati scritti utilizzando il framework \texttt{pytest} e si basano sul modello reale utilizzato in produzione, senza l'utilizzo di mock.
 
-Inoltre, siccome l'\gls{llm} è un servizio a pagamento, per evitare di spendere denaro ad ogni esecuzione dell'intera suite di test, è stato deciso di marcare appositamente questi test con il decoratore \texttt{pytest.mark.llm}, e, soprattutto, è stato configurato \texttt{pytest} per escludere tale decoratore dall'esecuzione principale prevista dal comando \texttt{pytest}.
-In questo modo, è possibile eseguire solo i test relativi al modello \gls{llm} quando necessario, utilizzando il comando \texttt{pytest -m llm}, ed è possibile eseguire i test rimanenti con il normale comando \texttt{pytest} senza dover pagare alcunchè.
+Inoltre, siccome l'LLM è un servizio a pagamento, per evitare di spendere denaro ad ogni esecuzione dell'intera suite di test, è stato deciso di marcare appositamente questi test con il decoratore \texttt{pytest.mark.llm}, e, soprattutto, è stato configurato \texttt{pytest} per escludere tale decoratore dall'esecuzione principale prevista dal comando \texttt{pytest}.
+In questo modo, è possibile eseguire solo i test relativi al modello LLM quando necessario, utilizzando il comando \texttt{pytest -m llm}, ed è possibile eseguire i test rimanenti con il normale comando \texttt{pytest} senza dover pagare alcunchè.
 
-L'\gls{llm} viene chiamato due volte nel sistema: una volta per riconoscere le colonne dentro il file CSV e una volta per generare un resoconto delle statistiche e dei grafici del report delle vendite. Per ciascuna di queste chiamate, sono stati implementati test specifici con vari differenti input per verificare che il modello risponda correttamente e che le risposte siano coerenti con le aspettative.
+L'LLM viene chiamato due volte nel sistema: una volta per riconoscere le colonne dentro il file CSV e una volta per generare un resoconto delle statistiche e dei grafici del report delle vendite. Per ciascuna di queste chiamate, sono stati implementati test specifici con vari differenti input per verificare che il modello risponda correttamente e che le risposte siano coerenti con le aspettative.
 
 
 \section{Test del frontend}

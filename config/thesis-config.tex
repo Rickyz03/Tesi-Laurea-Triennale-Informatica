@@ -143,7 +143,10 @@
 \addto\captionsitalian{\renewcommand{\figurename}{Figura}
                        \renewcommand{\tablename}{Tabella}}
 
+% Aggiunge il simbolo \glsfirstoccur dopo ogni occorrenza di \gls
 \newcommand{\glsfirstoccur}{\textsubscript{\textbf{\textit{G}}}}
+\let\oldgls\gls
+\renewcommand{\gls}[1]{\oldgls{#1}\glsfirstoccur}
 
 \newcommand{\intro}[1]{\emph{\textsf{#1}}}
 
