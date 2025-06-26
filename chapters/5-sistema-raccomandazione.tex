@@ -13,7 +13,7 @@ Perchè sia possibile implementare un sistema di raccomandazione per e-commerce,
     \item \textbf{Nome Prodotto}: il nome del prodotto, che permette di identificare quest'ultimo in modo più intuitivo; a differenza dell'SKU Prodotto, il nome non deve necessariamente essere univoco, cioè può essere condiviso da più prodotti.
 \end{itemize}
 
-Queste informazioni vengono dunque richieste in input come colonne del file CSV che contiene il dataset. L'\gls{llm} ha il compito di riconoscere quali colonne del file CSV ne sono rappresentanti, dopodichè i nomi corrispondenti vengono standardizzati rispettivamente in: \texttt{"Customer ID"}, \texttt{"Product SKU"}, \texttt{"Customer Name"} e \texttt{"Product Name"}. Queste colonne vengono dunque poi utilizzate per implementare le tecniche di raccomandazione, che si basano sull'analisi delle interazioni tra i clienti e i prodotti e sulla loro similarità.
+Queste informazioni vengono dunque richieste in input come colonne del file \gls{csv} che contiene il dataset. L'\gls{llm} ha il compito di riconoscere quali colonne del file CSV ne sono rappresentanti, dopodichè i nomi corrispondenti vengono standardizzati rispettivamente in: \texttt{"Customer ID"}, \texttt{"Product SKU"}, \texttt{"Customer Name"} e \texttt{"Product Name"}. Queste colonne vengono dunque poi utilizzate per implementare le tecniche di raccomandazione, che si basano sull'analisi delle interazioni tra i clienti e i prodotti e sulla loro similarità.
 
 \section{Collaborative filtering}
 

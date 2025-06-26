@@ -23,6 +23,15 @@
 \newacronym[description={\glslink{mrratk}{Mean Reciprocal Rank@\emph{k}}}]
     {mrratk_acr}{MRR@\emph{k}}{Mean Reciprocal Rank@\emph{k}}
 
+\newacronym[description={\glslink{csv}{Comma-Separated Values}}]
+    {csv_acr}{CSV}{Comma-Separated Values}
+
+\newacronym[description={\glslink{hdf5}{Hierarchical Data Format 5}}]
+    {hdf5_acr}{HDF5}{Hierarchical Data Format 5}
+
+\newacronym[description={\glslink{npy}{NumPy Array}}]
+    {npy_acr}{NPY}{NumPy Array}
+
 
 
 
@@ -83,6 +92,20 @@
     text=Cloud Computing,
     sort=cloudcomputing,
     description={modello di erogazione di risorse informatiche (come server, storage, database, networking, software) tramite Internet, su richiesta e con pagamento a consumo}
+}
+
+\newglossaryentry{googlecloudstorage} {
+    name=Google Cloud Storage,
+    text=Google Cloud Storage,
+    sort=googlecloudstorage,
+    description={servizio di archiviazione cloud di Google che permette di memorizzare e accedere a dati su scala globale con elevate prestazioni, sicurezza e affidabilità}
+}
+
+\newglossaryentry{googlecloudfunctions} {
+    name=Google Cloud Functions,
+    text=Google Cloud Functions,
+    sort=googlecloudfunctions,
+    description={servizio serverless di Google Cloud Platform che consente di eseguire codice in risposta a eventi cloud senza dover gestire l'infrastruttura sottostante}
 }
 
 \newglossaryentry{preprocessing} {
@@ -181,4 +204,39 @@
     text=Mean Popularity@\emph{k},
     sort=meanpopularityatk,
     description={media della popolarità (ad esempio, numero di interazioni o visualizzazioni) degli elementi raccomandati tra i primi \emph{k} risultati}
+}
+
+\newglossaryentry{csv} {
+    name=\glslink{csv_acr}{CSV},
+    text=CSV,
+    sort=csv,
+    description={Comma-Separated Values, formato di file per la memorizzazione di dati tabulari in cui i valori sono separati da virgole o altri delimitatori, utilizzato per l'importazione ed esportazione di dati tra applicazioni}
+}
+
+\newglossaryentry{hdf5} {
+    name=\glslink{hdf5_acr}{HDF5},
+    text=HDF5,
+    sort=hdf5,
+    description={Hierarchical Data Format versione 5, formato di file progettato per memorizzare e organizzare grandi quantità di dati in strutture gerarchiche complesse, ampiamente utilizzato in ambito scientifico e di ricerca}
+}
+
+\newglossaryentry{npy} {
+    name=\glslink{npy_acr}{NPY},
+    text=NPY,
+    sort=npy,
+    description={formato di file binario di NumPy per la memorizzazione efficiente di array multidimensionali, che preserva tipo di dato, forma e ordine dei dati}
+}
+
+\newglossaryentry{parquet} {
+    name=Parquet,
+    text=Parquet,
+    sort=parquet,
+    description={formato di file colonnare open-source ottimizzato per l'archiviazione e l'elaborazione di grandi dataset, che offre compressione efficiente e prestazioni elevate nelle query analitiche}
+}
+
+\newglossaryentry{zarr} {
+    name=Zarr,
+    text=Zarr,
+    sort=zarr,
+    description={formato per l'archiviazione di array multidimensionali ottimizzato per il cloud computing, che supporta compressione, chunking e accesso parallelo ai dati}
 }

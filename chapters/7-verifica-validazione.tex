@@ -43,7 +43,7 @@ Per garantire la qualità delle risposte fornite dal modello LLM utilizzato, son
 Inoltre, siccome l'LLM è un servizio a pagamento, per evitare di spendere denaro ad ogni esecuzione dell'intera suite di test, è stato deciso di marcare appositamente questi test con il decoratore \texttt{pytest.mark.llm}, e, soprattutto, è stato configurato \texttt{pytest} per escludere tale decoratore dall'esecuzione principale prevista dal comando \texttt{pytest}.
 In questo modo, è possibile eseguire solo i test relativi al modello LLM quando necessario, utilizzando il comando \texttt{pytest -m llm}, ed è possibile eseguire i test rimanenti con il normale comando \texttt{pytest} senza dover pagare alcunchè.
 
-L'LLM viene chiamato due volte nel sistema: una volta per riconoscere le colonne dentro il file CSV e una volta per generare un resoconto delle statistiche e dei grafici del report delle vendite. Per ciascuna di queste chiamate, sono stati implementati test specifici con vari differenti input per verificare che il modello risponda correttamente e che le risposte siano coerenti con le aspettative.
+L'LLM viene chiamato due volte nel sistema: una volta per riconoscere le colonne dentro il file \gls{csv} e una volta per generare un resoconto delle statistiche e dei grafici del report delle vendite. Per ciascuna di queste chiamate, sono stati implementati test specifici con vari differenti input per verificare che il modello risponda correttamente e che le risposte siano coerenti con le aspettative.
 
 
 \section{Test del frontend}
