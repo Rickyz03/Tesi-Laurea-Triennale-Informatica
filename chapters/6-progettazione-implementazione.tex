@@ -378,15 +378,44 @@ Dunque, si è deciso di utilizzare il formato Zarr per l'archiviazione delle mat
 
 \section{Collegamento con Google Cloud}
 
-1) Spiegare situazione Oribea e cloud. Tasks e functions
+Una volta sviluppato il codice delle due tasks funzionante in locale, è giunto il momento di integrarlo nella piattaforma Oribea.
+Per fare ciò, ci si è dovuti adattare al funzionamento della piattaforma: infatti, una tipologia di task offre la possibilità di collegarsi ad una Cloud Function ed eseguire il suo codice per costruire l'output da restituire all'utente, che deve essere presentato come file scaricabile. Dunque, dal codice locale si è deciso di ricavare due Cloud Functions, una per l'analisi delle vendite e una per la predizione delle raccomandazioni, che potessero essere collegate a due tasks della piattaforma Oribea e utilizzate dagli utenti della stessa.
 
 \subsection{Google Cloud Functions}
 
 1) Spiegare l'iniziale difficoltà dovuta al send\_file di cui non si era capita l'importanza
+
+Inizialmente, per imparare come collegarsi a Google Cloud Functions, si è deciso di creare degli esempi il più piccoli possibile, che potessero essere facilmente compresi e modificati, e di partire da un template fornito dalla documentazione aziendale. Si è partiti da un esempio di una Cloud Function che restituisce un file di testo, e sono stati rilevati i primi problemi: la function funzionava da chiamata cURL, ma non da chiamata eseguita dal backend di Oribea, che non riusciva a reperire il file. Dopo aver consultato il team di sviluppatori della piattaforma Oribea, si è compreso che una funzione chiamata \texttt{send\_file}, che era stata rimossa durante la modifica del template, era invece fondamentale per inviare il file generato verso il backend della piattaforma Oribea, che lo avrebbe poi restituito all'utente come file scaricabile. Dunque, si è reinserita la funzione \texttt{send\_file} nel codice della Cloud Function, e da quel momento ha iniziato a funzionare correttamente.
+
 2) Spiegare l'obbligo di inviare uno zip, perchè sempre un file unico, altrimenti invia solo l'ultimo
+
+Un lato negativo dell'integrazione tra Oribea e Google Cloud Functions è che la piattaforma Oribea richiede che le Cloud Functions restituiscano un file unico: in cui venga inviato più di un file, viene concesso all'utente di scaricare solo l'ultimo inviato, mentre gli altri vengono ignorati. Dunque, per poter inviare più file, è stato necessario creare un file ZIP che contenesse tutti i file da inviare, e inviare quello ZIP nella chiamata a \texttt{send\_file} che avviene nella Cloud Function. In questo modo, l'utente può scaricare il file ZIP e accedere a tutti i file generati dalla Cloud Function.
+
+Un aspetto da considerare durante il caricamento di una cloud function su Google Cloud è il timeout configurato per la sua creazione. Infatti, la function di Analisi Vendite, avendo un elevato numero di dipendenze da installare, richiede un tempo di caricamento maggiore rispetto al limite predefinito di 540 secondi (9 minuti), in particolare richiede circa 10 minuti. Dunque, si è deciso di aumentare il timeout a 1200 secondi (20 minuti), in modo da garantire che la Cloud Function venga caricata correttamente e che tutte le dipendenze vengano installate senza problemi.
+
 3) Spiegare l'importanza della tanta RAM (32 GB invece di 256 MB)
+
+Un altro aspetto importante da considerare durante lo sviluppo delle Cloud Functions è la quantità di memoria RAM disponibile per l'esecuzione del codice. Infatti, le Cloud Functions di Google Cloud hanno un limite di memoria che può essere configurato, e se il codice richiede più memoria di quella disponibile, la funzione non verrà eseguita correttamente. Nel caso delle nostre Cloud Functions, si è deciso di utilizzare 32 GB di RAM invece dei 256 MB predefiniti, poiché il codice richiede una grande quantità di memoria per gestire i dataset e soprattutto la generazione delle matrici di raccomandazione. Utilizzando una quantità maggiore di RAM, si è garantito che le Cloud Functions potessero essere eseguite senza problemi e che le matrici potessero essere generate correttamente.
+
 4) Spiegare come è stato fondamentale mettere Python 3.13 perchè Zarr funzionasse
+
+Inoltre, un altro aspetto importante da considerare durante lo sviluppo delle Cloud Functions è la versione di Python utilizzata. Infatti, le Cloud Functions di Google Cloud supportano diverse versioni di Python, ma alcune librerie potrebbero non essere compatibili con le versioni più vecchie. In particolare, nell'esempio di comando da terminale di configurazione fornito nella documentazione di Oribea, era configurato Python in versione 3.10, e ciò ha causato problemi durante lo sviluppo delle Cloud Functions, poiché dalla libreria Zarr, della quale si è fatto uso per l'archiviazione delle matrici di raccomandazione, sono stati utilizzati dei metodi non funzionanti in un ambiente Python 3.10, e i metodi funzionanti in tale ambiente sono stati dichiarati deprecati al giorno d'oggi, e quindi utilizzarli sarebbe stato una bad practice di ingegneria del software. Dunque, dopo aver compreso il problema, si è deciso di utilizzare Python 3.13, che è l'ultima versione stabile al momento dello sviluppo, e che garantisce la compatibilità con l'ultima versione della libreria Zarr. Utilizzando Python 3.13, si è garantito che le Cloud Functions potessero essere eseguite senza problemi e che le matrici potessero essere archiviate correttamente con dei metodi funzionanti e non deprecati.
+
+Il comando da terminale definito per la creazione delle Cloud Function è stato dunque il seguente:
+\begin{verbatim}
+gcloud functions deploy function-name ^
+    --runtime python313 ^
+    --trigger-http ^
+    --entry-point processor ^
+    --memory 32Gi ^
+    --timeout 1200s ^
+    --allow-unauthenticated ^
+    --region europe-west4
+\end{verbatim}
+
 5) Configurazione di logging particolare per la stampa dei log
+
+Un'ultima difficoltà incontrata durante lo sviluppo delle Cloud Functions è stata la configurazione del logging. Infatti, la scheda dedicata ai log della piattaforma di Google Cloud Functions, nonostante permetta di visualizzare correttamente i messaggi mostrati con \texttt{print}, ha bisogno di una configurazione particolare per poter visualizzare i log generati dalla libreria \texttt{logging} di Python. Per la gestione dei log, è stato creato un logger personalizzato che scrive i messaggi direttamente su \texttt{stdout}, utilizzando la libreria \texttt{logging}. La configurazione imposta il livello di dettaglio dei log in base a una variabile, rimuove eventuali handler preesistenti per evitare duplicati e applica un formato personalizzato ai messaggi. In questo modo, si è garantito che i messaggi di log potessero essere visualizzati correttamente  su console e che fosse possibile monitorare l'esecuzione delle Cloud Functions.
 
 \subsection{Google Cloud Storage}
 
