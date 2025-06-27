@@ -137,6 +137,35 @@ Questo metodo sfrutta la ricchezza semantica dei nomi dei prodotti per identific
 
 \section{Rank fusion}
 
+Siccome entrambi i sistemi di raccomandazione esplorati (Collaborative Filtering e Similarità) si sono rivelati in grado di generare risultati significativi, si è deciso, invece di doverne scegliere uno, di implementarli entrambi e di combinarli in un unico sistema di raccomandazione. Per fare ciò, si è scelto di utilizzare una tecnica del \textbf{Rank Fusion}\footcite{site:rank-fusion}, che consente di combinare i risultati di più sistemi di raccomandazione in un unico ranking.
+Dunque, mentre le matrici sono state generate nella task di analisi delle vendite, il sistema di rank fusion è stato implementato nella task di raccomandazione, per combinare le predizioni svolte dalle due matrici.
+
+In particolare, dietro consiglio del tutor aziendale, per la rank fusion si è scelto di utilizzare il metodo Reciprocal Rank Fusion (\gls{rrf}), che si basa sull'idea di assegnare un punteggio a ciascun prodotto in base al reciproco della sua posizione nei ranking dei diversi sistemi di raccomandazione. In questo modo, i prodotti che appaiono in posizioni più alte nei ranking dei diversi sistemi ottengono un punteggio più alto, mentre quelli che appaiono in posizioni più basse ottengono un punteggio più basso.
+
+Il metodo RRF combina i ranking provenienti da diversi sistemi di raccomandazione attraverso una formula matematica ben definita. Dati $k$ sistemi di raccomandazione, ciascuno dei quali produce un ranking $R_i$ per un determinato utente, il punteggio RRF per un prodotto $p$ è calcolato come:
+
+\begin{equation}
+\text{RRF}(p) = \sum_{i=1}^{k} \frac{1}{\text{rank}_i(p) + \rho}
+\end{equation}
+
+dove:
+\begin{itemize}
+    \item $\text{rank}_i(p)$ rappresenta la posizione del prodotto $p$ nel ranking del sistema $i$-esimo (con $\text{rank}_i(p) = 1$ per il primo elemento)
+    \item $\rho$ è un parametro di regolarizzazione (tipicamente $\rho = 60$) che evita la divisione per zero e riduce l'impatto delle posizioni più alte
+    \item $k$ è il numero totale di sistemi di raccomandazione da combinare
+\end{itemize}
+
+Nel contesto specifico del nostro sistema, dove $k = 2$ (Collaborative Filtering e Similarità), la formula diventa:
+
+\begin{equation}
+\text{RRF}(p) = \frac{1}{\text{rank}_{CF}(p) + 60} + \frac{1}{\text{rank}_{Sim}(p) + 60}
+\end{equation}
+
+Il ranking finale viene ottenuto ordinando tutti i prodotti in ordine decrescente rispetto al loro punteggio RRF. Questo approccio garantisce che i prodotti che ottengono buone posizioni in entrambi i sistemi ricevano punteggi più alti, mentre quelli che performano bene in un solo sistema mantengono comunque un punteggio significativo.
+
+La robustezza del metodo RRF deriva dal fatto che non richiede la calibrazione dei punteggi tra i diversi sistemi, lavorando esclusivamente sui ranking ordinali, e dalla sua capacità di bilanciare automaticamente il contributo di ciascun sistema indipendentemente dalle loro scale di punteggio originali. Quest'ultima caratteristica è però un'arma a doppio taglio, poichè se in un singolo sistema un determinato prodotto ha un punteggio enormemente più alto rispetto a tutti gli altri, questo non viene considerato usando il metodo RRF, che si basa solo sulle posizioni dei prodotti nei ranking, ed allora tale prodotto non riceve il vantaggio che merita.
+
+
 \section{Recbole e Surprise}
 
 \section{Metriche}
