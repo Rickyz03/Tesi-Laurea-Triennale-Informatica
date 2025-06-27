@@ -150,15 +150,15 @@ Il metodo RRF combina i ranking provenienti da diversi sistemi di raccomandazion
 
 dove:
 \begin{itemize}
-    \item $\text{rank}_i(p)$ rappresenta la posizione del prodotto $p$ nel ranking del sistema $i$-esimo (con $\text{rank}_i(p) = 1$ per il primo elemento)
-    \item $\rho$ è un parametro di regolarizzazione (tipicamente $\rho = 60$) che evita la divisione per zero e riduce l'impatto delle posizioni più alte
-    \item $k$ è il numero totale di sistemi di raccomandazione da combinare
+    \item $\text{rank}_i(p)$ rappresenta la posizione del prodotto $p$ nel ranking del sistema $i$-esimo (con $\text{rank}_i(p) = 1$ per il primo elemento);
+    \item $\rho$ è un parametro di regolarizzazione (tipicamente $\rho = 60$) che evita la divisione per zero e riduce l'impatto delle posizioni più alte;
+    \item $k$ è il numero totale di sistemi di raccomandazione da combinare.
 \end{itemize}
 
-Nel contesto specifico del nostro sistema, dove $k = 2$ (Collaborative Filtering e Similarità), la formula diventa:
+Nel contesto specifico del nostro sistema, dove $k = 2$ (Collaborative Filtering e Similarità) e $\rho = 0$ (la regolarizzazione è stata valutata come non necessaria), la formula diventa:
 
 \begin{equation}
-\text{RRF}(p) = \frac{1}{\text{rank}_{CF}(p) + 60} + \frac{1}{\text{rank}_{Sim}(p) + 60}
+\text{RRF}(p) = \frac{1}{\text{rank}_{CF}(p)} + \frac{1}{\text{rank}_{Sim}(p)}
 \end{equation}
 
 Il ranking finale viene ottenuto ordinando tutti i prodotti in ordine decrescente rispetto al loro punteggio RRF. Questo approccio garantisce che i prodotti che ottengono buone posizioni in entrambi i sistemi ricevano punteggi più alti, mentre quelli che performano bene in un solo sistema mantengono comunque un punteggio significativo.
