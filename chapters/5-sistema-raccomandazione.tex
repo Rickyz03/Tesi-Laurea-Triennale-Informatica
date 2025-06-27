@@ -165,6 +165,49 @@ Il ranking finale viene ottenuto ordinando tutti i prodotti in ordine decrescent
 
 La robustezza del metodo RRF deriva dal fatto che non richiede la calibrazione dei punteggi tra i diversi sistemi, lavorando esclusivamente sui ranking ordinali, e dalla sua capacità di bilanciare automaticamente il contributo di ciascun sistema indipendentemente dalle loro scale di punteggio originali. Quest'ultima caratteristica è però un'arma a doppio taglio, poichè se in un singolo sistema un determinato prodotto ha un punteggio enormemente più alto rispetto a tutti gli altri, questo non viene considerato usando il metodo RRF, che si basa solo sulle posizioni dei prodotti nei ranking, ed allora tale prodotto non riceve il vantaggio che merita.
 
+La seguente immagine \ref{fig:rank-fusion-toy-case} mostra un esempio di un caso giocattolo che sfrutta il metodo RRF per "fondere" due rankings.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{rrf comparison charts/rrf_comparison_charts_toy_case.png}
+    \caption{Esempio di Rank Fusion con RRF}
+    \label{fig:rank-fusion-toy-case}
+\end{figure}
+
+Si può notare come tutti e 8 i prodotti siano rappresentati in tutti i rankings con lo stesso colore, per indicare che sono gli stessi prodotti, ma con posizioni diverse.
+Il terzo ranking è il risultato della fusione dei primi due rankings, e mostra come i prodotti siano stati riorganizzati in base al loro punteggio RRF.
+
+In particolare, considerando il prodotto "Hamburger Classic", il calcolo che viene fatto per il suo punteggio RRF è il seguente:
+
+\begin{equation}
+\text{RRF}(p) = \frac{1}{\text{rank}_{CF}(p)} + \frac{1}{\text{rank}_{Sim}(p)} = \frac{1}{4} + \frac{1}{1} = 1.25
+\end{equation}
+
+Oppure, considerando il prodotto "Pasta Carbonara", il calcolo che viene fatto per il suo punteggio RRF è il seguente:
+
+\begin{equation}
+\text{RRF}(p) = \frac{1}{\text{rank}_{CF}(p)} + \frac{1}{\text{rank}_{Sim}(p)} = \frac{1}{2} + \frac{1}{7} \approx 0.643
+\end{equation}
+
+E così via per gli altri prodotti. Si può notare come, nonostante i due rankings di partenza abbiano scale di punteggio diverse ("da 1 a 10" e "da 1 a 5"), il metodo RRF riesce a combinarli in modo efficace, poichè restituisce un ranking finale che tiene conto solo delle loro posizioni relative.
+
+Al termine del processo di Rank Fusion, il sistema di raccomandazione restituisce un ranking finale dei prodotti, ordinato in base ai punteggi RRF calcolati. Questo ranking rappresenta dunque le raccomandazioni finali del sistema, che possono essere presentate agli utenti come suggerimenti personalizzati.
+
+Un esempio di caso reale tratto dal dataset \texttt{Orders\_export.csv} è mostrato nella seguente immagine \ref{fig:rank-fusion-real-case}, che mostra i primi 10 prodotti raccomandati per il cliente \texttt{Ds-trading srl Ds-trading GmbH}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{rrf comparison charts/rrf_comparison_charts_real_case.png}
+    \caption{Esempio di Rank Fusion con RRF su un caso reale}
+    \label{fig:rank-fusion-real-case}
+\end{figure}
+
+Qui, si può notare come siano stati colorati tutti i prodotti presenti nel ranking RRF, ma, a differenza del caso giocattolo, questi prodotti non sono tutti visualizzati contemporaneamente in entrambi i due rankings di partenza, poichè il dataset contiene molto più di 10 prodotti, che è il limite di rappresentazione dei rankings in questi grafici, e quindi alcuni sono stati classificati più indietro. Inoltre, in questi due rankings originali sono visualizzati dei prodotti che non sono poi visualizzati nel ranking RRF finale, ed allora sono rimasti di colore grigio, per indicare che non sono stati raccomandati al cliente.
+
+Il numero di raccomandazioni che il sistema restituisce viene configurato tramite apposito input dell'utente. In entrambi gli esempi mostrati, il numero di raccomandazioni è stato impostato a 10, ma questo appunto può essere modificato a piacimento.
+
+
+\section{Filtro}
 
 \section{Recbole e Surprise}
 
