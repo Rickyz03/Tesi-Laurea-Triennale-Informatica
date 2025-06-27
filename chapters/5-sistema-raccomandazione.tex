@@ -15,7 +15,64 @@ Perchè sia possibile implementare un sistema di raccomandazione per e-commerce,
 
 Queste informazioni vengono dunque richieste in input come colonne del file \gls{csv} che contiene il dataset. L'\gls{llm} ha il compito di riconoscere quali colonne del file CSV ne sono rappresentanti, dopodichè i nomi corrispondenti vengono standardizzati rispettivamente in: \texttt{"Customer ID"}, \texttt{"Product SKU"}, \texttt{"Customer Name"} e \texttt{"Product Name"}. Queste colonne vengono dunque poi utilizzate per implementare le tecniche di raccomandazione, che si basano sull'analisi delle interazioni tra i clienti e i prodotti e sulla loro similarità.
 
+
 \section{Collaborative filtering}
+
+Il primo sistema che è stato esplorato è il \textbf{Collaborative Filtering}\footcite{site:collaborative-filtering}. Questo approccio si basa sull'idea che le raccomandazioni possono essere fatte in base alle preferenze di altri utenti simili. In altre parole, se due utenti hanno gusti simili, le raccomandazioni per uno di essi possono essere utili anche per l'altro. Il Collaborative Filtering può essere implementato in due modi principali: \textbf{user-based} e \textbf{item-based}. Nel primo caso, si analizzano le preferenze degli utenti per raccomandare prodotti che altri utenti simili hanno apprezzato. Nel secondo caso, si analizzano le caratteristiche dei prodotti per raccomandare articoli simili a quelli già apprezzati dall'utente. Dopo aver svolto alcune sperimentazioni pratiche con entrambi i metodi, si è notato che i dataset disponibili contenevano spesso troppi clienti occasionali che non avevano interagito con un numero sufficiente di prodotti per poter fare raccomandazioni significative, e questo ha messo in crisi il sistema \textbf{user-based}. Inoltre, si è pensato che, in generale, per un file delle vendite di un e-commerce, sia comune la presenza di utenti occasionali. Per questo motivo, si è deciso di implementare il sistema \textbf{item-based}, che si basa sulla similarità tra i prodotti piuttosto che sulle preferenze degli utenti. Infatti, siccome i comuni dataset di vendita sono ben forniti di informazioni sui propri prodotti, questo approccio consente di fare raccomandazioni più robuste e significative.
+
+Nel contesto del Collaborative Filtering item-based, il processo di generazione delle raccomandazioni può essere formalizzato attraverso una serie di passaggi matematici ben definiti.
+
+\subsection{Costruzione della matrice utente-prodotto}
+
+Il primo passo consiste nella costruzione di una matrice di interazioni $\mathbf{R} \in \mathbb{R}^{m \times n}$, dove $m$ rappresenta il numero di utenti e $n$ il numero di prodotti. Ogni elemento $r_{ij}$ della matrice rappresenta il numero di interazioni (acquisti, visualizzazioni, etc.) dell'utente $i$ con il prodotto $j$:
+
+\begin{equation}
+\mathbf{R} = \begin{bmatrix}
+r_{11} & r_{12} & \cdots & r_{1n} \\
+r_{21} & r_{22} & \cdots & r_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+r_{m1} & r_{m2} & \cdots & r_{mn}
+\end{bmatrix}
+\end{equation}
+
+dove $r_{ij} = \sum_{k} \delta(u_k = i \land p_k = j)$ e $\delta$ è la funzione indicatrice che vale 1 se l'utente $i$ ha interagito con il prodotto $j$, 0 altrimenti.
+
+\subsection{Calcolo della matrice di similarità prodotto-prodotto}
+
+La matrice di similarità $\mathbf{S} \in \mathbb{R}^{n \times n}$ viene calcolata utilizzando la similarità coseno tra i vettori prodotto. Ogni prodotto $j$ è rappresentato dal vettore colonna $\mathbf{r}_j = [r_{1j}, r_{2j}, \ldots, r_{mj}]^T$. La similarità coseno tra due prodotti $j$ e $k$ è definita come:
+
+\begin{equation}
+s_{jk} = \frac{\mathbf{r}_j \cdot \mathbf{r}_k}{|\mathbf{r}_j| \cdot |\mathbf{r}_k|} = \frac{\sum_{i=1}^{m} r_{ij} \cdot r_{ik}}{\sqrt{\sum_{i=1}^{m} r_{ij}^2} \cdot \sqrt{\sum_{i=1}^{m} r_{ik}^2}}
+\end{equation}
+
+La matrice di similarità risultante è simmetrica: $\mathbf{S} = \mathbf{S}^T$.
+
+\subsection{Normalizzazione della matrice di similarità}
+
+Per evitare distorsioni nelle predizioni, la matrice di similarità viene normalizzata dividendo ogni elemento per la somma delle similarità assolute della rispettiva riga:
+
+\begin{equation}
+s_{jk}^{norm} = \frac{s_{jk}}{\sum_{l=1}^{n} |s_{jl}|}
+\end{equation}
+
+ottenendo così la matrice normalizzata $\mathbf{S}^{norm}$.
+
+\subsection{Predizione della matrice utente-prodotto}
+
+Infine, la matrice delle predizioni $\mathbf{P} \in \mathbb{R}^{m \times n}$ viene calcolata come:
+
+\begin{equation}
+\mathbf{P} = \mathbf{R} \cdot (\mathbf{S}^{norm})^T
+\end{equation}
+
+Ogni elemento $p_{ij}$ rappresenta il punteggio predetto per l'utente $i$ rispetto al prodotto $j$, calcolato come combinazione pesata delle interazioni passate dell'utente con prodotti simili:
+
+\begin{equation}
+p_{ij} = \sum_{k=1}^{n} r_{ik} \cdot s_{kj}^{norm}
+\end{equation}
+
+Questo approccio consente di generare raccomandazioni personalizzate basate sulla similarità tra prodotti e sulle preferenze storiche degli utenti.
+
 
 \section{Similarità}
 
