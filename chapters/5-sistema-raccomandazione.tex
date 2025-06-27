@@ -76,6 +76,65 @@ Questo approccio consente di generare raccomandazioni personalizzate basate sull
 
 \section{Similarità}
 
+Il secondo sistema che è stato esplorato è la \textbf{Similarità}. Questo approccio si basa sull'idea che le raccomandazioni possono essere fatte in base, appunto, alla similarità tra i prodotti. In altre parole, se due prodotti sono simili, le raccomandazioni per uno di essi possono essere utili anche per l'altro. La Similarità può essere implementata in diversi modi, ma il più comune è il \textbf{Cosine Similarity}\footcite{site:cosine-similarity}, che misura la similarità tra due vettori in uno spazio multidimensionale. Nel contesto del sistema di raccomandazione, i vettori rappresentano le caratteristiche dei prodotti e la similarità viene calcolata in base alla loro distanza angolare.
+
+La tecnica di Similarità basata sui nomi dei prodotti si articola in diversi passaggi matematici fondamentali.
+
+\subsection{Mappatura prodotto-nome}
+
+Il primo passo consiste nella costruzione di una funzione di mappatura $\phi: \mathcal{P} \rightarrow \mathcal{N}$ che associa ad ogni prodotto $p \in \mathcal{P}$ il suo nome rappresentativo $n \in \mathcal{N}$:
+
+\begin{equation}
+\phi(p_j) = n_j \quad \forall p_j \in \mathcal{P}
+\end{equation}
+
+dove $\mathcal{P}$ rappresenta l'insieme degli identificativi dei prodotti e $\mathcal{N}$ l'insieme dei nomi dei prodotti.
+
+\subsection{Costruzione della matrice di frequenza utente-prodotto}
+
+Analogamente al Collaborative Filtering, si costruisce una matrice di frequenza $\mathbf{F} \in \mathbb{N}^{m \times n}$ dove ogni elemento $f_{ij}$ rappresenta il numero di interazioni dell'utente $i$ con il prodotto $j$:
+
+\begin{equation}
+f_{ij} = |\{t : \text{utente } i \text{ ha interagito con prodotto } j \text{ al tempo } t\}|
+\end{equation}
+
+\subsection{Generazione degli embeddings semantici}
+
+I nomi dei prodotti vengono trasformati in rappresentazioni vettoriali dense attraverso un modello di embedding semantico. Ogni nome $n_j = \phi(p_j)$ viene mappato in uno spazio vettoriale $\mathbb{R}^d$:
+
+\begin{equation}
+\psi: \mathcal{N} \rightarrow \mathbb{R}^d
+\end{equation}
+
+ottenendo così il vettore embedding $\mathbf{e}_j = \psi(n_j) \in \mathbb{R}^d$ per ogni prodotto $p_j$.
+
+\subsection{Calcolo della matrice di similarità semantica}
+
+La matrice di similarità $\mathbf{S}_{sem} \in \mathbb{R}^{n \times n}$ viene calcolata utilizzando la similarità coseno tra gli embeddings dei nomi dei prodotti:
+
+\begin{equation}
+s_{jk}^{sem} = \frac{\mathbf{e}_j \cdot \mathbf{e}_k}{|\mathbf{e}_j| \cdot |\mathbf{e}_k|} = \frac{\sum_{l=1}^{d} e_{jl} \cdot e_{kl}}{\sqrt{\sum_{l=1}^{d} e_{jl}^2} \cdot \sqrt{\sum_{l=1}^{d} e_{kl}^2}}
+\end{equation}
+
+Questo approccio si distingue dal Collaborative Filtering tradizionale in quanto la similarità viene calcolata direttamente sui contenuti semantici dei nomi dei prodotti piuttosto che sui pattern di interazione degli utenti.
+
+\subsection{Predizione della matrice utente-prodotto}
+
+La matrice delle predizioni $\mathbf{P}_{sem} \in \mathbb{R}^{m \times n}$ viene calcolata come prodotto matriciale tra la matrice di frequenza e la matrice di similarità semantica:
+
+\begin{equation}
+\mathbf{P}_{sem} = \mathbf{F} \cdot \mathbf{S}_{sem}
+\end{equation}
+
+Ogni elemento $p_{ij}^{sem}$ rappresenta il punteggio predetto per l'utente $i$ rispetto al prodotto $j$, calcolato come:
+
+\begin{equation}
+p_{ij}^{sem} = \sum_{k=1}^{n} f_{ik} \cdot s_{kj}^{sem}
+\end{equation}
+
+Questo metodo sfrutta la ricchezza semantica dei nomi dei prodotti per identificare relazioni di similarità che potrebbero non emergere dall'analisi delle sole interazioni comportamentali, permettendo raccomandazioni più robuste anche in presenza di dati sparsi.
+
+
 \section{Rank fusion}
 
 \section{Recbole e Surprise}
