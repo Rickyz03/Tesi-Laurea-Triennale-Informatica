@@ -508,3 +508,129 @@
     sort=jest,
     description={framework di testing JavaScript sviluppato da Facebook, caratterizzato da configurazione zero, snapshot testing integrato, mocking potente e coverage reports, ampiamente utilizzato per testare applicazioni React e Node.js}
 }
+
+\newglossaryentry{flowable} {
+    name=Flowable,
+    text=Flowable,
+    sort=flowable,
+    description={in ReportLab, oggetto che può essere posizionato e renderizzato su una pagina PDF, come paragrafi, tabelle, immagini o grafici. I Flowable si adattano automaticamente al layout della pagina e possono essere interrotti tra le pagine}
+}
+
+\newglossaryentry{canvas} {
+    name=Canvas,
+    text=Canvas,
+    sort=canvas,
+    description={in ReportLab, superficie di disegno che rappresenta una pagina PDF su cui è possibile disegnare testo, forme, immagini e altri elementi grafici con controllo preciso sulla posizione e formattazione}
+}
+
+\newglossaryentry{bordacount} {
+    name=Borda Count (Borda Fusion),
+    text=Borda Count (Borda Fusion),
+    sort=bordacount,
+    description={metodo di rank fusion che assegna punteggi basati sulla posizione in classifica, dove ogni elemento riceve punti inversamente proporzionali alla sua posizione, e i punteggi vengono sommati per produrre la classifica finale}
+}
+
+\newglossaryentry{scorebasednorm} {
+    name=Score-based Normalization + Aggregation,
+    text=Score-based Normalization + Aggregation,
+    sort=scorebasednorm,
+    description={approccio di rank fusion che normalizza i punteggi di diversi sistemi per renderli comparabili, quindi li aggrega utilizzando operazioni matematiche per produrre punteggi finali}
+}
+
+\newglossaryentry{combsum} {
+    name=CombSUM, CombMAX, CombMIN, CombANZ,
+    text=CombSUM, CombMAX, CombMIN, CombANZ,
+    sort=combsum,
+    description={metodi di aggregazione dei punteggi per rank fusion: CombSUM somma i punteggi, CombMAX prende il massimo, CombMIN il minimo, CombANZ somma solo i punteggi non-zero normalizzandoli per il numero di sistemi che hanno assegnato un punteggio}
+}
+
+\newglossaryentry{weightedrank} {
+    name=Weighted Rank Aggregation,
+    text=Weighted Rank Aggregation,
+    sort=weightedrank,
+    description={tecnica di rank fusion che assegna pesi diversi ai vari sistemi di ranking basandosi sulla loro affidabilità o prestazioni, combinando le classifiche con importanza variabile}
+}
+
+\newglossaryentry{medianrank} {
+    name=Median Rank / Geometric Mean Rank,
+    text=Median Rank / Geometric Mean Rank,
+    sort=medianrank,
+    description={metodi di rank fusion che utilizzano rispettivamente la mediana e la media geometrica delle posizioni di un elemento nelle diverse classifiche per determinare la posizione finale}
+}
+
+\newglossaryentry{learningtorank} {
+    name=Learning to Rank a Posteriori (Late Fusion with ML),
+    text=Learning to Rank a Posteriori (Late Fusion with ML),
+    sort=learningtorank,
+    description={approccio di rank fusion che utilizza algoritmi di machine learning per apprendere come combinare ottimalmente i risultati di diversi sistemi di ranking, basandosi su dati di training con classifiche ideali}
+}
+
+\newglossaryentry{concordetfusion} {
+    name=Condorcet Fusion,
+    text=Condorcet Fusion,
+    sort=concordetfusion,
+    description={metodo di rank fusion basato sul criterio di Condorcet, che determina il ranking finale attraverso confronti a coppie tra elementi, dove un elemento è preferito se vince la maggioranza dei confronti diretti}
+}
+
+\newglossaryentry{rbpfusion} {
+    name=Rank-biased Precision (RBP) Fusion,
+    text=Rank-biased Precision (RBP) Fusion,
+    sort=rbpfusion,
+    description={tecnica di rank fusion che utilizza la Rank-biased Precision per pesare maggiormente le posizioni iniziali delle classifiche, dando più importanza ai risultati che appaiono in cima alle liste}
+}
+
+\newglossaryentry{fpdf} {
+    name=FPDF,
+    text=FPDF,
+    sort=fpdf,
+    description={libreria PHP per la generazione di documenti PDF che non richiede estensioni aggiuntive, permettendo di creare PDF con testo, immagini e grafici di base}
+}
+
+\newglossaryentry{pypdf2} {
+    name=PyPDF2,
+    text=PyPDF2,
+    sort=pypdf2,
+    description={libreria Python per la manipolazione di file PDF esistenti, che permette operazioni come merge, split, crop e rotazione di pagine, ma con funzionalità limitate per la creazione di nuovi contenuti}
+}
+
+\newglossaryentry{pdfrw} {
+    name=PDFRW,
+    text=PDFRW,
+    sort=pdfrw,
+    description={libreria Python per leggere e scrivere file PDF, che si concentra sulla manipolazione della struttura interna del PDF e supporta operazioni avanzate come la gestione di form e annotazioni}
+}
+
+\newglossaryentry{mako} {
+    name=Mako,
+    text=Mako,
+    sort=mako,
+    description={motore di template veloce e leggero per Python che supporta codice Python embedded, ereditarietà di template e caching automatico, utilizzato spesso con framework web come Pylons e Pyramid}
+}
+
+\newglossaryentry{dominate} {
+    name=Dominate,
+    text=Dominate,
+    sort=dominate,
+    description={libreria Python per generare documenti HTML utilizzando un approccio programmatico con sintassi pythonica, che permette di creare markup HTML attraverso oggetti e metodi Python}
+}
+
+\newglossaryentry{yattag} {
+    name=Yattag,
+    text=Yattag,
+    sort=yattag,
+    description={libreria Python per la generazione di documenti HTML e XML che fornisce un'API semplice e intuitiva per creare markup attraverso context manager e una sintassi dichiarativa}
+}
+
+\newglossaryentry{motoretemplate} {
+    name=Motore di template,
+    text=motore di template,
+    sort=motoretemplate,
+    description={sistema software che combina template contenenti markup statico con dati dinamici per produrre documenti finali, separando la logica di presentazione dalla logica applicativa}
+}
+
+\newglossaryentry{generazioneprogrammatica} {
+    name=Generazione programmatica,
+    text=generazione programmatica,
+    sort=generazioneprogrammatica,
+    description={approccio di creazione di documenti o contenuti attraverso codice software, dove la struttura e il contenuto vengono definiti algoritmicamente piuttosto che manualmente, permettendo automazione e personalizzazione dinamica}
+}

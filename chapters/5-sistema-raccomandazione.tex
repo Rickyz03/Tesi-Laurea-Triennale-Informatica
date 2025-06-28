@@ -146,14 +146,14 @@ Dunque, mentre le matrici sono state generate nella task di analisi delle vendit
 In particolare, per la rank fusion sono state valutate diverse opzioni:
 \begin{itemize}
     \item \textbf{Reciprocal Rank Fusion}: Combina i ranking assegnando punteggi basati sul reciproco della posizione di ciascun elemento, favorendo gli elementi che appaiono in posizioni elevate in più sistemi;
-    \item \textbf{Borda Count (Borda Fusion)}: Assegna punti decrescenti basati sulla posizione nel ranking (es. n-1 punti al primo, n-2 al secondo, etc.) e somma i punti ottenuti da ciascun sistema;
-    \item \textbf{Score-based Normalization + Aggregation}: Normalizza i punteggi dei diversi sistemi per renderli confrontabili, quindi li aggrega tramite media pesata o altre funzioni di combinazione;
-    \item \textbf{CombSUM, CombMAX, CombMIN, CombANZ}: Metodi che combinano i punteggi dei sistemi tramite somma (SUM), massimo (MAX), minimo (MIN) o media dei punteggi non-zero (ANZ);
-    \item \textbf{Weighted Rank Aggregation}: Combina i ranking assegnando pesi diversi ai sistemi in base alla loro affidabilità o performance, privilegiando i sistemi più performanti;
-    \item \textbf{Median Rank / Geometric Mean Rank}: Utilizza la mediana o la media geometrica delle posizioni di ciascun elemento nei diversi ranking per determinare la posizione finale;
-    \item \textbf{Learning to Rank a Posteriori (Late Fusion with ML)}: Applica algoritmi di machine learning per apprendere la migliore combinazione dei ranking basandosi su dati di training e feedback degli utenti;
-    \item \textbf{Condorcet Fusion}: Basato sul principio di Condorcet, confronta ogni coppia di elementi determinando quale è preferito dalla maggioranza dei sistemi di raccomandazione;
-    \item \textbf{Rank-biased Precision (RBP) Fusion}: Combina i ranking dando maggiore peso alle posizioni iniziali, seguendo il principio che gli utenti guardano principalmente i primi risultati.
+    \item \textbf{\gls{bordacount}}: Assegna punti decrescenti basati sulla posizione nel ranking (es. n-1 punti al primo, n-2 al secondo, etc.) e somma i punti ottenuti da ciascun sistema;
+    \item \textbf{\gls{scorebasednorm}}: Normalizza i punteggi dei diversi sistemi per renderli confrontabili, quindi li aggrega tramite media pesata o altre funzioni di combinazione;
+    \item \textbf{\gls{combsum}}: Metodi che combinano i punteggi dei sistemi tramite somma (SUM), massimo (MAX), minimo (MIN) o media dei punteggi non-zero (ANZ);
+    \item \textbf{\gls{weightedrank}}: Combina i ranking assegnando pesi diversi ai sistemi in base alla loro affidabilità o performance, privilegiando i sistemi più performanti;
+    \item \textbf{\gls{medianrank}}: Utilizza la mediana o la media geometrica delle posizioni di ciascun elemento nei diversi ranking per determinare la posizione finale;
+    \item \textbf{\gls{learningtorank}}: Applica algoritmi di machine learning per apprendere la migliore combinazione dei ranking basandosi su dati di training e feedback degli utenti;
+    \item \textbf{\gls{concordetfusion}}: Basato sul principio di Condorcet, confronta ogni coppia di elementi determinando quale è preferito dalla maggioranza dei sistemi di raccomandazione;
+    \item \textbf{\gls{rbpfusion}}: Combina i ranking dando maggiore peso alle posizioni iniziali, seguendo il principio che gli utenti guardano principalmente i primi risultati.
 \end{itemize}
 
 Dietro consiglio del tutor aziendale, per la rank fusion si è scelto di utilizzare il metodo Reciprocal Rank Fusion (\gls{rrf})\footcite{site:rrf-explained}, che si basa sull'idea di assegnare un punteggio a ciascun prodotto in base al reciproco della sua posizione nei ranking dei diversi sistemi di raccomandazione. In questo modo, i prodotti che appaiono in posizioni più alte nei ranking dei diversi sistemi ottengono un punteggio più alto, mentre quelli che appaiono in posizioni più basse ottengono un punteggio più basso.
