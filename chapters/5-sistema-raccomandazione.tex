@@ -140,7 +140,20 @@ Questo metodo sfrutta la ricchezza semantica dei nomi dei prodotti per identific
 Siccome entrambi i sistemi di raccomandazione esplorati (Collaborative Filtering e Similarità) si sono rivelati in grado di generare risultati significativi, si è deciso, invece di doverne scegliere uno, di implementarli entrambi e di combinarli in un unico sistema di raccomandazione. Per fare ciò, si è scelto di utilizzare una tecnica del \textbf{Rank Fusion}, che consente di combinare i risultati di più sistemi di raccomandazione in un unico ranking.
 Dunque, mentre le matrici sono state generate nella task di analisi delle vendite, il sistema di rank fusion è stato implementato nella task di raccomandazione, per combinare le predizioni svolte dalle due matrici.
 
-In particolare, dietro consiglio del tutor aziendale, per la rank fusion si è scelto di utilizzare il metodo Reciprocal Rank Fusion (\gls{rrf})\footcite{site:rrf-explained}, che si basa sull'idea di assegnare un punteggio a ciascun prodotto in base al reciproco della sua posizione nei ranking dei diversi sistemi di raccomandazione. In questo modo, i prodotti che appaiono in posizioni più alte nei ranking dei diversi sistemi ottengono un punteggio più alto, mentre quelli che appaiono in posizioni più basse ottengono un punteggio più basso.
+In particolare, per la rank fusion sono state valutate diverse opzioni:
+\begin{itemize}
+    \item \textbf{Reciprocal Rank Fusion}: Combina i ranking assegnando punteggi basati sul reciproco della posizione di ciascun elemento, favorendo gli elementi che appaiono in posizioni elevate in più sistemi;
+    \item \textbf{Borda Count (Borda Fusion)}: Assegna punti decrescenti basati sulla posizione nel ranking (es. n-1 punti al primo, n-2 al secondo, etc.) e somma i punti ottenuti da ciascun sistema;
+    \item \textbf{Score-based Normalization + Aggregation}: Normalizza i punteggi dei diversi sistemi per renderli confrontabili, quindi li aggrega tramite media pesata o altre funzioni di combinazione;
+    \item \textbf{CombSUM, CombMAX, CombMIN, CombANZ}: Metodi che combinano i punteggi dei sistemi tramite somma (SUM), massimo (MAX), minimo (MIN) o media dei punteggi non-zero (ANZ);
+    \item \textbf{Weighted Rank Aggregation}: Combina i ranking assegnando pesi diversi ai sistemi in base alla loro affidabilità o performance, privilegiando i sistemi più performanti;
+    \item \textbf{Median Rank / Geometric Mean Rank}: Utilizza la mediana o la media geometrica delle posizioni di ciascun elemento nei diversi ranking per determinare la posizione finale;
+    \item \textbf{Learning to Rank a Posteriori (Late Fusion with ML)}: Applica algoritmi di machine learning per apprendere la migliore combinazione dei ranking basandosi su dati di training e feedback degli utenti;
+    \item \textbf{Condorcet Fusion}: Basato sul principio di Condorcet, confronta ogni coppia di elementi determinando quale è preferito dalla maggioranza dei sistemi di raccomandazione;
+    \item \textbf{Rank-biased Precision (RBP) Fusion}: Combina i ranking dando maggiore peso alle posizioni iniziali, seguendo il principio che gli utenti guardano principalmente i primi risultati.
+\end{itemize}
+
+Dietro consiglio del tutor aziendale, per la rank fusion si è scelto di utilizzare il metodo Reciprocal Rank Fusion (\gls{rrf})\footcite{site:rrf-explained}, che si basa sull'idea di assegnare un punteggio a ciascun prodotto in base al reciproco della sua posizione nei ranking dei diversi sistemi di raccomandazione. In questo modo, i prodotti che appaiono in posizioni più alte nei ranking dei diversi sistemi ottengono un punteggio più alto, mentre quelli che appaiono in posizioni più basse ottengono un punteggio più basso.
 
 Il metodo RRF combina i ranking provenienti da diversi sistemi di raccomandazione attraverso una formula matematica ben definita. Dati $k$ sistemi di raccomandazione, ciascuno dei quali produce un ranking $R_i$ per un determinato utente, il punteggio RRF per un prodotto $p$ è calcolato come:
 
