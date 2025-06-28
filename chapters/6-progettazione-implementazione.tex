@@ -490,21 +490,21 @@ I submit dei due form delle interfacce grafiche sono stati gestiti in modo dinam
 Inizialmente, prima ancora della scelta del framework di sviluppo, si era pensato di creare un'interfacce o classe astratta con la quale gestire il submit dei form, in modo da poter implementare più classi concrete che gestissero il submit in modo diverso a seconda dell'ambiente configurato. Tuttavia, dopo aver scelto React come framework di sviluppo, e considerato che React non possiede il concetto di classe, si è deciso di implementare il submit utilizzando gli hook: essi sono funzioni speciali di React che permettono di utilizzare lo stato e altre features all'interno di componenti funzionali, fornendo un'alternativa moderna e più flessibile rispetto ai componenti basati su classi.
 La selezione dell'hook corretto da utilizzare è stata fatta tramite uno switch sul valore della variabile d'ambiente \texttt{VITE\_SUBMIT\_STRATEGY}, che può assumere i seguenti valori:
 \begin{itemize}
-    \item \texttt{api}: utilizza un hook personalizzato per inviare i dati del form tramite chiamata API;
-    \item \texttt{log}: utilizza un hook che stampa i risultati del form su console.log;
-    \item \texttt{alert}: utilizza un hook che mostra i risultati del form tramite un alert popup.
+    \item \emph{api}: utilizza un hook personalizzato per inviare i dati del form tramite chiamata API;
+    \item \emph{log}: utilizza un hook che stampa i risultati del form su console.log;
+    \item \emph{alert}: utilizza un hook che mostra i risultati del form tramite un alert popup.
 \end{itemize}
 
 A supporto di questa configurazione, sono stati creati tre file di variabili d'ambiente nella root di entrambi i progetti:
 \begin{itemize}
-    \item \texttt{.env.development}: contiene le variabili d'ambiente dedicate allo sviluppo e al testing, e la strategia di submit è impostata su \texttt{alert};
-    \item \texttt{.env.production}: contiene le variabili d'ambiente dedicate all'ambiente di produzione e all'integrazione con Google Cloud Functions, e la strategia di submit è impostata su \texttt{api};
-    \item \texttt{.env.local}: contiene le variabili d'ambiente dedicate all'ambiente locale. Per quanto riguarda i due progetti sviluppati in questo stage, l'ambiente locale e l'ambiente di test sono stati equivalenti, ma è comuque una buona pratica separare un file di variabili d'ambiente locali per eventuali differenziazioni future. A causa dell'attuale equivalenza tra ambiente locale e ambiente di test, questo file contiene le stesse variabili del file \texttt{.env.development}, e quindi la strategia di submit è impostata su \texttt{alert}.
+    \item \texttt{.env.development}: contiene le variabili d'ambiente dedicate allo sviluppo e al testing, e la strategia di submit è impostata su \emph{alert};
+    \item \texttt{.env.production}: contiene le variabili d'ambiente dedicate all'ambiente di produzione e all'integrazione con Google Cloud Functions, e la strategia di submit è impostata su \emph{api};
+    \item \texttt{.env.local}: contiene le variabili d'ambiente dedicate all'ambiente locale. Per quanto riguarda i due progetti sviluppati in questo stage, l'ambiente locale e l'ambiente di test sono stati equivalenti, ma è comuque una buona pratica separare un file di variabili d'ambiente locali per eventuali differenziazioni future. A causa dell'attuale equivalenza tra ambiente locale e ambiente di test, questo file contiene le stesse variabili del file \texttt{.env.development}, e quindi la strategia di submit è impostata su \emph{alert}.
 \end{itemize}
 
-Dunque, a seconda della variabile d'ambiente \texttt{VITE\_SUBMIT\_STRATEGY} configurata, il submit dei form delle interfacce grafiche invierà i dati in modo diverso, permettendo di testare i form, in particolare la validazione sviluppata con \texttt{Zod}, senza dover necessariamente inviare i dati a Google Cloud Functions o ad un server esterno.
+Dunque, a seconda della variabile d'ambiente \texttt{VITE\_SUBMIT\_STRATEGY} configurata, il submit dei form delle interfacce grafiche invierà i dati in modo diverso, permettendo di testare i form, in particolare la validazione sviluppata con \emph{Zod}, senza dover necessariamente inviare i dati a Google Cloud Functions o ad un server esterno.
 
-Attualmente, il submit non è ancora stato integrato con Google Cloud Functions, poiché si è deciso di sviluppare le interfacce grafiche come template personalizzabili, e quindi non sono state implementate le chiamate API per l'invio dei dati. Tuttavia, la struttura del codice è già pronta per essere integrata con le API di Google Cloud Functions in futuro, semplicemente modificando la variabile d'ambiente \texttt{VITE\_SUBMIT\_STRATEGY} in "\texttt{api}" e aggiornando l'apposito \texttt{hook}.
+Attualmente, il submit non è ancora stato integrato con Google Cloud Functions, poiché si è deciso di sviluppare le interfacce grafiche come template personalizzabili, e quindi non sono state implementate le chiamate API per l'invio dei dati. Tuttavia, la struttura del codice è già pronta per essere integrata con le API di Google Cloud Functions in futuro, semplicemente modificando la variabile d'ambiente \texttt{VITE\_SUBMIT\_STRATEGY} in "\emph{api}" e aggiornando l'apposito \emph{hook}.
 
 
 
