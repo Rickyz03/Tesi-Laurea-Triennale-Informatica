@@ -42,28 +42,28 @@ Si segnala brevemente, tuttavia, che gli output delle due task non sono stati al
 Di seguito viene data una panoramica delle tecnologie e strumenti utilizzati per lo sviluppo delle due task di analisi delle vendite e raccomandazione di prodotti e clienti. Le tecnologie sono state scelte in base alle esigenze del progetto, alla facilità d'uso e alla compatibilità con le altre componenti del sistema.
 
 \subsection{Pandas}
-Pandas è una libreria Python per l'analisi dei dati, che fornisce strutture dati e funzioni per la manipolazione e l'analisi dei dati. È stata utilizzata per leggere i file CSV contenenti i dati delle vendite e per elaborare i dati in fase di preprocessing.
+\gls{pandas} è una libreria Python per l'analisi dei dati, che fornisce strutture dati e funzioni per la manipolazione e l'analisi dei dati. È stata utilizzata per leggere i file CSV contenenti i dati delle vendite e per elaborare i dati in fase di preprocessing.
 
 \subsection{Babel}
-Babel è una libreria Python per la gestione della localizzazione e internazionalizzazione delle applicazioni. È stata utilizzata per gestire le date nel report, in modo da poterle visualizzare nel formato corretto in base alla lingua selezionata dall'utente.
+\gls{babel} è una libreria Python per la gestione della localizzazione e internazionalizzazione delle applicazioni. È stata utilizzata per gestire le date nel report, in modo da poterle visualizzare nel formato corretto in base alla lingua selezionata dall'utente.
 
 \subsection{Anthropic}
-Anthropic è una libreria che consente di interagire con i modelli di linguaggio di grandi dimensioni (\gls{llm}) sviluppati dall'azienda Anthropic tramite le loro API. In particolare, è stato usato il modello Claude 3.7 Sonnet per riconoscere le colonne del file CSV contenente i dati delle vendite, e per generare il resoconto finale che fa da ultimo passaggio del report delle vendite.
+\gls{anthropic} è una libreria che consente di interagire con i modelli di linguaggio di grandi dimensioni (\gls{llm}) sviluppati dall'azienda Anthropic tramite le loro API. In particolare, è stato usato il modello Claude 3.7 Sonnet per riconoscere le colonne del file CSV contenente i dati delle vendite, e per generare il resoconto finale che fa da ultimo passaggio del report delle vendite.
 
 \subsection{Matplotlib}
-Matplotlib è una libreria Python per la creazione di grafici e visualizzazioni dei dati. È stata utilizzata per generare i grafici presenti nel report delle vendite, in modo da rendere i dati più comprensibili e visivamente accattivanti.
+\gls{matplotlib} è una libreria Python per la creazione di grafici e visualizzazioni dei dati. È stata utilizzata per generare i grafici presenti nel report delle vendite, in modo da rendere i dati più comprensibili e visivamente accattivanti.
 
 \subsection{Pillow}
-Pillow è una libreria Python per la manipolazione delle immagini. È stata utilizzata per generare le immagini dei grafici creati con Matplotlib e per la loro conversione in base64, in modo da poterli inserire nel report delle vendite in formato PDF ed HTML.
+\gls{pillow} è una libreria Python per la manipolazione delle immagini. È stata utilizzata per generare le immagini dei grafici creati con Matplotlib e per la loro conversione in base64, in modo da poterli inserire nel report delle vendite in formato PDF ed HTML.
 
 \subsection{ReportLab}
-ReportLab è una libreria Python per la generazione di documenti PDF, che fornisce una disposizione dinamica del contenuto in pagine. È stata utilizzata per creare il report delle vendite in formato PDF, in modo da renderlo scaricabile dal portale Oribea e da poterlo inviare via email all'utente.
+\gls{reportlab} è una libreria Python per la generazione di documenti PDF, che fornisce una disposizione dinamica del contenuto in pagine. È stata utilizzata per creare il report delle vendite in formato PDF, in modo da renderlo scaricabile dal portale Oribea e da poterlo inviare via email all'utente.
 
 \subsection{Jinja2}
-Jinja2 è un motore di template per Python, che consente di generare documenti HTML in modo dinamico. È stata utilizzata per creare il report delle vendite in formato HTML, in modo da renderlo visualizzabile direttamente nel browser e da poterlo anche inviare via email all'utente.
+\gls{jinja2} è un motore di template per Python, che consente di generare documenti HTML in modo dinamico. È stata utilizzata per creare il report delle vendite in formato HTML, in modo da renderlo visualizzabile direttamente nel browser e da poterlo anche inviare via email all'utente.
 
 \subsection{Server SMTP interno}
-Per l'invio di email, è stato utilizzato un server SMTP messo a disposizione da Oribea, che consente di inviare mail personalizzate senza avere la necessità di utilizzare un indirizzo mail esistente o di collegarsi ad un servizio esterno a pagamento. 
+Per l'invio di email, è stato utilizzato un server \gls{smtp} messo a disposizione da Oribea, che consente di inviare mail personalizzate senza avere la necessità di utilizzare un indirizzo mail esistente o di collegarsi ad un servizio esterno a pagamento. 
 
 \subsection{Sentence Transformers}
 SentenceTransformers è una libreria Python per la creazione di modelli di linguaggio basati su trasformatori, che consente di generare rappresentazioni vettoriali di frasi e documenti. È stata utilizzata per calcolare le similarità tra le descrizioni dei prodotti e i nomi dei prodotti, in modo da poter generare le raccomandazioni. In particolare, è stato utilizzato il modello \emph{all-MiniLM-L6-v2} per generare le rappresentazioni vettoriali delle descrizioni dei prodotti e dei nomi dei prodotti, e per calcolare la similarità tra di essi.
