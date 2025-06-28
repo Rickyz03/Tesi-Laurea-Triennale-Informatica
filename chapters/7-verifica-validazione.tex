@@ -19,8 +19,8 @@ Inoltre, durante lo sviluppo delle interfacce frontend, nonostante non fosse ric
 
 I test di unità sono stati implementati per verificare il corretto funzionamento delle singole funzioni e moduli del sistema. Per ogni file di codice sorgente, è stato scritto un corrispettivo file di test, emulando la stessa struttura di cartelle. Questi test sono stati scritti utilizzando i seguenti framework:
 \begin{itemize}
-    \item \textbf{pytest}: framework di testing per Python che offre una sintassi semplice e intuitiva. Permette di scrivere test con asserzioni standard di Python e fornisce funzionalità avanzate come fixture, parametrizzazione dei test e un sistema di plugin estensibile;
-    \item \textbf{unittest}: modulo standard di Python per il testing unitario, basato sul framework xUnit. Utilizza una struttura orientata agli oggetti dove i test sono definiti come metodi di classi che ereditano da \texttt{unittest.TestCase}.
+    \item \textbf{\gls{pytest}}: framework di testing per Python che offre una sintassi semplice e intuitiva. Permette di scrivere test con asserzioni standard di Python e fornisce funzionalità avanzate come fixture, parametrizzazione dei test e un sistema di plugin estensibile;
+    \item \textbf{\gls{unittest}}: modulo standard di Python per il testing unitario, basato sul framework xUnit. Utilizza una struttura orientata agli oggetti dove i test sono definiti come metodi di classi che ereditano da \texttt{unittest.TestCase}.
 \end{itemize}
 
 È stato poi scelto, per ciascuna function, di scrivere un file \texttt{pytest.ini} per configurare il framework \texttt{pytest} per calcolare la copertura del codice ad ogni esecuzione dei test. Questo file contiene le impostazioni per il calcolo della copertura del codice, specificando le directory e i file da includere o escludere dal report di copertura. È stata decisa, di comune accordo con il tutor, una copertura minima del 90\% per ogni file di codice sorgente, in modo da garantire un buon livello di test e ridurre il rischio di bug non rilevati.
@@ -52,11 +52,11 @@ Durante lo sviluppo delle interfacce frontend, sono stati implementati test per 
 
 Come framework di test, sono state valutate le seguenti possibilità:
 \begin{itemize}
-    \item \textbf{Jest}: un framework di test JavaScript sviluppato da Facebook, ampiamente utilizzato per testare applicazioni React. Offre funzionalità come snapshot testing, mocking e copertura del codice;
-    \item \textbf{Vitest}: un framework di test moderno e veloce per JavaScript e TypeScript, progettato per essere compatibile con Jest. Supporta il testing di componenti React e offre funzionalità simili a Jest.
+    \item \textbf{\gls{jest}}: un framework di test JavaScript sviluppato da Facebook, ampiamente utilizzato per testare applicazioni \gls{react}. Offre funzionalità come snapshot testing, mocking e copertura del codice;
+    \item \textbf{\gls{vitest}}: un framework di test moderno e veloce per JavaScript e TypeScript, progettato per essere compatibile con Jest. Supporta il testing di componenti React e offre funzionalità simili a Jest.
 \end{itemize}
 
 Siccome le applicazioni React sviluppate si basano su Vite, un moderno strumento di build per applicazioni web, si è deciso di utilizzare Vitest come framework di test. Vitest è progettato per essere veloce e leggero, sfruttando le stesse tecnologie di Vite, e offre una sintassi simile a Jest, rendendo facile la scrittura e l'esecuzione dei test.
 
 Per entrambi i progetti frontend, è stato deciso di non fissare a priori una copertura minima del codice, ma di puntare bensì a testare le funzionalità principali e i casi d'uso più rilevanti. Questo approccio consente di mantenere un buon livello di test senza appesantire lo sviluppo con requisiti di copertura troppo rigidi.
-Nel caso del frontend di analisi delle vendite, è stato comunque ottenuto un buon livello di copertura del codice, con una copertura pari al 62\%. Per il frontend di raccomandazione invece, a causa di un diverso approccio nell'uso dei mock che non ha previsto l'usufrutto del codice dei tipi di dato \texttt{Shadcn/ui} (i quali sono considerati tra le righe di codice da coprire pur essendo stati generati automaticamente), la coverage è stata ottenuta pari al solo 34\%. Tuttavia, anche in questo caso, i componenti principali e le funzionalità più rilevanti sono stati testati, garantendo un buon livello di affidabilità.
+Nel caso del frontend di analisi delle vendite, è stato comunque ottenuto un buon livello di copertura del codice, con una copertura pari al 62\%. Per il frontend di raccomandazione invece, a causa di un diverso approccio nell'uso dei mock che non ha previsto l'usufrutto del codice dei tipi di dato \texttt{\gls{shadcnui}} (i quali sono considerati tra le righe di codice da coprire pur essendo stati generati automaticamente), la coverage è stata ottenuta pari al solo 34\%. Tuttavia, anche in questo caso, i componenti principali e le funzionalità più rilevanti sono stati testati, garantendo un buon livello di affidabilità.
