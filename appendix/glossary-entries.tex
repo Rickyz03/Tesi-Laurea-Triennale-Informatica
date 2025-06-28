@@ -143,11 +143,25 @@
     description={algoritmo di clustering non supervisionato che suddivide un insieme di dati in \emph{k} gruppi (cluster) in base alla vicinanza tra i punti, minimizzando la distanza intra-cluster}
 }
 
+\newglossaryentry{collaborativefiltering} {
+    name=Collaborative Filtering,
+    text=Collaborative Filtering,
+    sort=collaborativefiltering,
+    description={tecnica di sistema di raccomandazione che produce suggerimenti per un utente basandosi sui comportamenti e preferenze di utenti simili}
+}
+
 \newglossaryentry{similarita} {
     name=Similarità,
     text=similarità,
     sort=similarita,
     description={misura della somiglianza tra due o più oggetti, spesso utilizzata in informatica per confrontare testi, immagini o altri dati}
+}
+
+\newglossaryentry{rankfusion} {
+    name=Rank Fusion,
+    text=Rank Fusion,
+    sort=rankfusion,
+    description={tecnica che combina multiple classifiche di risultati provenienti da diversi algoritmi o sistemi per produrre una classifica finale più accurata e robusta}
 }
 
 \newglossaryentry{rrf} {
@@ -250,9 +264,9 @@
 
 \newglossaryentry{babel} {
     name=Babel,
-    text=Babel,
-    sort=babel,
-    description={transpiler JavaScript che converte codice ECMAScript moderno in versioni compatibili con browser più datati, permettendo l'uso di funzionalità JavaScript avanzate}
+        text=Babel,
+        sort=babel,
+        description={libreria Python per l'internazionalizzazione e localizzazione che fornisce strumenti per gestire traduzioni, formattazione di date, numeri e valute in diverse lingue e regioni}
 }
 
 \newglossaryentry{anthropic} {
@@ -287,7 +301,7 @@
     name=Jinja2,
     text=Jinja2,
     sort=jinja2,
-    description={motore di template moderno e veloce per Python, che permette di separare la logica di presentazione dal codice applicativo utilizzando una sintassi espressiva}
+    description={motore di template moderno e veloce per Python, che permette di separare la logica di presentazione dal codice applicativo utilizzando una sintassi espressiva. Ad esempio, può essere utilizzato per generare HTML dinamico in applicazioni web}
 }
 
 \newglossaryentry{smtp} {
@@ -346,11 +360,18 @@
     description={framework per testing in Python che permette di scrivere test semplici e scalabili, con sintassi pulita e funzionalità avanzate come fixture e parametrizzazione}
 }
 
+\newglossaryentry{unittest} {
+    name=Unittest,
+    text=Unittest,
+    sort=unittest,
+    description={modulo integrato in Python per il testing del codice che fornisce un framework orientato agli oggetti per creare e eseguire test unitari, supportando test fixtures, test suites e test runner}
+}
+
 \newglossaryentry{dataframe} {
     name=DataFrame,
-    text=DataFrame,
-    sort=dataframe,
-    description={struttura dati bidimensionale etichettata con colonne di tipi potenzialmente diversi, simile a una tabella di database o un foglio di calcolo Excel}
+        text=DataFrame,
+        sort=dataframe,
+        description={struttura dati bidimensionale di Pandas con righe e colonne etichettate, che permette di memorizzare e manipolare dati di tipi diversi in formato tabellare, simile a una tabella di database o un foglio di calcolo Excel, con potenti funzionalità per l'analisi e trasformazione dei dati}
 }
 
 \newglossaryentry{hardcoded} {
@@ -434,19 +455,19 @@
     name=Zod,
     text=Zod,
     sort=zod,
-    description={libreria TypeScript per la validazione e parsing di schemi dati con inferenza automatica dei tipi, che garantisce type safety a runtime}
+    description={libreria TypeScript per la validazione e parsing di schemi dati con inferenza automatica dei tipi, che garantisce type safety a runtime. Ideale per la validazione di dati immessi in form o ricevuti da API}
 }
 
 \newglossaryentry{shadcnui} {
     name=Shadcn/ui,
     text=Shadcn/ui,
     sort=shadcnui,
-    description={collezione di componenti UI riutilizzabili per React, costruiti con Radix UI e Tailwind CSS, che possono essere copiati e personalizzati nel progetto}
+    description={collezione di componenti UI riutilizzabili per React, costruiti con Radix UI e Tailwind CSS, che possono essere copiati e personalizzati in un progetto React per creare interfacce utente moderne e accessibili}
 }
 
 \newglossaryentry{pandasvectorizedops} {
     name=Pandas Vectorized Operations,
-    text=Pandas Vectorized Operations,
+    text=Pandas Vectorized Ops,
     sort=pandasvectorizedops,
     description={operazioni ottimizzate in Pandas che vengono applicate simultaneamente a interi array di dati invece che elemento per elemento, migliorando significativamente le prestazioni}
 }
@@ -455,26 +476,12 @@
     name=pandas.DataFrame.apply,
     text=pandas.DataFrame.apply,
     sort=pandasdataframeapply,
-    description={metodo di Pandas che applica una funzione lungo un asse di un DataFrame, permettendo di trasformare i dati riga per riga o colonna per colonna}
+    description={metodo di Pandas che applica una funzione lungo un asse di un DataFrame, permettendo di trasformare i dati riga per riga o colonna per colonna. È utile per operazioni complesse che non possono essere facilmente eseguite con operazioni vettorializzate, ma, nel caso sia possibile, è consigliabile utilizzare operazioni vettorializzate per migliorare le prestazioni}
 }
 
 \newglossaryentry{hook} {
     name=Hook,
     text=hook,
     sort=hook,
-    description={funzioni speciali in React che permettono di utilizzare stato e altre funzionalità React all'interno di componenti funzionali, come useState e useEffect}
-}
-
-\newglossaryentry{collaborativefiltering} {
-    name=Collaborative Filtering,
-    text=Collaborative Filtering,
-    sort=collaborativefiltering,
-    description={tecnica di sistema di raccomandazione che produce suggerimenti per un utente basandosi sui comportamenti e preferenze di utenti simili}
-}
-
-\newglossaryentry{rankfusion} {
-    name=Rank Fusion,
-    text=Rank Fusion,
-    sort=rankfusion,
-    description={tecnica che combina multiple classifiche di risultati provenienti da diversi algoritmi o sistemi per produrre una classifica finale più accurata e robusta}
+    description={funzioni speciali in React che permettono di utilizzare stato e altre funzionalità React, come useState e useEffect, all'interno di componenti funzionali}
 }
