@@ -250,6 +250,8 @@ Il report in formato PDF, in quanto requisito obbligatorio del progetto, è stat
 
 Alla fine, è stata scelta la libreria ReportLab per la generazione del report in formato PDF, poiché consente di gestire le pagine in modo dinamico e semplice: infatti, all'inserimento di un nuovo flowable (un elemento grafico), ReportLab si occupa automaticamente di creare una nuova pagina se necessario, e di gestire il layout del documento in modo automatico, a differenza di altre librerie che richiedono una gestione manuale delle pagine. Inoltre, ReportLab consente di inserire immagini e grafici in modo semplice e veloce, e di gestire la formattazione del testo in modo avanzato.
 
+I lati negativi di ReportLab sono la eventuale disposizione automatica dei flowables non coincidente con le aspettative, per la quale si può fare poco non avendo un controllo manuale, e la necessità di inserire manualmente tramite canvas il numero di pagina corrente nel piè di pagina, poiché ReportLab non lo gestisce automaticamente. Tuttavia, questi aspetti non hanno rappresentato un problema significativo per la generazione del report delle vendite, che è stato realizzato in modo semplice e relativamente veloce.
+
 Per gestire l'inserimento nel report del resoconto generato dall'LLM, è stato necessario creare una funzione che consentisse di convertire il testo in formato Markdown in flowables di ReportLab. Questa conversione è stata realizzata manualmente, poichè gli output dell'LLM come resoconto sono molto semplici e non contengono elementi complessi come tabelle o liste, e quindi non era necessario utilizzare una libreria esterna per la conversione.
 
 
