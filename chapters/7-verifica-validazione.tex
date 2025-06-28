@@ -8,11 +8,11 @@
 
 Per garantire la qualità del sistema sviluppato, è stato deciso di seguire la pratica dell'ingegneria del software di effettuare test in parallelo allo sviluppo. Questo approccio consente di identificare e correggere i bug in modo tempestivo, migliorando la stabilità e l'affidabilità del sistema.
 
-Tuttavia, essendo il sistema molto semplice, in particolare considerato l'approccio procedurale con la conseguente assenza di classi, si è deciso di non implementare l'intera suite di test automatizzati prevista dalla teoria (test di unità, test di integrazione, test di sistema, test di accettazione). Invece, si è optato per un approccio più snello, concentrandosi sui test di unità.
+Tuttavia, essendo il sistema molto semplice, in particolare considerato l'approccio procedurale con la conseguente assenza di classi, si è deciso di non implementare l'intera suite di test automatizzati prevista dalla teoria (test di unità, test di integrazione, test di sistema, test di accettazione). Invece, si è optato per un approccio più snello, concentrandosi solo sui test di unità.
 
-Tuttavia, considerando l'importanza della qualità delle risposte del modello LLM utilizzato, il fallimento del quale comporterebbe il fallimento totale del sistema, sono stati implementati test specifici per verificare il corretto funzionamento del modello stesso. Questi test, a differenza dei test di unità, non utilizzano un mock per il modello LLM, ma bensì si basano sul modello reale utilizzato in produzione.
+Tuttavia, considerando l'importanza della qualità delle risposte del modello LLM utilizzato, il fallimento del quale comporterebbe il fallimento totale del sistema, sono stati implementati test specifici per verificare il corretto funzionamento del modello stesso e l'efficacia del prompt utilizzato per chiamarlo. Questi test, a differenza dei test di unità, non utilizzano un mock per il modello LLM, ma bensì si basano sul modello reale utilizzato in produzione. Quest'ultimo approccio fa sì che tali test non appartengano a nessuna delle categorie previste dalla teoria, e dunque sono considerabili come test aggiuntivi specifici.
 
-Inoltre, durante lo sviluppo delle interfacce frontend, nonostante non fosse richiesto, si è comunque deciso di implementare dei test per verificare il corretto funzionamento dei componenti, essendo una buona pratica dello sviluppo software in generale.
+Inoltre, durante lo sviluppo delle interfacce frontend, nonostante non fosse richiesto, si è comunque deciso di implementare dei test per verificare il corretto funzionamento dei componenti e per seguire una buona pratica di sviluppo software.
 
 
 \section{Test di unità}
