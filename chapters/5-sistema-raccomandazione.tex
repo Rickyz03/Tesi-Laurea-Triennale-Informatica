@@ -245,10 +245,49 @@ Il confronto con RecBole, a parità di dataset, ha mostrato che il sistema di ra
 
 Il confronto con Surprise, sempre a parità di dataset, ha mostrato risultati ancora più schiaccianti, poichè il sistema di raccomandazione implementato ha ottenuto risultati significativamente migliori rispetto a quelli ottenuti da Surprise. La causa di ciò, oltre al solito problema dei clienti occasionali, è stata attribuita al fatto che Surprise necessita di una colonna di rating per poter funzionare, e questa colonna non è presente nei dataset disponibili. Per fare il confronto era stata creata una colonna di rating fittizia, che assegnava un rating fisso di 1 a ciascun acquisto, ma questo ha portato a risultati inutilizzabili, poichè ogni raccomandazione era considerata perfetta, e dunque il sistema non riusciva a distinguere tra prodotti buoni e cattivi.
 
-Al termine del confronto, si è dunque deciso di non considerare alcun contributo delle librerie RecBole e Surprise per il sistema di raccomandazione, poichè i risultati ottenuti non erano soddisfacenti e non erano comparabili con quelli ottenuti dal sistema implementato. Tuttavia, queste librerie possono essere utili per ulteriori sperimentazioni e per la creazione di sistemi di raccomandazione più avanzati in futuro.
+Al termine del confronto, si è dunque deciso di non considerare alcun contributo dalle librerie RecBole e Surprise per il sistema di raccomandazione, poichè i risultati da esse ottenuti non erano soddisfacenti e non erano comparabili con quelli ottenuti dal sistema implementato. Tuttavia, queste librerie possono essere utili per ulteriori sperimentazioni e per la creazione di sistemi di raccomandazione più avanzati in futuro.
 
 
 \section{Metriche}
+
+Il sistema di raccomandazione implementato è stato valutato utilizzando diverse metriche, che sono state scelte in base agli obiettivi del progetto e alle caratteristiche del dataset.
+
+Molte metriche utilizzano la rilevanza come criterio di valutazione, e dunque è necessario definire cosa si intende per "item rilevante". Nel contesto del progetto, un "item rilevante" è un prodotto che è stato acquistato dal cliente. Tuttavia, il sistema di raccomandazione non raccomanda nessun item che è stato acquistato dal cliente, poiché questi vengono filtrati. Dunque, le metriche sono state classificate in due categorie:
+\begin{itemize}
+    \item \textbf{Metriche pre-filtro}: metriche che valutano le raccomandazioni prima dell'applicazione del filtro sui prodotti già acquistati dal cliente; appartengono a questa categoria le metriche che considerano gli "item rilevanti" come mezzo di valutazione del ranking;
+    \item \textbf{Metriche post-filtro}: metriche che valutano le raccomandazioni dopo l'applicazione del filtro sui prodotti già acquistati dal cliente; appartengono a questa categoria le metriche che non utilizzano gli "item rilevanti" come mezzo di valutazione del ranking.
+\end{itemize}
+
+Le metriche pre-filtro utilizzate sono:
+\begin{itemize}
+    \item \textbf{\gls{recallatk}}: misura la frazione di elementi rilevanti recuperati tra i primi $k$ risultati restituiti dal sistema di raccomandazione, rispetto al totale degli elementi rilevanti disponibili per l'utente;
+    \item \textbf{\gls{precisionatk}}: misura la frazione di elementi rilevanti tra i primi $k$ risultati restituiti dal sistema di raccomandazione;
+    \item \textbf{\gls{mapatk}}: calcola la media delle precisioni valutate a ogni posizione in cui un elemento rilevante appare tra i primi $k$ risultati, fornendo una misura globale della qualità del ranking;
+    \item \textbf{\gls{mrratk}}: calcola la media dei reciproci della posizione degli elementi rilevanti tra i primi $k$ risultati, privilegiando i risultati rilevanti in posizioni più alte;
+    \item \textbf{\gls{unserendipityatk}}: misura la mancanza di serendipità tra i primi $k$ risultati, ovvero la tendenza del sistema a raccomandare elementi già noti o attesi dall'utente piuttosto che scoperte inaspettate.
+\end{itemize}
+
+Mentre, le metriche post-filtro utilizzate sono:
+\begin{itemize}
+    \item \textbf{\gls{averageitemsimilarity}}: calcola la media delle similarità tra gli elementi raccomandati e gli elementi con cui l'utente ha già interagito, fornendo una misura della diversità delle raccomandazioni;
+    \item \textbf{\gls{meanpopularityatk}}: misura la media della popolarità degli elementi raccomandati tra i primi $k$ risultati, dove la popolarità è determinata dal numero totale di interazioni ricevute da ciascun elemento nel dataset.
+\end{itemize}
+
+Le metriche sono state scelte in base agli obiettivi del progetto e alle caratteristiche del dataset. In particolare, le metriche pre-filtro sono state scelte per valutare la qualità delle raccomandazioni in base a quanti item rilevanti sono stati recuperati tra i primi $k$ risultati, mentre le metriche post-filtro sono state scelte per valutare la qualità delle raccomandazioni in base alla similarità e alla popolarità degli item raccomandati.
+
+Le metriche che erano state inizialmente valutate, ma che poi sono state scartate, sono:
+\begin{itemize}
+    \item \textbf{\gls{ndcgatk}}: calcola il guadagno cumulativo scontato normalizzato, che tiene conto sia della rilevanza degli elementi sia della loro posizione nel ranking tra i primi $k$ risultati;
+    \item \textbf{\gls{hitrateatk}}: metrica binaria che vale 1 se almeno un elemento rilevante è presente tra i primi $k$ risultati raccomandati, 0 altrimenti;
+    \item \textbf{\gls{coverageatk}}: misura la varietà del sistema calcolando quanti elementi diversi vengono raccomandati complessivamente agli utenti tra i primi $k$ risultati;
+    \item \textbf{\gls{intralistdiversity}}: misura quanto sono diversi tra loro gli elementi raccomandati all'interno della stessa lista di raccomandazioni;
+    \item \textbf{\gls{novelty}}: quantifica la novità delle raccomandazioni favorendo elementi poco popolari, che sono potenzialmente più "nuovi" per l'utente;
+    \item \textbf{\gls{serendipity}}: misura la capacità del sistema di raccomandare elementi inaspettati ma potenzialmente interessanti per l'utente.
+\end{itemize}
+
+Queste metriche sono state scartate per diverse ragioni metodologiche e concettuali. La metrica \textbf{nDCG@k} è stata considerata ridondante rispetto alla Recall@k, poiché nel contesto specifico del progetto la posizione esatta degli elementi rilevanti nel ranking ha un'importanza limitata. La \textbf{Hit Rate@k} è stata giudicata troppo semplicistica, fornendo solo un'informazione binaria sulla presenza di almeno un elemento rilevante senza considerare la qualità complessiva delle raccomandazioni.
+
+Per quanto riguarda le metriche \textbf{Coverage@k}, \textbf{Intra-list Diversity}, \textbf{Novelty} e \textbf{Serendipity}, queste sono state escluse poiché il sistema di raccomandazione implementato non è stato progettato per massimizzare la serendipità o la diversità delle raccomandazioni. Al contrario, il sistema si basa su tecniche di Collaborative Filtering e Similarità che tendono naturalmente a raccomandare elementi simili a quelli già acquistati dall'utente. L'applicazione di queste metriche avrebbe inevitabilmente prodotto punteggi molto bassi, non fornendo informazioni utili sulla qualità del sistema. Per questo motivo, si è preferito utilizzare la sovraccitata metrica \textbf{Unserendipity@k}, che misura l'opposto della serendipità e risulta dunque più appropriata per valutare un sistema orientato alla similarità e alla coerenza delle raccomandazioni.
 
 \section{Serendipità}
 
