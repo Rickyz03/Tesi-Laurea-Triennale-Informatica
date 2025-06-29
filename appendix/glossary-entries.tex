@@ -41,6 +41,9 @@
 \newacronym[description={\glslink{curl}{Client URL}}]
     {curl_acr}{cURL}{Client URL}
 
+\newacronym[description={\glslink{ndcgatk}{Normalized Discounted Cumulative Gain@\emph{k}}}]
+    {ndcgatk_acr}{nDCG@\emph{k}}{Normalized Discounted Cumulative Gain@\emph{k}}
+
 
 
 
@@ -195,7 +198,7 @@
 }
 
 \newglossaryentry{mapatk} {
-    name=\glslink{map_acr}{MAP@\emph{k}},
+    name=\glslink{mapatk_acr}{MAP@\emph{k}},
     text=MAP@\emph{k},
     sort=mapatk,
     description={Mean Average Precision@\emph{k}, media delle precisioni calcolate a ogni posizione in cui un elemento rilevante appare tra i primi \emph{k} risultati}
@@ -647,4 +650,46 @@
     text=Surprise,
     sort=surprise,
     description={libreria Python per la costruzione e l'analisi di sistemi di raccomandazione, che fornisce implementazioni di algoritmi di collaborative filtering e strumenti per la valutazione delle prestazioni}
+}
+
+\newglossaryentry{ndcgatk} {
+    name=\glslink{ndcgatk_acr}{nDCG@\emph{k}},
+    text=nDCG@\emph{k},
+    sort=ndcgatk,
+    description={Normalized Discounted Cumulative Gain@\emph{k}, metrica che calcola il guadagno cumulativo scontato normalizzato tenendo conto sia della rilevanza degli elementi sia della loro posizione nel ranking tra i primi \emph{k} risultati. La normalizzazione permette di confrontare prestazioni su query diverse, mentre lo sconto penalizza elementi rilevanti che appaiono in posizioni più basse}
+}
+
+\newglossaryentry{hitrateatk} {
+    name=Hit Rate@\emph{k},
+    text=Hit Rate@\emph{k},
+    sort=hitrateatk,
+    description={metrica binaria che vale 1 se almeno un elemento rilevante è presente tra i primi \emph{k} risultati raccomandati, 0 altrimenti. È particolarmente utile per valutare se il sistema riesce a catturare almeno una preferenza dell'utente nelle prime posizioni}
+}
+
+\newglossaryentry{coverageatk} {
+    name=Coverage@\emph{k},
+    text=Coverage@\emph{k},
+    sort=coverageatk,
+    description={metrica che misura la varietà del sistema calcolando quanti elementi diversi vengono raccomandati complessivamente agli utenti tra i primi \emph{k} risultati. Una coverage elevata indica che il sistema sfrutta un'ampia porzione del catalogo disponibile, evitando di concentrarsi sempre sugli stessi elementi popolari}
+}
+
+\newglossaryentry{intralistdiversity} {
+    name=Intra-list Diversity,
+    text=Intra-list Diversity,
+    sort=intralistdiversity,
+    description={metrica che misura quanto sono diversi tra loro gli elementi raccomandati all'interno della stessa lista di raccomandazioni per un singolo utente. Una diversità intra-lista elevata garantisce che l'utente riceva suggerimenti variegati piuttosto che elementi molto simili tra loro}
+}
+
+\newglossaryentry{novelty} {
+    name=Novelty,
+    text=Novelty,
+    sort=novelty,
+    description={metrica che quantifica la novità delle raccomandazioni favorendo elementi poco popolari, che sono potenzialmente più "nuovi" per l'utente. Si basa sull'assunto che elementi con poche interazioni storiche possano rappresentare scoperte interessanti}
+}
+
+\newglossaryentry{serendipity} {
+    name=Serendipity,
+    text=Serendipity,
+    sort=serendipity,
+    description={metrica che misura la capacità del sistema di raccomandare elementi inaspettati ma potenzialmente interessanti per l'utente. La serendipità rappresenta la qualità di fare scoperte piacevoli e inattese, bilanciando accuratezza e sorpresa nelle raccomandazioni}
 }

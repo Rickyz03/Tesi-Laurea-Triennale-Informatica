@@ -248,6 +248,9 @@ Il confronto con Surprise, sempre a parità di dataset, ha mostrato risultati an
 Al termine del confronto, si è dunque deciso di non considerare alcun contributo dalle librerie RecBole e Surprise per il sistema di raccomandazione, poichè i risultati da esse ottenuti non erano soddisfacenti e non erano comparabili con quelli ottenuti dal sistema implementato. Tuttavia, queste librerie possono essere utili per ulteriori sperimentazioni e per la creazione di sistemi di raccomandazione più avanzati in futuro.
 
 
+\section{Serendipità}
+
+
 \section{Metriche}
 
 Il sistema di raccomandazione implementato è stato valutato utilizzando diverse metriche, che sono state scelte in base agli obiettivi del progetto e alle caratteristiche del dataset.
@@ -285,10 +288,8 @@ Le metriche che erano state inizialmente valutate, ma che poi sono state scartat
     \item \textbf{\gls{serendipity}}: misura la capacità del sistema di raccomandare elementi inaspettati ma potenzialmente interessanti per l'utente.
 \end{itemize}
 
-Queste metriche sono state scartate per diverse ragioni metodologiche e concettuali. La metrica \textbf{nDCG@k} è stata considerata ridondante rispetto alla Recall@k, poiché nel contesto specifico del progetto la posizione esatta degli elementi rilevanti nel ranking ha un'importanza limitata. La \textbf{Hit Rate@k} è stata giudicata troppo semplicistica, fornendo solo un'informazione binaria sulla presenza di almeno un elemento rilevante senza considerare la qualità complessiva delle raccomandazioni.
+Queste metriche sono state scartate per diverse ragioni metodologiche e concettuali. La metrica \emph{nDCG@k} è stata considerata ridondante rispetto alla Recall@k, poiché nel contesto specifico del progetto la posizione esatta degli elementi rilevanti nel ranking ha un'importanza limitata. La \emph{Hit Rate@k} è stata giudicata troppo semplicistica, fornendo solo un'informazione binaria sulla presenza di almeno un elemento rilevante senza considerare la qualità complessiva delle raccomandazioni.
 
-Per quanto riguarda le metriche \textbf{Coverage@k}, \textbf{Intra-list Diversity}, \textbf{Novelty} e \textbf{Serendipity}, queste sono state escluse poiché il sistema di raccomandazione implementato non è stato progettato per massimizzare la serendipità o la diversità delle raccomandazioni. Al contrario, il sistema si basa su tecniche di Collaborative Filtering e Similarità che tendono naturalmente a raccomandare elementi simili a quelli già acquistati dall'utente. L'applicazione di queste metriche avrebbe inevitabilmente prodotto punteggi molto bassi, non fornendo informazioni utili sulla qualità del sistema. Per questo motivo, si è preferito utilizzare la sovraccitata metrica \textbf{Unserendipity@k}, che misura l'opposto della serendipità e risulta dunque più appropriata per valutare un sistema orientato alla similarità e alla coerenza delle raccomandazioni.
-
-\section{Serendipità}
+Per quanto riguarda le metriche \emph{Coverage@k}, \emph{Intra-list Diversity}, \emph{Novelty} e \emph{Serendipity}, queste sono state escluse poiché il sistema di raccomandazione implementato non è stato progettato per massimizzare la serendipità o la diversità delle raccomandazioni. Al contrario, il sistema si basa su tecniche di Collaborative Filtering e Similarità che tendono naturalmente a raccomandare elementi simili a quelli già acquistati dall'utente. L'applicazione di queste metriche avrebbe inevitabilmente prodotto punteggi molto bassi, non fornendo informazioni utili sulla qualità del sistema. Per questo motivo, si è preferito utilizzare la sovraccitata metrica \emph{Unserendipity@k}, che misura l'opposto della serendipità e risulta dunque più appropriata per valutare un sistema orientato alla similarità e alla coerenza delle raccomandazioni.
 
 \section{Explainability}
