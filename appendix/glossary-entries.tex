@@ -44,6 +44,8 @@
 \newacronym[description={\glslink{ndcgatk}{Normalized Discounted Cumulative Gain@\emph{k}}}]
     {ndcgatk_acr}{nDCG@\emph{k}}{Normalized Discounted Cumulative Gain@\emph{k}}
 
+\newacronym[description={\glslink{rmse}{Root Mean Square Error}}]
+    {rmse_acr}{RMSE}{Root Mean Square Error}
 
 
 
@@ -692,4 +694,39 @@
     text=Serendipity,
     sort=serendipity,
     description={metrica che misura la capacità del sistema di raccomandare elementi inaspettati ma potenzialmente interessanti per l'utente. La serendipità rappresenta la qualità di fare scoperte piacevoli e inattese, bilanciando accuratezza e sorpresa nelle raccomandazioni}
+}
+
+\newglossaryentry{surprise} {
+    name=Surprise,
+    text=Surprise,
+    sort=surprise,
+    description={metrica che quantifica il grado di sorpresa nelle raccomandazioni calcolando la distanza tra le aspettative dell'utente e i risultati effettivi}
+}
+
+\newglossaryentry{confidence} {
+    name=Confidence,
+    text=Confidence,
+    sort=confidence,
+    description={metrica che valuta il livello di fiducia del sistema nelle proprie raccomandazioni, spesso correlato alla popolarità degli elementi}
+}
+
+\newglossaryentry{distance} {
+    name=Distance,
+    text=Distance,
+    sort=distance,
+    description={metrica che misura la distanza semantica o comportamentale tra gli elementi raccomandati e quelli già noti all'utente}
+}
+
+\newglossaryentry{expectedness} {
+    name=Expectedness,
+    text=Expectedness,
+    sort=expectedness,
+    description={metrica che quantifica quanto le raccomandazioni siano prevedibili o attese dall'utente}
+}
+
+\newglossaryentry{rmse} {
+    name=\glslink{rmse_acr}{RMSE},
+    text=RMSE,
+    sort=rmse,
+    description={Root Mean Square Error, metrica che calcola l'errore quadratico medio per valutare l'accuratezza delle predizioni di rating}
 }
