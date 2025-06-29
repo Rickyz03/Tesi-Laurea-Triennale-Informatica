@@ -232,6 +232,22 @@ Questo filtro viene applicato dopo il processo di Rank Fusion, e dunque i prodot
 
 \section{Recbole e Surprise}
 
+Una volta implementato il sistema di raccomandazione, si è pensato di confrontare le prestazioni del sistema con quelle di altri sistemi di raccomandazione già esistenti, ed eventualmente di prendere spunto da questi per migliorare il proprio sistema.
+Per fare ciò, dopo una breve ricerca, si è deciso di utilizzare due librerie di Python per la creazione di sistemi di raccomandazione:
+\begin{itemize}
+    \item \textbf{\gls{recbole}};
+    \item \textbf{\gls{surprise}}.
+\end{itemize}
+
+Queste librerie offrono una vasta gamma di algoritmi di raccomandazione, tra cui quelli basati su Collaborative Filtering, Similarità e altri metodi avanzati. La differenza principale tra le due librerie è che \emph{recbole} è più orientata alla creazione di sistemi di raccomandazione basati su deep learning, mentre \emph{surprise} è più orientata alla creazione di sistemi di raccomandazione basati su metodi tradizionali come il Collaborative Filtering e la Similarità.
+
+Il confronto con RecBole, a parità di dataset, ha mostrato che il sistema di raccomandazione implementato ha ottenuto risultati migliori rispetto a quelli ottenuti da RecBole, in particolare per quanto riguarda la precisione e il richiamo delle raccomandazioni. Questo è stato attribuito al fatto che nei dataset disponibili sono presenti molti clienti occasionali che non hanno interagito con un numero sufficiente di prodotti per poter fare raccomandazioni significative, e questo ha messo in crisi i sistemi di raccomandazione basati prettamente su Collaborative Filtering. Infatti, il processo di training di RecBole ha ottenuto un punteggio di loss sempre molto alto ad ogni iterazione, a dimostrazione che il sistema non riusciva a generalizzare bene sui dati.
+
+Il confronto con Surprise, sempre a parità di dataset, ha mostrato risultati ancora più schiaccianti, poichè il sistema di raccomandazione implementato ha ottenuto risultati significativamente migliori rispetto a quelli ottenuti da Surprise. La causa di ciò, oltre al solito problema dei clienti occasionali, è stata attribuita al fatto che Surprise necessita di una colonna di rating per poter funzionare, e questa colonna non è presente nei dataset disponibili. Per fare il confronto era stata creata una colonna di rating fittizia, che assegnava un rating fisso di 1 a ciascun acquisto, ma questo ha portato a risultati inutilizzabili, poichè ogni raccomandazione era considerata perfetta, e dunque il sistema non riusciva a distinguere tra prodotti buoni e cattivi.
+
+Al termine del confronto, si è dunque deciso di non considerare alcun contributo delle librerie RecBole e Surprise per il sistema di raccomandazione, poichè i risultati ottenuti non erano soddisfacenti e non erano comparabili con quelli ottenuti dal sistema implementato. Tuttavia, queste librerie possono essere utili per ulteriori sperimentazioni e per la creazione di sistemi di raccomandazione più avanzati in futuro.
+
+
 \section{Metriche}
 
 \section{Serendipità}
