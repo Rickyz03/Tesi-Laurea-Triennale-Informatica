@@ -250,6 +250,12 @@ Al termine del confronto, si è dunque deciso di non considerare alcun contribut
 
 \section{Serendipità}
 
+Un tema di ricerca interessante nel campo dei sistemi di raccomandazione è la \textbf{Serendipità}. Questo concetto si riferisce alla capacità del sistema di raccomandare prodotti inaspettati ma potenzialmente interessanti per l'utente, che potrebbero non essere stati considerati in precedenza. La Serendipità è un aspetto importante dei sistemi di raccomandazione, poiché può migliorare l'esperienza dell'utente e aumentare la soddisfazione del cliente.
+
+A riguardo, è stato letto l'articolo \emph{Serendipity in Recommender Systems: A Systematic Literature Review}\footcite{article:serendipity-recommender-systems}, pubblicato dall'Università di Teheran, che fornisce una panoramica completa della Serendipità nei sistemi di raccomandazione. L'articolo analizza le definizioni, le metriche e le tecniche utilizzate per misurarla e implementarla. Viene evidenziato come la Serendipità possa essere vista sia come un obiettivo di ricerca, sia come un aspetto pratico da considerare nella progettazione dei sistemi di raccomandazione.
+
+Nel contesto del progetto, la Serendipità è stata considerata come un obiettivo di ricerca, ma non è stata implementata nello stato dell'arte del sistema di raccomandazione, per mancanza di tempo e di dataset adatti a testarla. Tuttavia, si è pensato che la Serendipità potesse essere un aspetto interessante da esplorare in futuro, e che potesse essere implementata come un ulteriore filtro sui prodotti raccomandati, per escludere quelli già noti o attesi dall'utente e favorire quelli inaspettati.
+
 
 \section{Metriche}
 
@@ -291,5 +297,23 @@ Le metriche che erano state inizialmente valutate, ma che poi sono state scartat
 Queste metriche sono state scartate per diverse ragioni metodologiche e concettuali. La metrica \emph{nDCG@k} è stata considerata ridondante rispetto alla Recall@k, poiché nel contesto specifico del progetto la posizione esatta degli elementi rilevanti nel ranking ha un'importanza limitata. La \emph{Hit Rate@k} è stata giudicata troppo semplicistica, fornendo solo un'informazione binaria sulla presenza di almeno un elemento rilevante senza considerare la qualità complessiva delle raccomandazioni.
 
 Per quanto riguarda le metriche \emph{Coverage@k}, \emph{Intra-list Diversity}, \emph{Novelty} e \emph{Serendipity}, queste sono state escluse poiché il sistema di raccomandazione implementato non è stato progettato per massimizzare la serendipità o la diversità delle raccomandazioni. Al contrario, il sistema si basa su tecniche di Collaborative Filtering e Similarità che tendono naturalmente a raccomandare elementi simili a quelli già acquistati dall'utente. L'applicazione di queste metriche avrebbe inevitabilmente prodotto punteggi molto bassi, non fornendo informazioni utili sulla qualità del sistema. Per questo motivo, si è preferito utilizzare la sovraccitata metrica \emph{Unserendipity@k}, che misura l'opposto della serendipità e risulta dunque più appropriata per valutare un sistema orientato alla similarità e alla coerenza delle raccomandazioni.
+
+La metrica \emph{Unserendipity@k} è stata scelta tra le metriche presentate nell'articolo \emph{Serendipity in Recommender Systems: A Systematic Literature Review}\footcite{article:serendipity-recommender-systems} riguardanti la Serendipità, poiché si è ritenuto che fosse la più adatta per valutare un sistema di raccomandazione basato sulla Similarità.
+Le altre metriche considerate nell'articolo erano le seguenti:
+\begin{itemize}
+    \item \textbf{Serendipity}: misura la capacità del sistema di raccomandare elementi inaspettati ma potenzialmente interessanti, basandosi tipicamente su metriche di rilevanza e popolarità;
+    \item \textbf{Surprise}: quantifica il grado di sorpresa nelle raccomandazioni calcolando la distanza tra le aspettative dell'utente e i risultati effettivi;
+    \item \textbf{Confidence}: valuta il livello di fiducia del sistema nelle proprie raccomandazioni, spesso correlato alla popolarità degli elementi;
+    \item \textbf{Distance}: misura la distanza semantica o comportamentale tra gli elementi raccomandati e quelli già noti all'utente;
+    \item \textbf{Expectedness}: quantifica quanto le raccomandazioni siano prevedibili o attese dall'utente;
+    \item \textbf{RMSE (Root Mean Square Error)}: calcola l'errore quadratico medio per valutare l'accuratezza delle predizioni di rating.
+\end{itemize}
+
+Tuttavia, queste metriche non sono state considerate appropriate per il contesto specifico del sistema implementato. Le metriche \emph{Serendipity}, \emph{Surprise} e \emph{Confidence} si basano principalmente su concetti di rilevanza e popolarità che non si allineano con gli obiettivi del sistema. La rilevanza, infatti, perde significato nel momento in cui viene applicato il filtro che esclude i prodotti già acquistati, rendendo questa dimensione di valutazione non pertinente per il ranking finale presentato all'utente. Allo stesso modo, la popolarità non rappresenta un criterio di interesse per il sistema implementato, poiché l'obiettivo non è raccomandare prodotti universalmente apprezzati, bensì prodotti specificamente adatti alle preferenze e al profilo del singolo cliente.
+
+Le metriche \emph{Distance} ed \emph{Expectedness}, pur essendo concettualmente interessanti, non forniscono un'adeguata rappresentazione della qualità delle raccomandazioni in un contesto dove l'obiettivo è identificare prodotti semanticamente coerenti con le preferenze dell'utente. Infine, la metrica \emph{RMSE} non è applicabile al sistema implementato poiché questo non predice rating numerici espliciti.
+
+Al contrario, la metrica \emph{Unserendipity@k} è stata selezionata proprio perché si basa sulla similarità semantica tra i prodotti, allineandosi perfettamente con la filosofia del sistema implementato. Questa metrica valuta la coerenza delle raccomandazioni rispetto ai pattern di acquisto dell'utente, misurando quanto il sistema sia efficace nel mantenere una linea di coerenza tematica nelle sue proposte. Tale approccio risulta particolarmente appropriato per un sistema di e-commerce dove l'obiettivo primario è suggerire prodotti che si integrino naturalmente con le preferenze già manifestate dal cliente, piuttosto che sorprenderlo con scelte completamente inaspettate.
+
 
 \section{Explainability}
