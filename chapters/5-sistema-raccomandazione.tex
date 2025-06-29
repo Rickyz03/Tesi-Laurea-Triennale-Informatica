@@ -140,7 +140,7 @@ Questo metodo sfrutta la ricchezza semantica dei nomi dei prodotti per identific
 
 \section{Rank fusion}
 
-Siccome entrambi i sistemi di raccomandazione esplorati (Collaborative Filtering e Similarità) si sono rivelati in grado di generare risultati significativi, si è deciso, invece di doverne scegliere uno, di implementarli entrambi e di combinarli in un unico sistema di raccomandazione. Per fare ciò, si è scelto di utilizzare una tecnica del \textbf{Rank Fusion}, che consente di combinare i risultati di più sistemi di raccomandazione in un unico ranking.
+Siccome entrambi i sistemi di raccomandazione esplorati (Collaborative Filtering e Similarità) si sono rivelati in grado di generare risultati significativi, si è deciso, invece di doverne scegliere uno, di implementarli entrambi e di combinarli in un unico sistema di raccomandazione. Per fare ciò, si è scelto di utilizzare una tecnica del \gls{rankfusion}, che consente di combinare i risultati di più sistemi di raccomandazione in un unico ranking.
 Dunque, mentre le matrici sono state generate nella task di analisi delle vendite, il sistema di rank fusion è stato implementato nella task di raccomandazione, per combinare le predizioni svolte dalle due matrici.
 
 In particolare, per la rank fusion sono state valutate diverse opzioni:
@@ -317,3 +317,28 @@ Al contrario, la metrica \emph{Unserendipity@k} è stata selezionata proprio per
 
 
 \section{Explainability}
+
+Un requisito opzionale del sistema di raccomandazione implementato era la \textbf{\gls{explainability}}\footcite{site:explainable-ai} delle raccomandazioni. Questo aspetto è stato considerato importante poiché consente agli sviluppatori e manutentori del sistema di comprendere le ragioni dietro le raccomandazioni fornite dal sistema, consentendo di identificare eventuali problemi o miglioramenti da apportare al sistema stesso.
+
+La explainability prevede di esplicare i procedimenti e le logiche che portano il sistema a raccomandare determinati prodotti, rendendo trasparente il processo decisionale del sistema. Nel contesto del sistema di raccomandazione implementato, l'ultimo livello raggiunto prima di raccomandare i prodotti è il \emph{rank fusion}, che combina i risultati dei due sistemi di raccomandazione (Collaborative Filtering e Similarità) in un unico ranking finale. Per rendere il sistema spiegabile, si è dunque scelto di fornire le informazioni sui ranking dei due sistemi di raccomandazione che hanno contribuito alla generazione del ranking finale.
+
+In particolare, per ogni prodotto raccomandato, il sistema stampa su console, tramite la libreria \gls{logging}, le seguenti informazioni:
+\begin{itemize}
+    \item Il ranking ed il punteggio RRF del prodotto;
+    \item Il ranking ed il punteggio del prodotto nel sistema di Collaborative Filtering;
+    \item Il ranking del prodotto nel sistema di Similarità.
+\end{itemize}
+
+Queste informazioni consentono di comprendere come il prodotto è stato classificato nei due sistemi di raccomandazione e come questi ranking sono stati combinati per generare il ranking finale. In questo modo, gli sviluppatori e manutentori del sistema possono avere una visione chiara delle logiche che portano il sistema a raccomandare determinati prodotti, e possono identificare eventuali problemi o miglioramenti da apportare al sistema stesso.
+
+Erano stati pensati anche altri metodi per rendere il sistema spiegabile, cioè i seguenti:
+\begin{itemize}
+    \item \textbf{Visualizzazione dei ranking}: Creare una visualizzazione grafica dei ranking dei due sistemi di raccomandazione, in modo da mostrare come i prodotti sono stati classificati nei due sistemi e come questi ranking sono stati combinati per generare il ranking finale;
+    \item \textbf{Analisi delle interazioni}: Fornire informazioni sulle interazioni degli utenti con i prodotti, in modo da spiegare perché la matrice di collaborative filtering ha raccomandato determinati prodotti;
+    \item \textbf{Analisi delle similarità}: Fornire informazioni sulle similarità tra i prodotti raccomandati e i prodotti già acquistati dal cliente, in modo da spiegare perché la matrice di similarità ha raccomandato determinati prodotti.
+\end{itemize}
+
+La visualizzazione dei ranking è stata scartata poichè la piattaforma \gls{googlecloudfunctions} non supporta la visualizzazione grafica dei dati, e dunque non sarebbe stato possibile implementarla. Si è dunque deciso di mantenere solo la stampa su console dei ranking e dei punteggi, appunto l'unica possibile sulla piattaforma, che è comunque un metodo di visualizzazione efficace per rendere il sistema spiegabile.
+
+Per quanto riguarda l'analisi delle interazioni e delle similarità, queste sono state considerate troppo complesse da implementare e avrebbero richiesto un ulteriore livello di complessità e di elaborazione dei dati, che non era previsto nel progetto.
+Si è dunque deciso di mantenere la spiegabilità solamente del sistema di \emph{rank fusion}, delegando agli sviluppatori e manutentori del sistema la responsabilità di comprendere le logiche dei due sistemi di raccomandazione sottostanti, che sono comunque ben documentate nella documentazione ufficiale del progetto.
