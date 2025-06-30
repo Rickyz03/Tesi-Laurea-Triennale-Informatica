@@ -10,7 +10,7 @@ Perchè sia possibile implementare un sistema di raccomandazione per e-commerce,
     \item \textbf{ID Cliente}: un identificativo univoco per ogni cliente, che permette di distinguere tra i diversi clienti del servizio di e-commerce;
     \item \textbf{SKU Prodotto}: un identificativo univoco per ogni prodotto, che permette di distinguere tra i diversi prodotti del servizio di e-commerce;
     \item \textbf{Nome Cliente}: il nome del cliente, che permette di identificare quest'ultimo in modo più intuitivo; a differenza dell'ID Cliente, il nome non deve necessariamente essere univoco, cioè può essere condiviso da più clienti;
-    \item \textbf{Nome Prodotto}: il nome del prodotto, che permette di identificare quest'ultimo in modo più intuitivo; a differenza dell'SKU Prodotto, il nome non deve necessariamente essere univoco, cioè può essere condiviso da più prodotti.
+    \item \textbf{Nome Prodotto}: il nome del prodotto, che permette di identificare quest'ultimo in modo più intuitivo; a differenza dell'SKU Prodotto, il nome non deve necessariamente essere univoco, cioè può essere condiviso da più prodotti. Questo nome, nei siti di e-commerce, è generalmente molto descrittivo, e dunque non è necessario richiedere una ulteriore colonna di "descrizione".
 \end{itemize}
 
 Queste informazioni vengono dunque richieste in input come colonne del file \gls{csv} che contiene il dataset. L'\gls{llm} ha il compito di riconoscere quali colonne del file CSV ne sono rappresentanti, dopodichè i nomi corrispondenti vengono standardizzati rispettivamente in: \texttt{"Customer ID"}, \texttt{"Product SKU"}, \texttt{"Customer Name"} e \texttt{"Product Name"}. Queste colonne vengono dunque poi utilizzate per implementare le tecniche di raccomandazione, che si basano sull'analisi delle interazioni tra i clienti e i prodotti e sulla loro \gls{similarita}.
@@ -26,11 +26,12 @@ Il primo sistema che è stato esplorato è il \textbf{Collaborative Filtering}\f
 Nel contesto del Collaborative Filtering item-based, il processo di generazione delle raccomandazioni può essere formalizzato attraverso una serie di passaggi matematici ben definiti.
 
 \subsection{Costruzione della matrice utente-prodotto}
+\label{sec:collaborative-filtering-matrice-utenti-prodotti}
 
-Il primo passo consiste nella costruzione di una matrice di interazioni $\mathbf{R} \in \mathbb{R}^{m \times n}$, dove $m$ rappresenta il numero di utenti e $n$ il numero di prodotti. Ogni elemento $r_{ij}$ della matrice rappresenta il numero di interazioni (acquisti, visualizzazioni, etc.) dell'utente $i$ con il prodotto $j$:
+Il primo passo consiste nella costruzione di una matrice di interazioni $\mathbf{F} \in \mathbb{R}^{m \times n}$, dove $m$ rappresenta il numero di utenti e $n$ il numero di prodotti. Ogni elemento $r_{ij}$ della matrice rappresenta la frequenza di interazioni (acquisti, visualizzazioni, etc.) dell'utente $i$ con il prodotto $j$:
 
 \begin{equation}
-\mathbf{R} = \begin{bmatrix}
+\mathbf{F} = \begin{bmatrix}
 r_{11} & r_{12} & \cdots & r_{1n} \\
 r_{21} & r_{22} & \cdots & r_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
@@ -38,7 +39,13 @@ r_{m1} & r_{m2} & \cdots & r_{mn}
 \end{bmatrix}
 \end{equation}
 
-dove $r_{ij} = \sum_{k} \delta(u_k = i \land p_k = j)$ e $\delta$ è la funzione indicatrice che vale 1 se l'utente $i$ ha interagito con il prodotto $j$, 0 altrimenti.
+Nel contesto pratico del nostro sistema, gli elementi $f_{ij}$ della matrice rappresentano il numero di volte (frequenza), che l'utente $u_i$ ha acquistato il prodotto $p_j$, formalizzato come:
+
+\begin{equation}
+f_{ij} = \sum_{k \in K} \delta(u_k = i \land p_k = j)
+\end{equation}
+
+dove $K$ rappresenta l'insieme di tutti gli ordini nel dataset, $u_k$ e $p_k$ sono rispettivamente l'utente e il prodotto associati all'ordine $k$-esimo, e $\delta$ è la funzione indicatrice che vale 1 se la condizione è verificata (cioè se l'ordine $k$ è stato effettuato dall'utente $i$ per il prodotto $j$), 0 altrimenti. In questo modo, ogni elemento della matrice conta il numero totale di interazioni (acquisti) tra uno specifico utente e uno specifico prodotto.
 
 \subsection{Calcolo della matrice di similarità prodotto-prodotto}
 
@@ -50,9 +57,7 @@ s_{jk} = \frac{\mathbf{r}_j \cdot \mathbf{r}_k}{|\mathbf{r}_j| \cdot |\mathbf{r}
 
 La matrice di similarità risultante è simmetrica: $\mathbf{S} = \mathbf{S}^T$.
 
-\subsection{Normalizzazione della matrice di similarità}
-
-Per evitare distorsioni nelle predizioni, la matrice di similarità viene normalizzata dividendo ogni elemento per la somma delle similarità assolute della rispettiva riga:
+Poi, per evitare distorsioni nelle predizioni, la matrice di similarità viene normalizzata dividendo ogni elemento per la somma delle similarità assolute della rispettiva riga:
 
 \begin{equation}
 s_{jk}^{norm} = \frac{s_{jk}}{\sum_{l=1}^{n} |s_{jl}|}
@@ -65,13 +70,13 @@ ottenendo così la matrice normalizzata $\mathbf{S}^{norm}$.
 Infine, la matrice delle predizioni $\mathbf{P} \in \mathbb{R}^{m \times n}$ viene calcolata come:
 
 \begin{equation}
-\mathbf{P} = \mathbf{R} \cdot (\mathbf{S}^{norm})^T
+\mathbf{P} = \mathbf{F} \cdot (\mathbf{S}^{norm})^T
 \end{equation}
 
 Ogni elemento $p_{ij}$ rappresenta il punteggio predetto per l'utente $i$ rispetto al prodotto $j$, calcolato come combinazione pesata delle interazioni passate dell'utente con prodotti simili:
 
 \begin{equation}
-p_{ij} = \sum_{k=1}^{n} r_{ik} \cdot s_{kj}^{norm}
+p_{ij} = \sum_{k=1}^{n} f_{ik} \cdot s_{kj}^{norm}
 \end{equation}
 
 Questo approccio consente di generare raccomandazioni personalizzate basate sulla similarità tra prodotti e sulle preferenze storiche degli utenti.
@@ -81,7 +86,9 @@ Questo approccio consente di generare raccomandazioni personalizzate basate sull
 
 Il secondo sistema che è stato esplorato è la \textbf{Similarità}. Questo approccio si basa sull'idea che le raccomandazioni possono essere fatte in base, appunto, alla similarità tra i prodotti. In altre parole, se due prodotti sono simili, le raccomandazioni per uno di essi possono essere utili anche per l'altro. La Similarità può essere implementata in diversi modi, ma il più comune è il \textbf{Cosine Similarity}\footcite{site:cosine-similarity}, che misura la similarità tra due vettori in uno spazio multidimensionale. Nel contesto del sistema di raccomandazione, i vettori rappresentano le caratteristiche dei prodotti e la similarità viene calcolata in base alla loro distanza angolare.
 
-La tecnica di Similarità basata sui nomi dei prodotti si articola in diversi passaggi matematici fondamentali.
+La tecnica di Similarità si basa sul confronto dei nomi dei prodotti, poichè nei siti di e-commerce questi ultimi sono generalmente molto descrittivi, cioè contengono molte informazioni semantiche, e non è dunque necessario richiedere una ulteriore colonna di "descrizione".
+
+La costruzione della matrice di similarità si articola in diversi passaggi matematici fondamentali.
 
 \subsection{Mappatura prodotto-nome}
 
@@ -95,25 +102,13 @@ dove $\mathcal{P}$ rappresenta l'insieme degli identificativi dei prodotti e $\m
 
 \subsection{Costruzione della matrice di frequenza utente-prodotto}
 
-Analogamente al Collaborative Filtering, si costruisce una matrice di frequenza $\mathbf{F} \in \mathbb{N}^{m \times n}$ dove ogni elemento $f_{ij}$ rappresenta il numero di interazioni dell'utente $i$ con il prodotto $j$:
-
-\begin{equation}
-f_{ij} = |\{t : \text{utente } i \text{ ha interagito con prodotto } j \text{ al tempo } t\}|
-\end{equation}
-
-\subsection{Generazione degli embeddings semantici}
-
-I nomi dei prodotti vengono trasformati in rappresentazioni vettoriali dense attraverso un \gls{modelloembedding} semantico. Ogni nome $n_j = \phi(p_j)$ viene mappato in uno spazio vettoriale $\mathbb{R}^d$:
-
-\begin{equation}
-\psi: \mathcal{N} \rightarrow \mathbb{R}^d
-\end{equation}
-
-ottenendo così il vettore embedding $\mathbf{e}_j = \psi(n_j) \in \mathbb{R}^d$ per ogni prodotto $p_j$.
+Analogamente al Collaborative Filtering, si costruisce la matrice di frequenza $\mathbf{F} \in \mathbb{N}^{m \times n}$, come descritto nella sezione \S\ref{sec:collaborative-filtering-matrice-utenti-prodotti}, in cui ogni elemento $f_{ij}$ rappresenta il numero di interazioni dell'utente $i$ con il prodotto $j$.
 
 \subsection{Calcolo della matrice di similarità semantica}
 
-La matrice di similarità $\mathbf{S}_{sem} \in \mathbb{R}^{n \times n}$ viene calcolata utilizzando la similarità coseno tra gli embeddings dei nomi dei prodotti:
+I nomi dei prodotti vengono trasformati in rappresentazioni vettoriali dense attraverso un \gls{modelloembedding} semantico $\psi: \mathcal{N} \rightarrow \mathbb{R}^d$. Ogni nome $n_j = \phi(p_j)$ viene mappato in un vettore numerico di dimensione $d$, ottenendo così il vettore di embedding $\mathbf{e}_j = \psi(n_j) \in \mathbb{R}^d$ per ogni prodotto $p_j$.
+
+Poi, la matrice di similarità $\mathbf{S}_{sem} \in \mathbb{R}^{n \times n}$ viene calcolata utilizzando la similarità coseno tra gli embeddings dei nomi dei prodotti:
 
 \begin{equation}
 s_{jk}^{sem} = \frac{\mathbf{e}_j \cdot \mathbf{e}_k}{|\mathbf{e}_j| \cdot |\mathbf{e}_k|} = \frac{\sum_{l=1}^{d} e_{jl} \cdot e_{kl}}{\sqrt{\sum_{l=1}^{d} e_{jl}^2} \cdot \sqrt{\sum_{l=1}^{d} e_{kl}^2}}
@@ -158,7 +153,7 @@ In particolare, per la rank fusion sono state valutate diverse opzioni:
 
 Dietro consiglio del tutor aziendale, per la rank fusion si è scelto di utilizzare il metodo Reciprocal Rank Fusion (RRF)\footcite{site:rrf-explained}, che si basa sull'idea di assegnare un punteggio a ciascun prodotto in base al reciproco della sua posizione nei ranking dei diversi sistemi di raccomandazione. In questo modo, i prodotti che appaiono in posizioni più alte nei ranking dei diversi sistemi ottengono un punteggio più alto, mentre quelli che appaiono in posizioni più basse ottengono un punteggio più basso.
 
-Il metodo RRF combina i ranking provenienti da diversi sistemi di raccomandazione attraverso una formula matematica ben definita. Dati $k$ sistemi di raccomandazione, ciascuno dei quali produce un ranking $R_i$ per un determinato utente, il punteggio RRF per un prodotto $p$ è calcolato come:
+Il metodo RRF combina i ranking provenienti da diversi sistemi di raccomandazione attraverso una formula matematica ben definita. Dati $k$ sistemi di raccomandazione, ciascuno dei quali produce un ranking $rank_i$ per un determinato utente, il punteggio RRF per un prodotto $p$ è calcolato come:
 
 \begin{equation}
 \text{RRF}(p) = \sum_{i=1}^{k} \frac{1}{\text{rank}_i(p) + \rho}
