@@ -47,6 +47,14 @@
 \newacronym[description={\glslink{rmse}{Root Mean Square Error}}]
     {rmse_acr}{RMSE}{Root Mean Square Error}
 
+\newacronym[description={\glslink{ndcgatk}{Normalized Discounted Cumulative Gain@\emph{k}}}]
+    {ndcgatk_acr}{nDCG@\emph{k}}{Normalized Discounted Cumulative Gain@\emph{k}}
+
+\newacronym[description={\glslink{bpr}{Bayesian Personalized Ranking}}]
+    {bpr_acr}{BPR}{Bayesian Personalized Ranking}
+
+\newacronym[description={\glslink{knnbasic}{K-Nearest Neighbors Basic}}]
+    {knnbasic_acr}{KNNBasic}{K-Nearest Neighbors Basic}
 
 
 
@@ -743,4 +751,25 @@
     text=Logging,
     sort=logging,
     description={modulo integrato in Python per la registrazione di messaggi durante l'esecuzione del programma, che fornisce un sistema flessibile per tracciare eventi, errori e informazioni di debug con diversi livelli di severità}
+}
+
+\newglossaryentry{ndcgatk} {
+    name=\glslink{ndcgatk_acr}{nDCG@\emph{k}},
+    text=NDCG@\emph{k},
+    sort=ndcg,
+    description={Normalized Discounted Cumulative Gain@\emph{k}, metrica di valutazione per sistemi di ranking che misura la qualità di una lista ordinata considerando sia la rilevanza degli elementi sia la loro posizione. Il DCG viene normalizzato dal DCG ideale per permettere confronti tra query diverse}
+}
+
+\newglossaryentry{bpr} {
+    name=\glslink{bpr_acr}{BPR},
+    text=BPR,
+    sort=bpr,
+    description={Bayesian Personalized Ranking, algoritmo di raccomandazione implementato in RecBole che ottimizza il ranking personalizzato utilizzando un approccio bayesiano per apprendere le preferenze degli utenti dai feedback impliciti}
+}
+
+\newglossaryentry{knnbasic} {
+    name=\glslink{knnbasic_acr}{KNNBasic},
+    text=KNNBasic,
+    sort=knnbasic,
+    description={algoritmo di collaborative filtering basato sui k-nearest neighbors implementato nella libreria Surprise, che predice i rating utilizzando la similarità tra utenti o elementi per identificare i vicini più simili}
 }

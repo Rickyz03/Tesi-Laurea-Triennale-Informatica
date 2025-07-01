@@ -236,7 +236,7 @@ Per fare ciò, dopo una breve ricerca, si è deciso di utilizzare due librerie d
 
 Queste librerie offrono una vasta gamma di algoritmi di raccomandazione, tra cui quelli basati su Collaborative Filtering, Similarità e altri metodi avanzati. La differenza principale tra le due librerie è che \emph{recbole} è più orientata alla creazione di sistemi di raccomandazione basati su deep learning, mentre \emph{surprise} è più orientata alla creazione di sistemi di raccomandazione basati su metodi tradizionali come il Collaborative Filtering e la Similarità.
 
-Per svolgere il confronto, è stato scelto un dataset, ovvero \texttt{orders_export.csv}, e un suo cliente, ovvero \texttt{Ds-trading srl Ds-trading GmbH}, e si è proceduto a creare un sistema di raccomandazione con entrambe le librerie, utilizzando gli stessi dati di input e le stesse tecniche di raccomandazione. In particolare, per \emph{recbole} è stato utilizzato il metodo \texttt{BPR} (Bayesian Personalized Ranking), che è un algoritmo di Collaborative Filtering basato su matrice di interazioni, mentre per \emph{surprise} è stato utilizzato il metodo \texttt{SVD} (Singular Value Decomposition), che è un altro algoritmo di Collaborative Filtering basato su matrice di interazioni.
+Per svolgere il confronto, è stato scelto un dataset, ovvero \texttt{orders_export.csv}, e un suo cliente, ovvero \texttt{Ds-trading srl Ds-trading GmbH}, e si è proceduto a creare un sistema di raccomandazione con entrambe le librerie, utilizzando gli stessi dati di input e le stesse tecniche di raccomandazione. In particolare, per \emph{recbole} è stato utilizzato il metodo \texttt{BPR} (Bayesian Personalized Ranking), che è un algoritmo di Collaborative Filtering basato su matrice di interazioni, mentre per \emph{surprise} è stato utilizzato il metodo \texttt{KNNBasic} (K-Nearest Neighbors), che è un algoritmo di Collaborative Filtering basato su similarità tra utenti o prodotti.
 
 Segue l'immagine \ref{fig:recbole-surprise-orders-export} degli acquisti (o interazioni) del cliente \texttt{Ds-trading srl Ds-trading GmbH}:
 
@@ -249,18 +249,18 @@ Segue l'immagine \ref{fig:recbole-surprise-orders-export} degli acquisti (o inte
 
 Si può notare come il cliente abbia acquistato prettamente ferri da stiro, pulitori a vapore o riscaldatori d'ambiente, e dunque il sistema di raccomandazione dovrebbe raccomandare prodotti simili a questi, come ad esempio prodotti per la casa o elettrodomestici.
 
-Il sistema di raccomandazione sviluppato durante lo stage, senza applicare il filtro per i prodotti già acquistati, raccomanda i seguenti prodotti al cliente \texttt{Ds-trading srl Ds-trading GmbH}:
+Il sistema di raccomandazione sviluppato durante lo stage raccomanda i seguenti prodotti al cliente \texttt{Ds-trading srl Ds-trading GmbH}:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{recbole surprise comparison/Manual system prediction.png}
+    \includegraphics[width=0.8\textwidth]{recbole surprise comparison/Our system prediction.png}
     \caption{Raccomandazioni del sistema di raccomandazione sviluppato durante lo stage}
     \label{fig:our-system-recommendations}
 \end{figure}
 
-Si può notare come il sistema abbia consigliato prodotti simili a quelli già acquistati dal cliente, come ad esempio ferri da stiro, pulitori a vapore e riscaldatori d'ambiente, ma anche prodotti diversi come TV e tostapane, che potrebbero essere interessanti per il cliente, siccome rientrano nella categoria degli elettrodomestici.
+Si può notare come il sistema abbia consigliato prodotti simili a quelli già acquistati dal cliente, prettamente ferri da stiro e pulitori a vapore, che dimostrano che la similarità tra i nomi dei prodotti ha avuto un forte impatto nelle raccomandazioni. Come previsto, questo sistema lascia poco spazio alla serendipità, siccome solamente due prodotti in fondo al ranking, la friggitrice e la tazza, non sono direttamente collegati al cliente. Quest'ultima è stata una scelta implementativa chiara, poichè si è voluto creare un sistema di raccomandazione che fosse il più possibile pertinente per il cliente, e dunque che raccomandasse prodotti simili a quelli già acquistati.
 
-Per quanto riguarda \emph{RecBole}, il sistema, prima di poter svolgere le predizioni, ha dovuto essere addestrato sui dati del cliente. Questa immagine rappresenta un estratto dell'esito di training:
+Per quanto riguarda \emph{RecBole}, il sistema, prima di poter svolgere le predizioni, ha dovuto essere addestrato sui dati del cliente tramite l'algoritmo \emph{BPR}. Questa immagine rappresenta la parte finale dell'esito di training:
 
 \begin{figure}[h]
     \centering
@@ -269,7 +269,7 @@ Per quanto riguarda \emph{RecBole}, il sistema, prima di poter svolgere le predi
     \label{fig:recbole-training-outcome}
 \end{figure}
 
-Si può notare come il training, pur avendo avuto successo, abbia prodotto un punteggio di loss molto alto (non è mai sceso sotto il 5), che indica che il sistema non è riuscito a generalizzare bene sui dati. Inoltre, il validation score non è mai riuscito a superare l'11\%, che è un punteggio assai basso, sia per quanto riguarda la metrica Recall@10, sia per quanto riguarda NDCG@10. Questo è stato attribuito al fatto che nei dataset disponibili sono presenti molti clienti occasionali che non hanno interagito con un numero sufficiente di prodotti per poter fare raccomandazioni significative, e questo ha messo in crisi il sistema di raccomandazione di \emph{RecBole} basato prettamente su Collaborative Filtering.
+Si può notare come il training, pur avendo avuto successo, abbia mantenuto al suo termine un punteggio di loss molto alto (non è mai sceso sotto il 5), che indica che il sistema non è riuscito a generalizzare bene sui dati. Inoltre, il validation score non è mai riuscito a superare l'11\%, che è un punteggio assai basso, sia per quanto riguarda la metrica \gls{recallatk}, sia per quanto riguarda \gls{ndcgatk}. Questo è stato attribuito al fatto che nei dataset disponibili sono presenti molti clienti occasionali che non hanno interagito con un numero sufficiente di prodotti per poter fare raccomandazioni significative, e questo ha messo in crisi il sistema di raccomandazione di \emph{RecBole} basato prettamente su Collaborative Filtering.
 
 Una volta addestrato, il sistema ha restituito le seguenti raccomandazioni per il cliente \texttt{Ds-trading srl Ds-trading GmbH}:
 
@@ -280,11 +280,20 @@ Una volta addestrato, il sistema ha restituito le seguenti raccomandazioni per i
     \label{fig:recbole-recommendations}
 \end{figure}
 
-Il confronto con RecBole, a parità di dataset, ha mostrato che il sistema di raccomandazione implementato ha ottenuto risultati migliori rispetto a quelli ottenuti da RecBole, in particolare per quanto riguarda la precisione e il richiamo delle raccomandazioni. Questo è stato attribuito al fatto che nei dataset disponibili sono presenti molti clienti occasionali che non hanno interagito con un numero sufficiente di prodotti per poter fare raccomandazioni significative, e questo ha messo in crisi i sistemi di raccomandazione basati prettamente su Collaborative Filtering. Infatti, il processo di training di RecBole ha ottenuto un punteggio di loss sempre molto alto ad ogni iterazione, a dimostrazione che il sistema non riusciva a generalizzare bene sui dati.
+I risultati ottenuti da \emph{RecBole} sono stati deludenti, poichè il sistema ha raccomandato prodotti che non sono affatto simili a quelli già acquistati dal cliente, come ad esempio macchine per caffè, robot aspirapolvere o fornelli. Questi prodotti non sono pertinenti per il cliente, che ha acquistato principalmente ferri da stiro, pulitori a vapore e riscaldatori d'ambiente. Si ricorda, inoltre, che il sistema di raccomandazione sviluppato durante lo stage ha dimostrato che sono disponibili molti ferri di stiro e pulitori a vapore in vendita ma non ancora acquistati dal cliente, quindi \emph{RecBole} avrebbe dovuto consigliarne almeno uno, ma non lo ha fatto. Si è reputato dunque che il sistema di \emph{RecBole} non abbia colto correttamente le preferenze del cliente.
 
-Il confronto con Surprise, sempre a parità di dataset, ha mostrato risultati ancora più schiaccianti, poichè il sistema di raccomandazione implementato ha ottenuto risultati significativamente migliori rispetto a quelli ottenuti da Surprise. La causa di ciò, oltre al solito problema dei clienti occasionali, è stata attribuita al fatto che Surprise necessita di una colonna di rating per poter funzionare, e questa colonna non è presente nei dataset disponibili. Per fare il confronto era stata creata una colonna di rating fittizia, che assegnava un rating fisso di 1 a ciascun acquisto, ma questo ha portato a risultati inutilizzabili, poichè ogni raccomandazione era considerata perfetta, e dunque il sistema non riusciva a distinguere tra prodotti buoni e cattivi.
+Per quanto riguarda \emph{Surprise}, il sistema, una volta addestrato l'algoritmo \emph{KNNBasic}, ha restituito le seguenti raccomandazioni per il cliente \texttt{Ds-trading srl Ds-trading GmbH}:
 
-Al termine del confronto, si è dunque deciso di non considerare alcun contributo dalle librerie RecBole e Surprise per il sistema di raccomandazione, poichè i risultati da esse ottenuti non erano soddisfacenti e non erano comparabili con quelli ottenuti dal sistema implementato. Tuttavia, queste librerie possono essere utili per ulteriori sperimentazioni e per la creazione di sistemi di raccomandazione più avanzati in futuro.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{recbole surprise comparison/Surprise prediction.png}
+    \caption{Raccomandazioni del sistema Surprise}
+    \label{fig:surprise-recommendations}
+\end{figure}
+
+I risultati ottenuti da \emph{Surprise} sono stati ancora più deludenti, poichè il sistema ha raccomandato prodotti che non sono affatto simili a quelli già acquistati dal cliente, come ad esempio degli anni di garanzia, una fotocamera, e dei set di pentole. Ciò è stato attribuito al fatto che \emph{Surprise} richiede una colonna di rating per poter funzionare, e questa colonna non è presente nei dataset disponibili. Per fare il confronto, era stata creata una colonna di rating fittizia, che assegnava un rating fisso di 1 a ciascun acquisto, ma questo ha portato a risultati inutilizzabili, poichè ogni raccomandazione viene considerata perfetta, e dunque il sistema non riesce a distinguere tra prodotti buoni e cattivi. Infatti, come si vede in figura \ref{fig:surprise-recommendations}, a seguire la scritta \texttt{Stima: } è sempre presente il valore \texttt{1.00}, che indica che il sistema ha assegnato un punteggio di 1 a tutti i prodotti del dataset, e quindi non è più in grado di fare distinzioni tra di essi. Si è reputato dunque che il sistema di \emph{Surprise} non fosse adatto al caso in esame, che non prevede l'esistenza di rating.
+
+Al termine del confronto, si è dunque deciso di non considerare alcun contributo dalle librerie \emph{RecBole} e \emph{Surprise} per il sistema di raccomandazione, poichè i risultati da esse ottenuti non erano soddisfacenti e non erano comparabili con quelli ottenuti dal sistema implementato. Tuttavia, queste librerie possono essere utili per ulteriori sperimentazioni e per la creazione di sistemi di raccomandazione più avanzati in futuro.
 
 
 \section{Serendipità}
