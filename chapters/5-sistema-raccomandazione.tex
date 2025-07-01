@@ -19,6 +19,44 @@ Queste informazioni vengono dunque richieste in input come colonne del file \gls
 Inoltre, si fa anche la supposizione che ogni prodotto che è stato acquistato almeno una volta non abbia esaurito le scorte, e dunque sia ancora disponibile per l'acquisto. Questo è un altro presupposto comune nei sistemi di raccomandazione, quando non si hanno ulteriori dati sul magazzino.
 
 
+\section{Cosine Similarity}
+
+Prima di partire a spiegare il sistema di raccomandazione sviluppato, è importante fare una premessa, raccontando una scelta fatta in partenza che è risultata poi molto utile a seguire.
+
+La \textbf{\gls{cosinesimilarity}}\footcite{site:cosine-similarity} è una misura di similarità particolarmente efficace per quantificare la relazione tra vettori in spazi multidimensionali, ed è stata scelta come metrica fondamentale per il sistema di raccomandazione implementato. Questa scelta è motivata da diverse considerazioni teoriche e pratiche che la rendono particolarmente adatta al contesto dei sistemi di raccomandazione.
+
+La Cosine Similarity calcola la similarità tra due vettori $\mathbf{a}$ e $\mathbf{b}$ attraverso il coseno dell'angolo compreso tra di essi:
+
+\begin{equation}
+\text{cosine\_similarity}(\mathbf{a}, \mathbf{b}) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{a}| \cdot |\mathbf{b}|} = \frac{\sum_{i=1}^{n} a_i \cdot b_i}{\sqrt{\sum_{i=1}^{n} a_i^2} \cdot \sqrt{\sum_{i=1}^{n} b_i^2}}
+\end{equation}
+
+dove $\mathbf{a} \cdot \mathbf{b}$ rappresenta il prodotto scalare tra i due vettori, e $|\mathbf{a}|$ e $|\mathbf{b}|$ sono le rispettive norme euclidee.
+
+Una caratteristica fondamentale della Cosine Similarity è la sua invarianza rispetto alla magnitudine dei vettori. Questa proprietà risulta particolarmente vantaggiosa nei sistemi di raccomandazione, dove è spesso necessario confrontare entità che possono avere scale di valori molto diverse. Per esempio, in un dataset di vendite, alcuni clienti potrebbero aver effettuato centinaia di acquisti mentre altri solo pochi, ma ciò che interessa è il pattern delle loro preferenze piuttosto che il volume assoluto degli acquisti.
+
+La scelta della Cosine Similarity è inoltre supportata dalla sua ampia adozione nella letteratura sui sistemi di raccomandazione. Secondo Sarwar et al.\footcite{article:item-based-collaborative-filtering}, la Cosine Similarity rappresenta una delle metriche più utilizzate nei sistemi di Collaborative Filtering basati su item, grazie alla sua capacità di catturare efficacemente le relazioni semantiche tra prodotti indipendentemente dalla loro popolarità assoluta.
+
+Esistono diverse alternative alla Cosine Similarity che sono state considerate durante la progettazione del sistema:
+
+\begin{itemize}
+    \item \textbf{\gls{distanzaeuclidea}}: Misura la distanza geometrica diretta tra due punti nello spazio multidimensionale, ma è sensibile alla magnitudine dei vettori e può essere influenzata dalla dimensionalità;
+    \item \textbf{\gls{correlazionepearson}}: Calcola la correlazione lineare tra due variabili, ma richiede che i dati seguano una distribuzione normale e può essere instabile con dati sparsi;
+    \item \textbf{\gls{distanzamanhattan}}: Somma delle differenze assolute tra le componenti dei vettori, semplice da calcolare ma meno efficace nel catturare relazioni complesse;
+    \item \textbf{\gls{similaritajaccard}}: Particolarmente adatta per dati binari, misura la sovrapposizione tra insiemi, ma non considera l'intensità delle interazioni;
+    \item \textbf{\gls{distanzahamming}}: Utilizzata principalmente per confrontare stringhe o sequenze binarie, non adatta per dati numerici continui;
+    \item \textbf{\gls{divergenzakullbackleibler}}: Misura la differenza tra distribuzioni di probabilità, ma richiede che i dati siano interpretabili come distribuzioni e può essere computazionalmente costosa.
+\end{itemize}
+
+La superiorità della Cosine Similarity rispetto a queste alternative nel contesto dei sistemi di raccomandazione è documentata in diversi studi empirici. Breese et al.\footcite{article:empirical-analysis-predictive-algorithms} hanno dimostrato attraverso un'analisi comparativa che la Cosine Similarity tende a produrre risultati più stabili e accurati rispetto alla correlazione di Pearson, specialmente in presenza di dati sparsi, una caratteristica comune nei dataset di e-commerce.
+
+Un ulteriore vantaggio della Cosine Similarity è la sua interpretabilità intuitiva: il valore risultante è sempre compreso tra -1 e 1, dove 1 indica similarità perfetta, 0 indica ortogonalità (nessuna relazione), e -1 indica opposizione completa. Questa caratteristica facilita la comprensione e la calibrazione del sistema, aspetti cruciali per la manutenibilità e l'ottimizzazione delle prestazioni.
+
+Infine, la Cosine Similarity presenta vantaggi computazionali significativi. Il calcolo può essere ottimizzato attraverso tecniche di algebra lineare avanzate e parallelizzazione, rendendola scalabile anche per dataset di grandi dimensioni. Questa efficienza computazionale è particolarmente importante in contesti di produzione dove le raccomandazioni devono essere generate in tempo reale.
+
+Per questi motivi, la Cosine Similarity è stata selezionata come metrica di riferimento per entrambe le tecniche di raccomandazione implementate nel sistema, garantendo coerenza metodologica e permettendo una valutazione comparativa efficace dei risultati ottenuti.
+
+
 \section{Collaborative filtering}
 
 Il primo sistema che è stato esplorato è il \textbf{Collaborative Filtering}\footcite{site:collaborative-filtering}. Questo approccio si basa sull'idea che le raccomandazioni possono essere fatte in base alle preferenze di altri utenti simili. In altre parole, se due utenti hanno gusti simili, le raccomandazioni per uno di essi possono essere utili anche per l'altro. Il Collaborative Filtering può essere implementato in due modi principali: \textbf{user-based} e \textbf{item-based}. Nel primo caso, si analizzano le preferenze degli utenti per raccomandare prodotti che altri utenti simili hanno apprezzato. Nel secondo caso, si analizzano le caratteristiche dei prodotti per raccomandare articoli simili a quelli già apprezzati dall'utente. Dopo aver svolto alcune sperimentazioni pratiche con entrambi i metodi, si è notato che i dataset disponibili contenevano spesso troppi clienti occasionali che non avevano interagito con un numero sufficiente di prodotti per poter fare raccomandazioni significative, e questo ha messo in crisi il sistema \textbf{user-based}. Inoltre, si è pensato che, in generale, per un file delle vendite di un e-commerce, sia comune la presenza di utenti occasionali. Per questo motivo, si è deciso di implementare il sistema \textbf{item-based}, che si basa sulla similarità tra i prodotti piuttosto che sulle preferenze degli utenti. Infatti, siccome i comuni dataset di vendita sono ben forniti di informazioni sui propri prodotti, questo approccio consente di fare raccomandazioni più robuste e significative.

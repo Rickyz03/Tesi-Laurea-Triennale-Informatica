@@ -47,9 +47,6 @@
 \newacronym[description={\glslink{rmse}{Root Mean Square Error}}]
     {rmse_acr}{RMSE}{Root Mean Square Error}
 
-\newacronym[description={\glslink{ndcgatk}{Normalized Discounted Cumulative Gain@\emph{k}}}]
-    {ndcgatk_acr}{nDCG@\emph{k}}{Normalized Discounted Cumulative Gain@\emph{k}}
-
 \newacronym[description={\glslink{bpr}{Bayesian Personalized Ranking}}]
     {bpr_acr}{BPR}{Bayesian Personalized Ranking}
 
@@ -753,13 +750,6 @@
     description={modulo integrato in Python per la registrazione di messaggi durante l'esecuzione del programma, che fornisce un sistema flessibile per tracciare eventi, errori e informazioni di debug con diversi livelli di severità}
 }
 
-\newglossaryentry{ndcgatk} {
-    name=\glslink{ndcgatk_acr}{nDCG@\emph{k}},
-    text=NDCG@\emph{k},
-    sort=ndcg,
-    description={Normalized Discounted Cumulative Gain@\emph{k}, metrica di valutazione per sistemi di ranking che misura la qualità di una lista ordinata considerando sia la rilevanza degli elementi sia la loro posizione. Il DCG viene normalizzato dal DCG ideale per permettere confronti tra query diverse}
-}
-
 \newglossaryentry{bpr} {
     name=\glslink{bpr_acr}{BPR},
     text=BPR,
@@ -772,4 +762,53 @@
     text=KNNBasic,
     sort=knnbasic,
     description={algoritmo di collaborative filtering basato sui k-nearest neighbors implementato nella libreria Surprise, che predice i rating utilizzando la similarità tra utenti o elementi per identificare i vicini più simili}
+}
+
+\newglossaryentry{distanzaeuclidea} {
+    name=Distanza Euclidea,
+    text=Distanza Euclidea,
+    sort=distanzaeuclidea,
+    description={misura la distanza geometrica diretta tra due punti nello spazio multidimensionale, calcolata come la radice quadrata della somma dei quadrati delle differenze tra le componenti corrispondenti. È sensibile alla magnitudine dei vettori e può essere influenzata dalla dimensionalità}
+}
+
+\newglossaryentry{correlazionepearson} {
+    name=Correlazione di Pearson,
+    text=Correlazione di Pearson,
+    sort=correlazionepearson,
+    description={coefficiente che calcola la correlazione lineare tra due variabili, variando da -1 a 1. Richiede che i dati seguano una distribuzione normale e può essere instabile con dati sparsi}
+}
+
+\newglossaryentry{distanzamanhattan} {
+    name=Distanza di Manhattan,
+    text=Distanza di Manhattan,
+    sort=distanzamanhattan,
+    description={metrica di distanza che calcola la somma delle differenze assolute tra le componenti dei vettori, anche nota come distanza taxi o distanza L1. È semplice da calcolare ma meno efficace nel catturare relazioni complesse}
+}
+
+\newglossaryentry{similaritajaccard} {
+    name=Similarità di Jaccard,
+    text=Similarità di Jaccard,
+    sort=similaritajaccard,
+    description={indice di similarità particolarmente adatto per dati binari, che misura la sovrapposizione tra insiemi calcolando il rapporto tra l'intersezione e l'unione. Non considera l'intensità delle interazioni ma solo la presenza o assenza}
+}
+
+\newglossaryentry{distanzahamming} {
+    name=Distanza di Hamming,
+    text=Distanza di Hamming,
+    sort=distanzahamming,
+    description={metrica utilizzata principalmente per confrontare stringhe o sequenze binarie di uguale lunghezza, calcolando il numero di posizioni in cui i simboli corrispondenti sono diversi. Non è adatta per dati numerici continui}
+}
+
+\newglossaryentry{divergenzakullbackleibler} {
+    name=Divergenza di Kullback-Leibler,
+    text=Divergenza di Kullback-Leibler,
+    sort=divergenzakullbackleibler,
+    description={misura non simmetrica della differenza tra due distribuzioni di probabilità, anche nota come divergenza KL. Richiede che i dati siano interpretabili come distribuzioni e può essere computazionalmente costosa}
+}
+
+\newglossaryentry{cosinesimilarity} {
+    name=Cosine Similarity,
+    text=Cosine Similarity,
+    sort=cosinesimilarity,
+    description={metrica di similarità che misura l'angolo tra due vettori in uno spazio multidimensionale, calcolando il coseno dell'angolo formato. Varia da -1 a 1, dove 1 indica vettori identici, 0 vettori ortogonali e -1 vettori opposti. È invariante alla magnitudine dei vettori e particolarmente efficace per confrontare documenti e profili utente}
 }
