@@ -343,7 +343,7 @@ sku_to_first_name = orders_df.groupby(PRODUCT_SKU)[PRODUCT_NAME]
 
 La matrice $\mathbf{F}$ degli acquisti è stata nuovamente generata con \texttt{crosstab}, come nel sistema precedente.
 
-Successivamente, per ciascun nome di prodotto, è stato ottenuto un embedding semantico tramite il modello preaddestrato \texttt{all-MiniLM-L6-v2}, fornito dalla libreria \texttt{sentence-transformers}. Questa libreria è stata scelta per la sua facilità d’uso e l’elevata qualità dei modelli offerti per il Natural Language Processing, che consentono di trasformare testi in rappresentazioni vettoriali dense con significato semantico. In particolare, il modello \texttt{all-MiniLM-L6-v2} è stato selezionato in quanto rappresenta un compromesso ideale tra accuratezza e velocità di esecuzione: essendo un modello compatto ma efficace, consente di processare migliaia di nomi di prodotti in tempi contenuti senza richiedere GPU o risorse computazionali elevate.
+Successivamente, per ciascun nome di prodotto, è stato ottenuto un embedding semantico tramite il modello preaddestrato \texttt{all-MiniLM-L6-v2}, fornito dalla libreria \texttt{sentence-transformers}. Questa libreria è stata scelta per la sua facilità d’uso e l’elevata qualità dei modelli offerti per il \gls{nlp}, che consentono di trasformare testi in rappresentazioni vettoriali dense con significato semantico. In particolare, il modello \texttt{all-MiniLM-L6-v2} è stato selezionato in quanto rappresenta un compromesso ideale tra accuratezza e velocità di esecuzione: essendo un modello compatto ma efficace, consente di processare migliaia di nomi di prodotti in tempi contenuti senza richiedere GPU o risorse computazionali elevate.
 
 \begin{verbatim}
 model = SentenceTransformer("all-MiniLM-L6-v2")
