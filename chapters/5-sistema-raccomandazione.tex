@@ -179,15 +179,15 @@ Dunque, mentre le matrici sono state generate nella task di analisi delle vendit
 
 In particolare, per la rank fusion sono state valutate diverse opzioni:
 \begin{itemize}
-    \item \textbf{\gls{rrf}}: Combina i ranking assegnando punteggi basati sul reciproco della posizione di ciascun elemento, favorendo gli elementi che appaiono in posizioni elevate in più sistemi;
-    \item \textbf{\gls{bordacount}}: Assegna punti decrescenti basati sulla posizione nel ranking (es. n-1 punti al primo, n-2 al secondo, etc.) e somma i punti ottenuti da ciascun sistema;
-    \item \textbf{\gls{scorebasednorm}}: Normalizza i punteggi dei diversi sistemi per renderli confrontabili, quindi li aggrega tramite media pesata o altre funzioni di combinazione;
-    \item \textbf{\gls{combsum}}: Metodi che combinano i punteggi dei sistemi tramite somma (SUM), massimo (MAX), minimo (MIN) o media dei punteggi non-zero (ANZ);
-    \item \textbf{\gls{weightedrank}}: Combina i ranking assegnando pesi diversi ai sistemi in base alla loro affidabilità o performance, privilegiando i sistemi più performanti;
-    \item \textbf{\gls{medianrank}}: Utilizza la mediana o la media geometrica delle posizioni di ciascun elemento nei diversi ranking per determinare la posizione finale;
-    \item \textbf{\gls{learningtorank}}: Applica algoritmi di machine learning per apprendere la migliore combinazione dei ranking basandosi su dati di training e feedback degli utenti;
-    \item \textbf{\gls{concordetfusion}}: Basato sul principio di Condorcet, confronta ogni coppia di elementi determinando quale è preferito dalla maggioranza dei sistemi di raccomandazione;
-    \item \textbf{\gls{rbpfusion}}: Combina i ranking dando maggiore peso alle posizioni iniziali, seguendo il principio che gli utenti guardano principalmente i primi risultati.
+    \item \textbf{\gls{rrf}}\footcite{article:reciprocal_rank_fusion}: Combina i ranking assegnando punteggi basati sul reciproco della posizione di ciascun elemento, favorendo gli elementi che appaiono in posizioni elevate in più sistemi;
+    \item \textbf{\gls{bordacount}}\footcite{site:borda_count}: Assegna punti decrescenti basati sulla posizione nel ranking (es. n-1 punti al primo, n-2 al secondo, etc.) e somma i punti ottenuti da ciascun sistema;
+    \item \textbf{\gls{scorebasednorm}}\footcite{site:score_normalization}: Normalizza i punteggi dei diversi sistemi per renderli confrontabili, quindi li aggrega tramite media pesata o altre funzioni di combinazione;
+    \item \textbf{\gls{score_combination}}\footcite{article:score_combination}: Metodi che combinano i punteggi dei sistemi tramite somma (SUM), massimo (MAX), minimo (MIN) o media dei punteggi non-zero (ANZ);
+    \item \textbf{\gls{weightedrank}}\footcite{article:weighted_rank_aggregation}: Combina i ranking assegnando pesi diversi ai sistemi in base alla loro affidabilità o performance, privilegiando i sistemi più performanti;
+    \item \textbf{\gls{medianrank}\footcite{site:median} / \gls{geometricmeanrank}\footcite{site:geometric_mean}}: Utilizza la mediana o la media geometrica delle posizioni di ciascun elemento nei diversi ranking per determinare la posizione finale;
+    \item \textbf{\gls{learningtorank}}\footcite{site:learning_to_rank}: Applica algoritmi di machine learning per apprendere la migliore combinazione dei ranking basandosi su dati di training e feedback degli utenti;
+    \item \textbf{\gls{concordetfusion}}\footcite{site:condorcet_method}: Basato sul principio di Condorcet, confronta ogni coppia di elementi determinando quale è preferito dalla maggioranza dei sistemi di raccomandazione;
+    \item \textbf{\gls{rbpfusion}}\footcite{article:rank_biased_precision}: Combina i ranking dando maggiore peso alle posizioni iniziali, seguendo il principio che gli utenti guardano principalmente i primi risultati.
 \end{itemize}
 
 Dietro consiglio del tutor aziendale, per la rank fusion si è scelto di utilizzare il metodo Reciprocal Rank Fusion (RRF)\footcite{site:rrf-explained}, che si basa sull'idea di assegnare un punteggio a ciascun prodotto in base al reciproco della sua posizione nei ranking dei diversi sistemi di raccomandazione. In questo modo, i prodotti che appaiono in posizioni più alte nei ranking dei diversi sistemi ottengono un punteggio più alto, mentre quelli che appaiono in posizioni più basse ottengono un punteggio più basso.
@@ -269,11 +269,9 @@ Questo filtro viene applicato dopo il processo di Rank Fusion, e dunque i prodot
 Una volta implementato il sistema di raccomandazione, si è pensato di confrontare le prestazioni del sistema con quelle di altri sistemi di raccomandazione già esistenti, ed eventualmente di prendere spunto da questi per migliorare il proprio sistema.
 Per fare ciò, dopo una breve ricerca, si è deciso di utilizzare due librerie di Python per la creazione di sistemi di raccomandazione:
 \begin{itemize}
-    \item \textbf{\gls{recbole}};
-    \item \textbf{\gls{surprise}}.
+    \item \textbf{\gls{recbole}}\footcite{site:recbole}: Una libreria open-source per la creazione di sistemi di raccomandazione basati su deep learning;
+    \item \textbf{\gls{surprise}}\footcite{site:surprise}: Una libreria open-source per la creazione di sistemi di raccomandazione basati su metodi tradizionali come il Collaborative Filtering e la Similarità.
 \end{itemize}
-
-Queste librerie offrono una vasta gamma di algoritmi di raccomandazione, tra cui quelli basati su Collaborative Filtering, Similarità e altri metodi avanzati. La differenza principale tra le due librerie è che \emph{recbole} è più orientata alla creazione di sistemi di raccomandazione basati su deep learning, mentre \emph{surprise} è più orientata alla creazione di sistemi di raccomandazione basati su metodi tradizionali come il Collaborative Filtering e la Similarità.
 
 Per svolgere il confronto, è stato scelto un dataset, ovvero \texttt{orders\_export.csv}, e un suo cliente, ovvero \texttt{Ds-trading srl Ds-trading GmbH}, e si è proceduto a creare un sistema di raccomandazione con entrambe le librerie, utilizzando gli stessi dati di input e le stesse tecniche di raccomandazione. In particolare, per \emph{recbole} è stato utilizzato il metodo \texttt{BPR} (Bayesian Personalized Ranking), che è un algoritmo di Collaborative Filtering basato su matrice di interazioni, mentre per \emph{surprise} è stato utilizzato il metodo \texttt{KNNBasic} (K-Nearest Neighbors), che è un algoritmo di Collaborative Filtering basato su similarità tra utenti o prodotti.
 
@@ -346,7 +344,7 @@ Nel contesto del progetto, la Serendipità è stata considerata come un obiettiv
 
 \section{Metriche}
 
-Il sistema di raccomandazione implementato è stato valutato utilizzando diverse metriche, che sono state scelte in base agli obiettivi del progetto e alle caratteristiche del dataset.
+Il sistema di raccomandazione implementato è stato valutato utilizzando diverse metriche\footcite{site:metrics-recommender-systems}, che sono state scelte in base agli obiettivi del progetto e alle caratteristiche del dataset.
 
 Molte metriche utilizzano la rilevanza come criterio di valutazione, e dunque è necessario definire cosa si intende per "item rilevante". Nel contesto del progetto, un "item rilevante" è un prodotto che è stato acquistato dal cliente. Tuttavia, il sistema di raccomandazione non raccomanda nessun item che è stato acquistato dal cliente, poiché questi vengono filtrati. Dunque, le metriche sono state classificate in due categorie:
 \begin{itemize}
@@ -356,43 +354,42 @@ Molte metriche utilizzano la rilevanza come criterio di valutazione, e dunque è
 
 Le metriche pre-filtro utilizzate sono:
 \begin{itemize}
-    \item \textbf{\gls{recallatk}}: misura la frazione di elementi rilevanti recuperati tra i primi $k$ risultati restituiti dal sistema di raccomandazione, rispetto al totale degli elementi rilevanti disponibili per l'utente;
-    \item \textbf{\gls{precisionatk}}: misura la frazione di elementi rilevanti tra i primi $k$ risultati restituiti dal sistema di raccomandazione;
-    \item \textbf{\gls{mapatk}}: calcola la media delle precisioni valutate a ogni posizione in cui un elemento rilevante appare tra i primi $k$ risultati, fornendo una misura globale della qualità del ranking;
-    \item \textbf{\gls{mrratk}}: calcola la media dei reciproci della posizione degli elementi rilevanti tra i primi $k$ risultati, privilegiando i risultati rilevanti in posizioni più alte;
-    \item \textbf{\gls{unserendipityatk}}: misura la mancanza di serendipità tra i primi $k$ risultati, ovvero la tendenza del sistema a raccomandare elementi già noti o attesi dall'utente piuttosto che scoperte inaspettate.
+    \item \textbf{\gls{recallatk}}\footcite{site:recall}: misura la frazione di elementi rilevanti recuperati tra i primi $k$ risultati restituiti dal sistema di raccomandazione, rispetto al totale degli elementi rilevanti disponibili per l'utente;
+    \item \textbf{\gls{precisionatk}}\footcite{site:precision_at_k}: misura la frazione di elementi rilevanti tra i primi $k$ risultati restituiti dal sistema di raccomandazione;
+    \item \textbf{\gls{mapatk}}\footcite{site:mean_average_precision}: calcola la media delle precisioni valutate a ogni posizione in cui un elemento rilevante appare tra i primi $k$ risultati, fornendo una misura globale della qualità del ranking;
+    \item \textbf{\gls{mrratk}}\footcite{site:mean_reciprocal_rank}: calcola la media dei reciproci della posizione degli elementi rilevanti tra i primi $k$ risultati, privilegiando i risultati rilevanti in posizioni più alte;
+    \item \textbf{\gls{unserendipityatk}}\footcite{article:serendipity-recommender-systems}: misura la mancanza di serendipità tra i primi $k$ risultati, ovvero la tendenza del sistema a raccomandare elementi già noti o attesi dall'utente piuttosto che scoperte inaspettate.
 \end{itemize}
 
 Mentre, le metriche post-filtro utilizzate sono:
 \begin{itemize}
-    \item \textbf{\gls{averageitemsimilarity}}: calcola la media delle similarità tra gli elementi raccomandati e gli elementi con cui l'utente ha già interagito, fornendo una misura della diversità delle raccomandazioni;
-    \item \textbf{\gls{meanpopularityatk}}: misura la media della popolarità degli elementi raccomandati tra i primi $k$ risultati, dove la popolarità è determinata dal numero totale di interazioni ricevute da ciascun elemento nel dataset.
+    \item \textbf{\gls{averageitemsimilarity}}\footcite{site:average_item_similarity}: calcola la media delle similarità tra gli elementi raccomandati e gli elementi con cui l'utente ha già interagito, fornendo una misura della diversità delle raccomandazioni;
+    \item \textbf{\gls{meanpopularityatk}}\footcite{article:mean_popularity}: misura la media della popolarità degli elementi raccomandati tra i primi $k$ risultati, dove la popolarità è determinata dal numero totale di interazioni ricevute da ciascun elemento nel dataset.
 \end{itemize}
 
 Le metriche sono state scelte in base agli obiettivi del progetto e alle caratteristiche del dataset. In particolare, le metriche pre-filtro sono state scelte per valutare la qualità delle raccomandazioni in base a quanti item rilevanti sono stati recuperati tra i primi $k$ risultati, mentre le metriche post-filtro sono state scelte per valutare la qualità delle raccomandazioni in base alla similarità e alla popolarità degli item raccomandati.
 
 Le metriche che erano state inizialmente valutate, ma che poi sono state scartate, sono:
 \begin{itemize}
-    \item \textbf{\gls{ndcgatk}}: calcola il guadagno cumulativo scontato normalizzato, che tiene conto sia della rilevanza degli elementi sia della loro posizione nel ranking tra i primi $k$ risultati;
-    \item \textbf{\gls{hitrateatk}}: metrica binaria che vale 1 se almeno un elemento rilevante è presente tra i primi $k$ risultati raccomandati, 0 altrimenti;
-    \item \textbf{\gls{coverageatk}}: misura la varietà del sistema calcolando quanti elementi diversi vengono raccomandati complessivamente agli utenti tra i primi $k$ risultati;
-    \item \textbf{\gls{intralistdiversity}}: misura quanto sono diversi tra loro gli elementi raccomandati all'interno della stessa lista di raccomandazioni;
-    \item \textbf{\gls{novelty}}: quantifica la novità delle raccomandazioni favorendo elementi poco popolari, che sono potenzialmente più "nuovi" per l'utente;
-    \item \textbf{\gls{serendipity}}: misura la capacità del sistema di raccomandare elementi inaspettati ma potenzialmente interessanti per l'utente.
+    \item \textbf{\gls{ndcgatk}}\footcite{site:ndcg}: calcola il guadagno cumulativo scontato normalizzato, che tiene conto sia della rilevanza degli elementi sia della loro posizione nel ranking tra i primi $k$ risultati;
+    \item \textbf{\gls{hitrateatk}}\footcite{site:hit_rate}: metrica binaria che vale 1 se almeno un elemento rilevante è presente tra i primi $k$ risultati raccomandati, 0 altrimenti;
+    \item \textbf{\gls{coverageatk}}\footcite{site:coverage_metric}: misura la varietà del sistema calcolando quanti elementi diversi vengono raccomandati complessivamente agli utenti tra i primi $k$ risultati;
+    \item \textbf{\gls{intralistdiversity}}\footcite{article:diversity_metric}: misura quanto sono diversi tra loro gli elementi raccomandati all'interno della stessa lista di raccomandazioni;
+    \item \textbf{\gls{novelty}}\footcite{site:novelty_metric}: quantifica la novità delle raccomandazioni favorendo elementi poco popolari, che sono potenzialmente più "nuovi" per l'utente.
 \end{itemize}
 
 Queste metriche sono state scartate per diverse ragioni metodologiche e concettuali. La metrica \emph{nDCG@k} è stata considerata ridondante rispetto alla Recall@k, poiché nel contesto specifico del progetto la posizione esatta degli elementi rilevanti nel ranking ha un'importanza limitata. La \emph{Hit Rate@k} è stata giudicata troppo semplicistica, fornendo solo un'informazione binaria sulla presenza di almeno un elemento rilevante senza considerare la qualità complessiva delle raccomandazioni.
 
-Per quanto riguarda le metriche \emph{Coverage@k}, \emph{Intra-list Diversity}, \emph{Novelty} e \emph{Serendipity}, queste sono state escluse poiché il sistema di raccomandazione implementato non è stato progettato per massimizzare la serendipità o la diversità delle raccomandazioni. Al contrario, il sistema si basa su tecniche di Collaborative Filtering e Similarità che tendono naturalmente a raccomandare elementi simili a quelli già acquistati dall'utente. L'applicazione di queste metriche avrebbe inevitabilmente prodotto punteggi molto bassi, non fornendo informazioni utili sulla qualità del sistema. Per questo motivo, si è preferito utilizzare la sovraccitata metrica \emph{Unserendipity@k}, che misura l'opposto della serendipità e risulta dunque più appropriata per valutare un sistema orientato alla similarità e alla coerenza delle raccomandazioni.
+Per quanto riguarda le metriche \emph{Coverage@k}, \emph{Intra-list Diversity} e \emph{Novelty}, queste sono state escluse poiché il sistema di raccomandazione implementato non è stato progettato per massimizzare la diversità o la novità delle raccomandazioni. Al contrario, il sistema si basa su tecniche di Collaborative Filtering e Similarità che tendono naturalmente a raccomandare elementi simili a quelli già acquistati dall'utente. L'applicazione di queste metriche avrebbe inevitabilmente prodotto punteggi molto bassi, non fornendo informazioni utili sulla qualità del sistema. Per questo motivo, si è preferito utilizzare la sovraccitata metrica \emph{Unserendipity@k}, che misura l'opposto della serendipità\footcite{site:serendipity} e risulta dunque più appropriata per valutare un sistema orientato alla similarità e alla coerenza delle raccomandazioni.
 
 La metrica \emph{Unserendipity@k} è stata scelta tra le metriche presentate nell'articolo \emph{Serendipity in Recommender Systems: A Systematic Literature Review}\footcite{article:serendipity-recommender-systems} riguardanti la Serendipità, poiché si è ritenuto che fosse la più adatta tra le metriche di Serendipità per valutare un sistema di raccomandazione basato sulla Similarità.
 Le altre metriche considerate nell'articolo erano le seguenti:
 \begin{itemize}
-    \item \textbf{Serendipity}: misura la capacità del sistema di raccomandare elementi inaspettati ma potenzialmente interessanti, basandosi tipicamente su metriche di rilevanza e popolarità;
-    \item \textbf{\gls{surprise_metric}}: quantifica il grado di sorpresa nelle raccomandazioni calcolando la distanza tra le aspettative dell'utente e i risultati effettivi;
-    \item \textbf{\gls{confidence}}: valuta il livello di fiducia del sistema nelle proprie raccomandazioni, spesso correlato alla popolarità degli elementi;
-    \item \textbf{\gls{distance}}: misura la distanza semantica o comportamentale tra gli elementi raccomandati e quelli già noti all'utente;
-    \item \textbf{\gls{expectedness}}: quantifica quanto le raccomandazioni siano prevedibili o attese dall'utente;
+    \item \textbf{\gls{serendipity}}\footcite{site:serendipity_metric}: misura la capacità del sistema di raccomandare elementi inaspettati ma potenzialmente interessanti per l'utente;
+    \item \textbf{\gls{surprise_metric}}\footcite{article:surprise_metric}: quantifica il grado di sorpresa nelle raccomandazioni calcolando la distanza tra le aspettative dell'utente e i risultati effettivi;
+    \item \textbf{\gls{confidence}}\footcite{article:confidence_metric}: valuta il livello di fiducia del sistema nelle proprie raccomandazioni, spesso correlato alla popolarità degli elementi;
+    \item \textbf{\gls{distance}}\footcite{site:distance_measures}: misura la distanza semantica o comportamentale tra gli elementi raccomandati e quelli già noti all'utente;
+    \item \textbf{\gls{expectedness}}\footcite{article:expectedness}: quantifica quanto le raccomandazioni siano prevedibili o attese dall'utente;
     \item \textbf{\gls{rmse}}: calcola l'errore quadratico medio per valutare l'accuratezza delle predizioni di rating.
 \end{itemize}
 

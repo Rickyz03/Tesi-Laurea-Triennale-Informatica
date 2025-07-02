@@ -547,7 +547,7 @@
     description={approccio di rank fusion che normalizza i punteggi di diversi sistemi per renderli comparabili, quindi li aggrega utilizzando operazioni matematiche per produrre punteggi finali}
 }
 
-\newglossaryentry{combsum} {
+\newglossaryentry{score_combination} {
     name={CombSUM, CombMAX, CombMIN, CombANZ},
     text={CombSUM, CombMAX, CombMIN, CombANZ},
     sort=combsum,
@@ -562,10 +562,17 @@
 }
 
 \newglossaryentry{medianrank} {
-    name=Median Rank / Geometric Mean Rank,
-    text=Median Rank / Geometric Mean Rank,
+    name=Median Rank,
+    text=Median Rank,
     sort=medianrank,
-    description={metodi di rank fusion che utilizzano rispettivamente la mediana e la media geometrica delle posizioni di un elemento nelle diverse classifiche per determinare la posizione finale}
+    description={metodo di rank fusion che utilizza la mediana delle posizioni di un elemento nelle diverse classifiche per determinare la posizione finale, fornendo una misura robusta che non è influenzata da valori estremi}
+}
+
+\newglossaryentry{geometricmeanrank} {
+    name=Geometric Mean Rank,
+    text=Geometric Mean Rank,
+    sort=geometricmeanrank,
+    description={metodo di rank fusion che utilizza la media geometrica delle posizioni di un elemento nelle diverse classifiche per determinare la posizione finale, dando maggior peso ai ranking migliori rispetto alla media aritmetica}
 }
 
 \newglossaryentry{learningtorank} {
