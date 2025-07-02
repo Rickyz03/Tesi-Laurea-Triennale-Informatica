@@ -67,14 +67,14 @@ Nel contesto del Collaborative Filtering item-based, il processo di generazione 
 \subsection{Costruzione della matrice utente-prodotto}
 \label{sec:collaborative-filtering-matrice-utenti-prodotti}
 
-Il primo passo consiste nella costruzione di una matrice di interazioni $\mathbf{F} \in \mathbb{R}^{m \times n}$, dove $m$ rappresenta il numero di utenti e $n$ il numero di prodotti. Ogni elemento $r_{ij}$ della matrice rappresenta la frequenza di interazioni (acquisti, visualizzazioni, etc.) dell'utente $i$ con il prodotto $j$:
+Il primo passo consiste nella costruzione di una matrice di interazioni $\mathbf{F} \in \mathbb{R}^{m \times n}$, dove $m$ rappresenta il numero di utenti e $n$ il numero di prodotti. Ogni elemento $f_{ij}$ della matrice rappresenta la frequenza di interazioni (acquisti, visualizzazioni, etc.) dell'utente $i$ con il prodotto $j$:
 
 \begin{equation}
 \mathbf{F} = \begin{bmatrix}
-r_{11} & r_{12} & \cdots & r_{1n} \\
-r_{21} & r_{22} & \cdots & r_{2n} \\
+f_{11} & f_{12} & \cdots & f_{1n} \\
+f_{21} & f_{22} & \cdots & f_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
-r_{m1} & r_{m2} & \cdots & r_{mn}
+f_{m1} & f_{m2} & \cdots & f_{mn}
 \end{bmatrix}
 \end{equation}
 
@@ -88,10 +88,10 @@ dove $K$ rappresenta l'insieme di tutti gli ordini nel dataset, $u_k$ e $p_k$ so
 
 \subsection{Calcolo della matrice di similarità prodotto-prodotto}
 
-La matrice di similarità $\mathbf{S} \in \mathbb{R}^{n \times n}$ viene calcolata utilizzando la similarità coseno tra i vettori prodotto. Ogni prodotto $j$ è rappresentato dal vettore colonna $\mathbf{r}_j = [r_{1j}, r_{2j}, \ldots, r_{mj}]^T$. La similarità coseno tra due prodotti $j$ e $k$ è definita come:
+La matrice di similarità $\mathbf{S} \in \mathbb{R}^{n \times n}$ viene calcolata utilizzando la similarità coseno tra i vettori prodotto. Ogni prodotto $j$ è rappresentato dal vettore colonna $\mathbf{f}_j = [f_{1j}, f_{2j}, \ldots, f_{mj}]^T$. La similarità coseno tra due prodotti $j$ e $k$ è definita come:
 
 \begin{equation}
-s_{jk} = \frac{\mathbf{r}_j \cdot \mathbf{r}_k}{|\mathbf{r}_j| \cdot |\mathbf{r}_k|} = \frac{\sum_{i=1}^{m} r_{ij} \cdot r_{ik}}{\sqrt{\sum_{i=1}^{m} r_{ij}^2} \cdot \sqrt{\sum_{i=1}^{m} r_{ik}^2}}
+s_{jk} = \frac{\mathbf{f}_j \cdot \mathbf{f}_k}{|\mathbf{f}_j| \cdot |\mathbf{f}_k|} = \frac{\sum_{i=1}^{m} f_{ij} \cdot f_{ik}}{\sqrt{\sum_{i=1}^{m} f_{ij}^2} \cdot \sqrt{\sum_{i=1}^{m} f_{ik}^2}}
 \end{equation}
 
 La matrice di similarità risultante è simmetrica: $\mathbf{S} = \mathbf{S}^T$.
@@ -264,9 +264,9 @@ Una volta ottenuto il ranking finale dei prodotti, si è pensato che il sistema 
 Questo filtro viene applicato dopo il processo di Rank Fusion, e dunque i prodotti già acquistati dal cliente vengono rimossi dal ranking finale dei prodotti raccomandati, e i prodotti raccomandati più in basso scalano di conseguenza più in alto nella classifica. In questo modo, il sistema di raccomandazione restituisce solo prodotti nuovi o diversi da quelli già acquistati, aumentando la varietà delle raccomandazioni e migliorando l'esperienza dell'utente.
 
 
-\section{Recbole e Surprise}
+\section{Confronto con RecBole e Surprise}
 
-Una volta implementato il sistema di raccomandazione, si è pensato di confrontare le prestazioni del sistema con quelle di altri sistemi di raccomandazione già esistenti, ed eventualmente di prendere spunto da questi per migliorare il proprio sistema.
+Una volta implementato il sistema di raccomandazione, si è pensato di confrontare le sue prestazioni con quelle di altri sistemi di raccomandazione già esistenti, ed eventualmente di prendere spunto da questi per implementare dei miglioramenti.
 Per fare ciò, dopo una breve ricerca, si è deciso di utilizzare due librerie di Python per la creazione di sistemi di raccomandazione:
 \begin{itemize}
     \item \textbf{\gls{recbole}}\footcite{site:recbole}: Una libreria open-source per la creazione di sistemi di raccomandazione basati su deep learning;
@@ -330,7 +330,7 @@ Per quanto riguarda \emph{Surprise}, il sistema, una volta addestrato l'algoritm
 
 I risultati ottenuti da \emph{Surprise} sono stati ancora più deludenti, poichè il sistema ha raccomandato prodotti che non sono affatto simili a quelli già acquistati dal cliente, come ad esempio degli anni di garanzia, una fotocamera, e dei set di pentole. Ciò è stato attribuito al fatto che \emph{Surprise} richiede una colonna di rating per poter funzionare, e questa colonna non è presente nei dataset disponibili. Per fare il confronto, era stata creata una colonna di rating fittizia, che assegnava un rating fisso di 1 a ciascun acquisto, ma questo ha portato a risultati inutilizzabili, poichè ogni raccomandazione viene considerata perfetta, e dunque il sistema non riesce a distinguere tra prodotti buoni e cattivi. Infatti, come si vede in figura \ref{fig:surprise-recommendations}, a seguire la scritta \texttt{Stima: } è sempre presente il valore \texttt{1.00}, che indica che il sistema ha assegnato un punteggio di 1 a tutti i prodotti del dataset, e quindi non è più in grado di fare distinzioni tra di essi. Si è reputato dunque che il sistema di \emph{Surprise} non fosse adatto al caso in esame, che non prevede l'esistenza di rating.
 
-Al termine del confronto, si è dunque deciso di non considerare alcun contributo dalle librerie \emph{RecBole} e \emph{Surprise} per il sistema di raccomandazione, poichè i risultati da esse ottenuti non erano soddisfacenti e non erano comparabili con quelli ottenuti dal sistema implementato. Tuttavia, queste librerie possono essere utili per ulteriori sperimentazioni e per la creazione di sistemi di raccomandazione più avanzati in futuro.
+Al termine del confronto, si è dunque deciso di non considerare alcun contributo dalle librerie \emph{RecBole} e \emph{Surprise} per il sistema di raccomandazione, poichè i risultati da esse ottenuti non erano soddisfacenti ed erano assai peggiori rispetto ai risultati ottenuti dal sistema implementato. Tuttavia, queste librerie possono essere utili per ulteriori sperimentazioni e per la creazione di sistemi di raccomandazione più avanzati in futuro.
 
 
 \section{Serendipità}
