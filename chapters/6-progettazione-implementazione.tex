@@ -291,9 +291,91 @@ Attualmente il server SMTP interno di Oribea è hostato su una \gls{macchinadev}
 
 \section{Le matrici di raccomandazione}
 
-1. Crosstab di Pandas
-2. Cosine similarity di Scikit-learn
-3. Pandas Vectorized Ops per la norma (no, non citarlo, lo citi solo nell'ottimizzazione)
+L'implementazione pratica dei due sistemi descritti nelle sezioni precedenti è stata realizzata facendo uso delle librerie \texttt{pandas}, \texttt{numpy}, \texttt{scikit-learn} e \texttt{sentence-transformers}, all'interno del modulo \texttt{matrices}. Come già anticipato nel capitolo \S\ref{cap:sistema-raccomandazione}, sono stati costruiti due sistemi distinti: uno basato sul \textbf{Collaborative Filtering} e uno basato sulla \textbf{Similarità} semantica dei nomi dei prodotti.
+
+\subsection{Collaborative Filtering}
+
+Il sistema basato sul Collaborative Filtering è stato implementato nella funzione \texttt{create\_purchase\_matrix}. In primo luogo, è stata costruita la matrice di frequenza $\mathbf{F} \in \mathbb{N}^{m \times n}$ utilizzando la funzione \texttt{crosstab} di \texttt{pandas}, che consente di ottenere una matrice con le righe corrispondenti agli utenti, le colonne ai prodotti e i valori rappresentanti il numero di acquisti effettuati da ciascun utente per ciascun prodotto:
+
+\begin{verbatim}
+user_prod = pd.crosstab(orders_df[CUSTOMER_ID], orders_df[PRODUCT_SKU])
+\end{verbatim}
+
+Successivamente, la matrice di similarità prodotto-prodotto $\mathbf{S} \in \mathbb{R}^{n \times n}$ è stata calcolata utilizzando la similarità coseno, resa disponibile dalla funzione \texttt{cosine\_similarity} della libreria \texttt{scikit-learn}. Questa libreria è stata scelta in quanto fornisce un'implementazione altamente ottimizzata, stabile e semplice da utilizzare per il calcolo di misure di similarità tra vettori. Inoltre, essendo \texttt{scikit-learn} uno standard de facto nell'ambito del machine learning in Python, garantisce ampia documentazione e affidabilità.
+
+\begin{verbatim}
+item_vectors = user_prod.T
+item_sim_matrix = pd.DataFrame(
+    cosine_similarity(item_vectors),
+    index=item_vectors.index,
+    columns=item_vectors.index,
+)
+\end{verbatim}
+
+La matrice di similarità così ottenuta è stata poi normalizzata, dividendo ciascuna riga per la somma dei valori assoluti degli elementi di quella riga, secondo la formulazione teorica della normalizzazione:
+
+\begin{verbatim}
+sim_abs_sum = item_sim_matrix.abs().sum(axis=1)
+sim_norm = item_sim_matrix.div(sim_abs_sum, axis=0)
+\end{verbatim}
+
+Infine, la matrice di predizione $\mathbf{P} = \mathbf{F} \cdot (\mathbf{S}^{norm})^T$ è stata ottenuta tramite prodotto matriciale. I valori risultanti rappresentano il grado di affinità tra ciascun utente e ciascun prodotto:
+
+\begin{verbatim}
+R = user_prod.values
+S_norm_T = sim_norm.values.T
+pred_vals = R.dot(S_norm_T)
+purchase_pred_matrix = pd.DataFrame(
+    pred_vals, index=user_prod.index, columns=user_prod.columns
+)
+\end{verbatim}
+
+\subsection{Similarità}
+
+Il secondo sistema, basato sulla similarità semantica dei nomi dei prodotti, è stato implementato nella funzione \texttt{create\_similarity\_matrix}. L'idea di fondo è sfruttare la descrittività dei nomi dei prodotti per calcolare la similarità tra articoli anche in assenza di un sufficiente numero di interazioni utente-prodotto.
+
+Anzitutto, è stata costruita una mappatura tra SKU (codice prodotto) e nome del prodotto, utilizzando la funzione \texttt{groupby} di \texttt{pandas}:
+
+\begin{verbatim}
+sku_to_first_name = orders_df.groupby(PRODUCT_SKU)[PRODUCT_NAME]
+.first().to_dict()
+\end{verbatim}
+
+La matrice $\mathbf{F}$ degli acquisti è stata nuovamente generata con \texttt{crosstab}, come nel sistema precedente.
+
+Successivamente, per ciascun nome di prodotto, è stato ottenuto un embedding semantico tramite il modello preaddestrato \texttt{all-MiniLM-L6-v2}, fornito dalla libreria \texttt{sentence-transformers}. Questa libreria è stata scelta per la sua facilità d’uso e l’elevata qualità dei modelli offerti per il Natural Language Processing, che consentono di trasformare testi in rappresentazioni vettoriali dense con significato semantico. In particolare, il modello \texttt{all-MiniLM-L6-v2} è stato selezionato in quanto rappresenta un compromesso ideale tra accuratezza e velocità di esecuzione: essendo un modello compatto ma efficace, consente di processare migliaia di nomi di prodotti in tempi contenuti senza richiedere GPU o risorse computazionali elevate.
+
+\begin{verbatim}
+model = SentenceTransformer("all-MiniLM-L6-v2")
+name_embeddings = model.encode(name_list, convert_to_tensor=False)
+\end{verbatim}
+
+La similarità tra tutti i nomi dei prodotti è stata poi calcolata applicando nuovamente la \texttt{cosine\_similarity} sugli embeddings:
+
+\begin{verbatim}
+sim_name_name = cosine_similarity(name_embeddings)
+product_product = pd.DataFrame(
+    sim_name_name, index=sku_to_first_name.keys(),
+    columns=sku_to_first_name.keys()
+)
+\end{verbatim}
+
+Infine, è stata calcolata la matrice $\mathbf{P}_{sem} = \mathbf{F} \cdot \mathbf{S}_{sem}$, che rappresenta le predizioni delle raccomandazioni basate sulla similarità semantica dei prodotti. Il prodotto tra la matrice degli acquisti e la matrice delle similarità semantiche è stato calcolato usando \texttt{numpy.dot}, perché questa funzione è altamente ottimizzata per operazioni matriciali e consente di gestire grandi dataset in modo efficiente. Il risultato è stato convertito in un DataFrame \texttt{pandas} per una facile manipolazione e visualizzazione:
+
+\begin{verbatim}
+user_item_similarityPred = np.dot(user_product.values,
+product_product.values)
+user_item_similarityPred = pd.DataFrame(
+    user_item_similarityPred,
+    index=user_product.index,
+    columns=product_product.columns,
+)
+\end{verbatim}
+
+\medskip
+
+L’uso combinato di queste due strategie consente di ottenere raccomandazioni robuste: da un lato si sfruttano i pattern comportamentali degli utenti (Collaborative Filtering), dall’altro le informazioni semantiche implicite nei nomi dei prodotti (Similarità). Questi approcci si sono rivelati complementari ed efficaci anche in presenza di dataset reali, spesso affetti da sparsità nelle interazioni utente-prodotto.
+
 
 \subsection{Formato di archiviazione delle matrici}
 
