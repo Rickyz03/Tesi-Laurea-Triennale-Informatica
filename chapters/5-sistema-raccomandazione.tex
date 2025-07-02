@@ -40,12 +40,12 @@ La scelta della Cosine Similarity è inoltre supportata dalla sua ampia adozione
 Esistono diverse alternative alla Cosine Similarity che sono state considerate durante la progettazione del sistema:
 
 \begin{itemize}
-    \item \textbf{\gls{distanzaeuclidea}}: Misura la distanza geometrica diretta tra due punti nello spazio multidimensionale, ma è sensibile alla magnitudine dei vettori e può essere influenzata dalla dimensionalità;
-    \item \textbf{\gls{correlazionepearson}}: Calcola la correlazione lineare tra due variabili, ma richiede che i dati seguano una distribuzione normale e può essere instabile con dati sparsi;
-    \item \textbf{\gls{distanzamanhattan}}: Somma delle differenze assolute tra le componenti dei vettori, semplice da calcolare ma meno efficace nel catturare relazioni complesse;
-    \item \textbf{\gls{similaritajaccard}}: Particolarmente adatta per dati binari, misura la sovrapposizione tra insiemi, ma non considera l'intensità delle interazioni;
-    \item \textbf{\gls{distanzahamming}}: Utilizzata principalmente per confrontare stringhe o sequenze binarie, non adatta per dati numerici continui;
-    \item \textbf{\gls{divergenzakullbackleibler}}: Misura la differenza tra distribuzioni di probabilità, ma richiede che i dati siano interpretabili come distribuzioni e può essere computazionalmente costosa.
+    \item \textbf{\gls{distanzaeuclidea}}\footcite{site:euclidean_distance}: Misura la distanza geometrica diretta tra due punti nello spazio multidimensionale, ma è sensibile alla magnitudine dei vettori e può essere influenzata dalla dimensionalità;
+    \item \textbf{\gls{correlazionepearson}}\footcite{site:pearson_correlation_coefficient}: Calcola la correlazione lineare tra due variabili, ma richiede che i dati seguano una distribuzione normale e può essere instabile con dati sparsi;
+    \item \textbf{\gls{distanzamanhattan}}\footcite{site:manhattan_distance}: Somma delle differenze assolute tra le componenti dei vettori, semplice da calcolare ma meno efficace nel catturare relazioni complesse;
+    \item \textbf{\gls{similaritajaccard}}\footcite{site:jaccard_index}: Particolarmente adatta per dati binari, misura la sovrapposizione tra insiemi, ma non considera l'intensità delle interazioni;
+    \item \textbf{\gls{distanzahamming}}\footcite{site:hamming_distance}: Utilizzata principalmente per confrontare stringhe o sequenze binarie, non adatta per dati numerici continui;
+    \item \textbf{\gls{divergenzakullbackleibler}}\footcite{site:kullback-Leibler_divergence}: Misura la differenza tra distribuzioni di probabilità, ma richiede che i dati siano interpretabili come distribuzioni e può essere computazionalmente costosa.
 \end{itemize}
 
 La superiorità della Cosine Similarity rispetto a queste alternative nel contesto dei sistemi di raccomandazione è documentata in diversi studi empirici. Breese et al.\footcite{article:empirical-analysis-predictive-algorithms} hanno dimostrato attraverso un'analisi comparativa che la Cosine Similarity tende a produrre risultati più stabili e accurati rispetto alla correlazione di Pearson, specialmente in presenza di dati sparsi, una caratteristica comune nei dataset di e-commerce.
