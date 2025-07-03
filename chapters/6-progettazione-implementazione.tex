@@ -465,7 +465,7 @@ Per la gestione dei dati, è stata utilizzata la libreria \texttt{pandas}, parti
 \begin{itemize}
     \item \textbf{Unione degli indici}: si calcola l'unione degli identificativi di prodotto presenti in entrambi i ranking attraverso il metodo \texttt{series1.index.union(series2.index)}. Questo permette di ottenere la lista completa dei prodotti da considerare nella fusione, anche nel caso in cui un prodotto sia presente solo in uno dei due ranking;
     
-    \item \textbf{Allineamento degli score}: si utilizza il metodo \texttt{reindex(..., fill_value=0)} per riportare entrambi i ranking sulla stessa base di prodotti. Gli eventuali prodotti assenti in un ranking vengono inseriti con punteggio nullo. Questo garantisce che tutti i prodotti vengano considerati congiuntamente e nessuno venga escluso per motivi strutturali;
+    \item \textbf{Allineamento degli score}: si utilizza il metodo \texttt{reindex(..., fill\_value=0)} per riportare entrambi i ranking sulla stessa base di prodotti. Gli eventuali prodotti assenti in un ranking vengono inseriti con punteggio nullo. Questo garantisce che tutti i prodotti vengano considerati congiuntamente e nessuno venga escluso per motivi strutturali;
     
     \item \textbf{Calcolo dei ranking}: i punteggi grezzi vengono convertiti in posizioni ordinarie tramite il metodo \texttt{rank(ascending=False, method="min")}, che assegna a ciascun prodotto una posizione (1 per il punteggio più alto, 2 per il secondo, ecc.). L'opzione \texttt{method="min"} è stata utilizzata per garantire che, in presenza di punteggi a pari merito, venga assegnato il rango minimo possibile, cioè il rango del primo prodotto con quel punteggio. Questo approccio evita che prodotti con lo stesso punteggio ricevano posizioni diverse, mantenendo la stabilità del ranking;
     
@@ -484,6 +484,32 @@ Questa implementazione ha il vantaggio di essere compatta, interpretabile e faci
 
 
 \section{Implementazione delle metriche di valutazione}
+
+Le metriche descritte nella sezione \S\ref{sec:Metriche} sono state implementate manualmente, in quanto non risultano tutte disponibili all'interno di librerie Python comunemente utilizzate per la valutazione dei sistemi di raccomandazione. In particolare, si è scelto di non utilizzare \texttt{scikit-learn} (\texttt{sklearn.metrics}) per la mancanza di supporto diretto ad alcune metriche specifiche adottate nel progetto, come la \gls{unserendipityatk} o la \gls{meanpopularityatk}, e di non ricorrere a librerie alternative meno note per evitare dipendenze non affidabili o scarsamente documentate.
+
+L’intero processo di valutazione è stato implementato in Python, facendo uso principalmente delle librerie \texttt{NumPy}, \texttt{Pandas} e \texttt{scikit-learn}, oltre a strutture dati native di Python per la gestione efficiente delle informazioni.
+
+\paragraph{Recall@k e Precision@k.}
+Le metriche \gls{recallatk} e \gls{precisionatk} sono state implementate scorrendo l’elenco delle raccomandazioni fornite per ciascun utente, e confrontandole con il corrispondente insieme di item rilevanti. Per entrambe le metriche è stata adottata una logica basata sull’intersezione tra i primi $k$ elementi raccomandati e gli item realmente rilevanti. Le medie vengono poi calcolate aggregando i risultati individuali. Il valore di $k$ è parametrico, consentendo un'analisi flessibile delle performance del sistema a diversi livelli di profondità.
+
+\paragraph{Mean Average Precision@k (MAP@k).}
+La \gls{mapatk} è stata implementata calcolando, per ogni utente, la precisione cumulativa alle diverse posizioni in cui compaiono elementi rilevanti entro le prime $k$ raccomandazioni. La media di queste precisioni parziali costituisce l'Average Precision dell’utente, e l’aggregazione finale su tutti gli utenti fornisce il valore di MAP@k.
+
+\paragraph{Mean Reciprocal Rank@k (MRR@k).}
+Per la \gls{mrratk}, l’approccio adottato prevede la ricerca, all’interno delle prime $k$ raccomandazioni per ciascun utente, della posizione del primo elemento rilevante. La metrica corrisponde al reciproco di tale posizione. Il valore finale di MRR@k è calcolato come media dei reciproci ottenuti per ciascun utente.
+
+\paragraph{Unserendipity@k.}
+L’implementazione della metrica \gls{unserendipityatk} si basa sul calcolo della similarità media tra gli item raccomandati e gli item già noti all’utente. Per misurare la similarità tra prodotti, si è fatto uso della funzione \texttt{cosine\_similarity} messa a disposizione dal modulo \texttt{sklearn.metrics.pairwise}. Questa scelta è motivata dal fatto che tale funzione è ben ottimizzata, largamente documentata e compatibile con array NumPy multidimensionali, rendendola adatta al confronto tra vettori di embedding. Il valore complessivo della metrica viene calcolato eseguendo una doppia media: la prima tra ciascuna coppia di item visti e raccomandati, e la seconda tra tutti gli utenti.
+
+\paragraph{Average Item Similarity.}
+La \gls{averageitemsimilarity} è stata implementata con logica analoga a quella di \gls{unserendipityatk}, ma limitando il calcolo alla sola similarità tra ciascun item raccomandato e gli item con cui l’utente ha già interagito, senza normalizzare sul numero di raccomandazioni. Anche in questo caso si è utilizzata la funzione \texttt{cosine\_similarity} di \texttt{scikit-learn} per misurare la similarità tra vettori di embedding.
+
+\paragraph{Mean Popularity@k.}
+Per calcolare la \gls{meanpopularityatk}, è stato necessario stimare preliminarmente la popolarità assoluta di ciascun prodotto. Tale stima è stata ottenuta contando il numero di interazioni ricevute da ciascun item nel dataset, attraverso la funzione \texttt{compute\_item\_popularity}. Questa funzione riceve in input un \texttt{DataFrame} di \texttt{Pandas} contenente tutte le interazioni utente-prodotto, e restituisce un dizionario che associa a ciascun prodotto il numero totale di interazioni. Per il conteggio efficiente delle occorrenze, si è fatto uso della struttura \texttt{Counter} fornita dal modulo \texttt{collections}, poiché consente di ottenere in modo semplice e veloce la frequenza assoluta di ciascun elemento.
+Successivamente, la popolarità media degli item raccomandati è stata calcolata considerando solo i primi $k$ item suggeriti per ciascun utente, e aggregando i punteggi di popolarità associati.
+
+Nel complesso, la scelta di implementare manualmente tutte le metriche ha garantito pieno controllo sul processo di valutazione, permettendo di adattare il calcolo alle specificità del progetto e di mantenere un comportamento coerente tra le diverse metriche analizzate.
+
 
 \section{Collegamento con Google Cloud}
 
