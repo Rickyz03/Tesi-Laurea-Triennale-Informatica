@@ -456,7 +456,32 @@ Mettendo i valori di memoria usata e velocità di lettura assieme, si evince che
 Dunque, si è deciso di utilizzare il formato Zarr per l'archiviazione delle matrici di raccomandazione, poiché offre un buon compromesso tra spazio occupato su disco e velocità di lettura, ed è compatibile con Google Cloud Storage.
 
 
-\section{La predizione e rank fusion}
+\section{Implementazione della Reciprocal Rank Fusion}
+
+L'implementazione del metodo \gls{rrf}, descritto nella sezione teorica precedente, è stata realizzata manualmente in Python, senza ricorrere a librerie esterne specifiche per la rank fusion. Questa scelta è stata motivata dalla semplicità della formula da implementare e dalla volontà di mantenere un elevato controllo sul comportamento dell'algoritmo, in particolare per comprendere appieno come le posizioni nei ranking influenzassero il punteggio finale assegnato ai prodotti.
+
+Per la gestione dei dati, è stata utilizzata la libreria \texttt{pandas}, particolarmente adatta per la manipolazione di serie e tabelle etichettate. La funzione definita per l'RRF ha come input due oggetti \texttt{pandas.Series} contenenti i punteggi restituiti da due sistemi di raccomandazione distinti (Collaborative Filtering e Similarità), ciascuno indicizzato tramite gli identificativi dei prodotti. Di seguito si descrivono i passaggi principali della funzione:
+
+\begin{itemize}
+    \item \textbf{Unione degli indici}: si calcola l'unione degli identificativi di prodotto presenti in entrambi i ranking attraverso il metodo \texttt{series1.index.union(series2.index)}. Questo permette di ottenere la lista completa dei prodotti da considerare nella fusione, anche nel caso in cui un prodotto sia presente solo in uno dei due ranking;
+    
+    \item \textbf{Allineamento degli score}: si utilizza il metodo \texttt{reindex(..., fill_value=0)} per riportare entrambi i ranking sulla stessa base di prodotti. Gli eventuali prodotti assenti in un ranking vengono inseriti con punteggio nullo. Questo garantisce che tutti i prodotti vengano considerati congiuntamente e nessuno venga escluso per motivi strutturali;
+    
+    \item \textbf{Calcolo dei ranking}: i punteggi grezzi vengono convertiti in posizioni ordinarie tramite il metodo \texttt{rank(ascending=False, method="min")}, che assegna a ciascun prodotto una posizione (1 per il punteggio più alto, 2 per il secondo, ecc.). L'opzione \texttt{method="min"} è stata utilizzata per garantire che, in presenza di punteggi a pari merito, venga assegnato il rango minimo possibile, cioè il rango del primo prodotto con quel punteggio. Questo approccio evita che prodotti con lo stesso punteggio ricevano posizioni diverse, mantenendo la stabilità del ranking;
+    
+    \item \textbf{Applicazione della formula RRF}: si applica infine la formula della RRF calcolando il reciproco della posizione nei due ranking, eventualmente pesato da un parametro $w$ (che nel nostro caso è fissato a $1$, perchè si è deciso di pesare egualmente i due ranking), e sommato:
+    
+    \begin{equation}
+    \texttt{fused\_score} = w \cdot \left( \frac{1}{k + \texttt{rank}_1} + \frac{1}{k + \texttt{rank}_2} \right)
+    \end{equation}
+    
+    Nel nostro caso, il parametro di regolarizzazione $k$ è stato posto a $0$, poichè la regolarizzazione è stata valutata come non necessaria. Tuttavia, è possibile modificarlo facilmente in caso di futuri ripensamenti.
+\end{itemize}
+
+Il risultato della funzione è una nuova \texttt{pandas.Series} contenente, per ciascun prodotto, il punteggio RRF calcolato. Ordinando tale serie in ordine decrescente, si ottiene il ranking finale dei prodotti che, una volta filtrato, verrà restituito come output della task di raccomandazione.
+
+Questa implementazione ha il vantaggio di essere compatta, interpretabile e facilmente modificabile nel caso si vogliano testare diverse varianti della formula RRF o introdurre pesi differenti tra i sistemi di raccomandazione.
+
 
 \section{Valutazione delle raccomandazioni}
 
