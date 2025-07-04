@@ -5,45 +5,56 @@
 
 \section{Considerazioni finali}
 
-- Il periodo he avuto l'obiettivo di far questo
-- L'ho fatto così
-- La maggior parte del tempo l'ho dedicata a questo
-- La task è venuta bene, si è rilevata utile (e perchè?) e interessante
-- Ricordare i requisiti per il dataset, senza di quelli non si può fare nulla
+Il periodo di tirocinio del laureando Stefani Riccardo ha avuto l'obiettivo di sviluppare un sistema di analisi vendite ed un sistema di raccomandazione per un'azienda di e-commerce, con l'intento di migliorare l'esperienza utente e incrementare le vendite attraverso suggerimenti personalizzati. Il progetto ha richiesto l'analisi dei dati di vendita esistenti, la preparazione dei dati, lo sviluppo di algoritmi di raccomandazione e l'integrazione con l'infrastruttura aziendale. L'implementazione è stata realizzata utilizzando tecnologie moderne come Python, machine learning e integrazione con \gls{googlecloudplatform}.
+
+La maggior parte del tempo è stata dedicata all'analisi e preparazione dei dati di vendita, fase cruciale per garantire l'efficacia del sistema di raccomandazione. Il sistema sviluppato si è rivelato utile per l'azienda, fornendo sia informazioni sui trend di vendita utili per le decisioni strategiche, sia raccomandazioni personalizzate per gli utenti. Questo ha permesso di migliorare l'esperienza di acquisto, aumentando la soddisfazione del cliente e le vendite complessive.
+
+Il sistema è stato implementato in due tasks caricate nella piattaforma Oribea, una per l'analisi delle vendite e l'altra per il sistema di raccomandazione. Sono state inoltre fornite due corrispettive interfacce utente contenenti i form che permettono di accedere alle due funzionalità senza passare attraverso la piattaforma aziendale. Il sistema è stato testato con successo su 10 dataset di vendita reali, dimostrando la sua efficacia e utilità.
+
+È importante sottolineare, tuttavia, che il funzionamento del sistema è strettamente legato alla qualità e completezza del dataset fornito, che infatti deve possedere esattamente le colonne richieste per l'analisi delle vendite e deve possedere un numero sufficiente interazioni cliente-prodotto per generare raccomandazioni significative. Senza le colonne corrette, il sistema restituisce un errore e non può essere utilizzato. Inoltre, se il dataset è troppo scarso, le raccomandazioni generate potrebbero non essere utili o addirittura fuorvianti.
 
 
 \section{Raggiungimento degli obiettivi}
 
-- Tutti requisiti sono stati raggiunti
-- Non è stato raggiunto obiettivo OZ1 perchè troppo complesso
+Tutti i requisiti funzionali e non funzionali identificati nell'analisi iniziale e riportati nel capitolo \S\ref{cap:analisi-requisiti} sono stati raggiunti con successo.
+
+Tra gli obiettivi definiti nel \emph{Piano di Lavoro} e riportati alla sezione \ref{sec:obiettivi-stage}, l'unico obiettivo non soddisfatto è stato l'obiettivo opzionale OZ1 relativo all'implementazione di un chatbot che si potesse collegare ad entrambe le \gls{cloudfunctions} e potesse così fornire entrambi i servizi in modo conversazionale, che si è rivelato troppo complesso da realizzare nei tempi disponibili del tirocinio.
 
 
 \section{Conoscenze acquisite}
 
-Il tirocinio svolto ha soddisfatto appieno le aspettative
-cioè:
-- Approfondimento del linguaggio di programmazione Python;
-- Competenze di preparazione e analisi di gradi moli di dati;
-- competenze nella stesura di un'analisi delle vendite;
-- competenze nello sviluppo di un sistema di raccomandazione;
-- competenze nel collegamento a Google Cloud Platform;
-- competenze nell'integrazione con software aziendali pre-esistenti;
-- Competenze nello sviluppo frontend di form di interazione con l'utente;
-- Competenze di ottimizzazione delle performance di un sistema di analisi dati;
-- competenze nella stesura della documentazione di un progetto software.
+Il tirocinio svolto ha soddisfatto appieno le aspettative: nonostante il progetto sia risultato piuttosto impegnativo, è stato molto utile per approfondire diverse tecnologie ed algoritmi, per acquisire competenze nell’ambito dei sistemi di analisi dati e di raccomandazione e per sperimentare alcune reali applicazioni di strumenti di intelligenza artificiale.
+
+In particolare, le principali nuove conoscenze e competenze maturate durante il
+periodo di stage sono le seguenti:
+
+\begin{itemize}
+    \item Approfondimento del linguaggio di programmazione Python e delle sue librerie per data science;
+    \item Competenze nella preparazione e analisi di grandi volumi di dati;
+    \item Competenze nella stesura di analisi delle vendite e reportistica;
+    \item Competenze nello sviluppo di sistemi di raccomandazione nell'ambito e-commerce;
+    \item Competenze nel collegamento e utilizzo di Google Cloud Platform;
+    \item Competenze nell'integrazione con software aziendali pre-esistenti;
+    \item Competenze nello sviluppo frontend di interfacce utente;
+    \item Competenze di ottimizzazione delle performance di sistemi di analisi dati;
+    \item Competenze nella stesura della documentazione tecnica di progetti software.
+\end{itemize}
 
 
 \section{Possibili miglioramenti futuri}
 
-no implementazione per questioni di tempo. I possibili miglioramenti futuri sono:
-- chatbot
-- sistema di logging
+Nonostante il successo generale del sistema sviluppato, alcune funzionalità interessanti non sono state implementate per questioni di tempo e complessità. I possibili miglioramenti futuri includono:
 
+\begin{itemize}
+    \item Implementazione di un chatbot che possa interagire con gli utenti e fornire raccomandazioni personalizzate in modo conversazionale, e possa altrettanto comunicare l'analisi delle vendite ai proprietari dell'e-commerce, integrando così le due tasks sviluppate;
+    \item Implementazione di un sistema di logging avanzato per monitorare l'esecuzione e le performance delle due tasks;
+    \item Implementazione di algoritmi più sofisticati per migliorare la serendipità delle raccomandazioni.
+\end{itemize}
 
 \section{Valutazione personale}
 
-completamento di percorso universitario, in particolare affinamento di Ingegneria del SOftware.
-Utile per crescita professionale a livello tecnico.
-Purtroppo non è stata utile per crescita professionale a livello di team, in quanto il team era composto da una sola persona, e a livello di azienda, in quanto ho lavorato da remoto e non ho avuto modo di interagire con altri colleghi.
-Tuttavia, sono mediamente soddisfatto del risultato finale, in quanto ho raggiunto gli obiettivi prefissati e ho acquisito competenze utili che
-rappresentano il punto di partenza per il mio percorso di laurea magistrale.
+Questo progetto di tirocinio ha rappresentato un'importante tappa nel completamento del percorso universitario, permettendo di mettere in pratica le conoscenze teoriche acquisite, in particolare nell'ambito dell'Ingegneria del Software e dell'analisi dati.
+
+L'esperienza è stata particolarmente utile per la crescita professionale a livello tecnico, fornendo competenze pratiche direttamente applicabili nel mondo del lavoro. Tuttavia, lavorando principalmente da remoto e in autonomia, non è stato purtroppo possibile sviluppare competenze di lavoro di squadra o di dinamiche aziendali.
+
+Nonostante questa limitazione, sono complessivamente soddisfatto del risultato finale: gli obiettivi prefissati sono stati raggiunti e le competenze acquisite costituiscono una solida base per il proseguimento degli studi con la laurea magistrale e per future opportunità professionali nel campo dell'informatica e dell'analisi dati.
