@@ -167,7 +167,7 @@ Ad esempio, nel dataset \emph{Delikkaya}, che dispone delle seguenti colonne:
 Il modello LLM riconosce le colonne fondamentali e denominative, e restituisce le seguenti corrispondenze:
 \begin{align*}
 \text{"Order ID"} &\leftarrow \text{"InvoiceNo"} \\
-\text{"Order Date"} &\leftarrow \text{"InvoiceDate"} \\
+\text{"Order Timestamp"} &\leftarrow \text{"InvoiceDate"} \\
 \text{"Customer ID"} &\leftarrow \text{"CustomerID"} \\
 \text{"Customer Name"} &\leftarrow \text{"CustomerID"} \\
 \text{"Product SKU"} &\leftarrow \text{"StockCode"} \\
@@ -288,7 +288,7 @@ Anche in questo caso, per inserire il resoconto generato dall'LLM, è stato nece
 
 \section{Invio di email}
 
-Il più opzionale dei requisiti del progetto riguardanti l'output della task di analisi delle vendite è l'invio di una mail all'utente con il report allegato. Dunque, al termine dello sviluppo della task, è stato implementato anche questo requisito, che consente non solo un'altra modalità di recupero del report, ma anche un'altra modalità di recupero del token per accedere alle matrici di raccomandazione, il quale viene riportato nel corpo della mail.
+Una volta soddisfatti i requisiti obbligatori e quelli opzionali più significativi del progetto, è stato possibile curare aspetti più secondari ma che contribuiscono comunque al valore del risultato finale, in particolare l'invio di una mail all'utente con il report allegato. Dunque, al termine dello sviluppo della task di analisi delle vendite, per quest'ultima è stato implementato anche questo requisito, che consente non solo un'altra modalità di recupero del report, ma anche un'altra modalità di recupero del token per accedere alle matrici di raccomandazione, il quale viene riportato nel corpo della mail.
 
 Di fronte a questo requisito, sono state prese in considerazione varie possibilità.
 Inizialmente, si era pensato di inviare la mail da un indirizzo di posta elettronica esistente, ma, dopo consultazione con il tutor, per evitare la condivisione di credenziali riservate, si è deciso invece di contattare tramite API un server SMTP esterno che permetta di inviare mail inserendo un indirizzo di posta elettronica di mittente a piacere. Questo servizio non ha bisogno di un account di posta elettronica esistente, dunque come mittente è stato scelto l'indirizzo \texttt{no-reply@oribea.ai}, il cui nome invita l'utente a non rispondere, considerato che la risposta non verrebbe ricevuta.
@@ -300,7 +300,7 @@ Una volta realizzato il server SMTP e testato tramite \gls{curl}, è stato possi
 
 Un problema che si è presentato durante il testing del contatto via codice è stata la codifica dei caratteri speciali (come ad esempio le lettere accentate) nell'oggetto e nel corpo delle mail, che non veniva gestita correttamente dal server SMTP interno. Per risolvere è stato tuttavia sufficiente segnalare il problema al tutor, che ha risolto modificando appositamente il server, garantendo così il supporto all'invio di mail in lingue diverse dall'inglese e contenenti caratteri speciali.
 
-Attualmente il server SMTP interno di Oribea è hostato su una \gls{macchinadev}, e quindi servizi come Gmail e Outlook considerano le mail inviate come spam, e non le recapitano all'utente. Tuttavia, il server SMTP è stato testato con successo e funziona correttamente verso gli altri provider, come ad esempio Libero, e quindi si prevede che in futuro verrà hostato su una macchina di produzione in modo da poter inviare le mail senza problemi di spam.
+Attualmente il server SMTP interno di Oribea è ospitato su una \gls{macchinadev}, e quindi servizi come Gmail e Outlook considerano le mail inviate come spam, e non le recapitano all'utente. Tuttavia, il server SMTP è stato testato con successo nell'invio di posta elettronica verso altri provider, come ad esempio Libero, e quindi si prevede che in futuro verrà ospitato su una \gls{macchinaproduzione} in modo da poter inviare le mail senza problemi di spam verso ogni servizio esistente.
 
 
 \section{Le matrici di raccomandazione}
