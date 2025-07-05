@@ -56,6 +56,9 @@
 \newacronym[description={\glslink{nlp}{Natural Language Processing}}]
     {nlp_acr}{NLP}{Natural Language Processing}
 
+\newacronym[description={\glslink{gcsfs}{Google Cloud Storage File System}}]
+    {gcsfs_acr}{GCSFS}{Google Cloud Storage File System}
+
 
 
 
@@ -835,4 +838,18 @@
     text=Natural Language Processing,
     sort=nlp,
     description={ramo dell'intelligenza artificiale che si occupa dell'interazione tra computer e linguaggio umano, includendo tecniche per l'analisi, comprensione e generazione di testo in linguaggio naturale}
+}
+
+\newglossaryentry{google.cloud.storage} {
+    name=google.cloud.storage,
+    text=google.cloud.storage,
+    sort=googlecloudstorage,
+    description={libreria ufficiale di Google per interagire con Google Cloud Storage, che consente di gestire bucket, caricare e scaricare file, e gestire i permessi di accesso ai file. È caratterizzata da completezza funzionale e supporto ufficiale di Google}
+}
+
+\newglossaryentry{gcsfs} {
+    name=\glslink{gcsfs_acr}{gcsfs},
+    text=gcsfs,
+    sort=gcsfs,
+    description={libreria che fornisce un file system virtuale per Google Cloud Storage, consentendo di interagire con i bucket come se fossero normali directory locali. È caratterizzata da facilità d'uso e integrazione con Pandas e NumPy per operazioni di lettura e scrittura dirette su Google Cloud Storage}
 }
