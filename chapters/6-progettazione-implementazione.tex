@@ -3,6 +3,7 @@
 
 \intro{In questo capitolo, vengono descritte le scelte progettuali e le tecniche implementative utilizzate per realizzare il report delle vendite ed il sistema di raccomandazione. Si inizia con una panoramica del flusso delle attività, seguita da una descrizione delle tecnologie e degli strumenti utilizzati. Successivamente, si approfondiscono i vari componenti del sistema sviluppato.}
 
+
 \section{Flusso delle attività}
 
 \begin{figure}[!h]
@@ -155,6 +156,27 @@ A questo punto, procedere meccanicamente non è più possibile, poichè ogni fil
     \item \textbf{extract\_date\_components}: questa funzione prende in input il nome della colonna contenente il timestamp degli ordini e un parametro che indica se nel timestamp viene prima il valore del giorno o del mese, e crea quattro nuove colonne nel dataframe, che contengono rispettivamente il giorno, la settimana, il mese e l'anno dell'ordine. Inoltre, viene gestita la possibilità che la stessa colonna di timestamp presenti i suoi valori in due formati diversi, provando un secondo tentativo di parsing della data in caso di errore nel primo tentativo. Se neanche il secondo tentativo va a buon fine, vengono rimosse le righe contenenti i timestamp non validi.
 \end{itemize}
 
+Ad esempio, nel dataset \emph{Delikkaya}, che dispone delle seguenti colonne:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{preprocessing/Colonne Delikkaya originali.png}
+    \caption{Colonne originali del dataset Delikkaya}
+    \label{fig:columns-delikkaya-original}
+\end{figure}
+
+Il modello LLM riconosce le colonne fondamentali e denominative, e restituisce le seguenti corrispondenze:
+\begin{align*}
+\text{"Order ID"} &\leftarrow \text{"InvoiceNo"} \\
+\text{"Order Date"} &\leftarrow \text{"InvoiceDate"} \\
+\text{"Customer ID"} &\leftarrow \text{"CustomerID"} \\
+\text{"Customer Name"} &\leftarrow \text{"CustomerID"} \\
+\text{"Product SKU"} &\leftarrow \text{"StockCode"} \\
+\text{"Product Name"} &\leftarrow \text{"Description"} \\
+\text{"Unit Price"} &\leftarrow \text{"UnitPrice"} \\
+\text{"Quantity"} &\leftarrow \text{"Quantity"} \\
+\text{"Total Price"} &\leftarrow \text{Non presente (verrà calcolata tramite "Unit Price" e "Quantity")} \\
+\end{align*}
+
 Terminata la parte di preprocessing dipendente dal dataset, vengono effettuate alcune ultime elaborazioni meccaniche:
 \begin{itemize}
     \item \textbf{create\_iso\_date\_columns}: questa funzione crea due nuove colonne nel dataframe, che contengono rispettivamente la data in formato ISO e il mese in formato ISO, a partire dalle colonne del giorno, del mese e dell'anno create in precedenza;
@@ -164,6 +186,14 @@ Terminata la parte di preprocessing dipendente dal dataset, vengono effettuate a
 \end{itemize}
 
 Dopo aver eseguito tutte queste operazioni, il dataframe è pronto per essere utilizzato per l'analisi delle vendite e la generazione delle matrici di raccomandazione. In particolare, il dataframe contiene le colonne fondamentali e denominative standardizzate, le colonne con i componenti della data degli ordini, e le colonne con i prezzi e le quantità formattate numericamente. Inoltre, il dataframe è ordinato cronologicamente in base alla data degli ordini, e contiene solo le colonne necessarie per l'analisi dei dati.
+
+Per il dataset \emph{Delikkaya}, le cui colonne originali sono mostrate in figura \ref{fig:columns-delikkaya-original}, le colonne del dataframe finale dopo il preprocessing risultano essere le seguenti:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{preprocessing/Colonne Delikkaya preprocessate.png}
+    \caption{Colonne del dataset Delikkaya dopo il preprocessing}
+    \label{fig:columns-delikkaya-final}
+\end{figure}
 
 Inizialmente, per migliorare il report delle vendite con ulteriori informazioni sui prodotti, era stato pensato di aggiungere due altre colonne al dataframe, una per la marca e una per la categoria del prodotto. Tuttavia, come descritto nelle sezioni \S\ref{sec:recognition-brands} e \S\ref{sec:recognition-categories}, ciò non è stato possibile.
 
