@@ -337,3 +337,36 @@
 
   \endlastfoot
 }
+
+
+
+% A new color for code highlighting
+
+\definecolor{darkgreen}{RGB}{0,100,0}
+
+
+
+% Python code highlighting with listings
+
+% \makeatletter permette a LaTeX di interpretare correttamente il contenuto del comando multi-riga e commenti nel mezzo. Il problema era che il parser di LaTeX veniva chiuso prematuramente da un commento o da un a capo non gestito, prima che il comando \lstset venisse chiuso correttamente.
+\makeatletter
+\lstset{%
+  language=Python,
+  backgroundcolor=\color{gray!10},
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\tiny,
+  breaklines=true,
+  frame=single,
+  stringstyle=\color{darkgreen},
+  keywordstyle=\color{blue},         % parole chiave Python
+  keywordstyle=[2]\color{orange},    % funzioni e metodi noti
+  keywordstyle=[3]\color{gray},      % variabili personalizzate
+  morekeywords=[2]{cosine_similarity, dot, encode, groupby, to_dict, first, abs, sum, div, values, T},
+  morekeywords=[3]{orders_df, user_prod, item_vectors, item_sim_matrix,
+    sim_abs_sum, sim_norm, R, S_norm_T, pred_vals,
+    purchase_pred_matrix, sku_to_first_name, name_embeddings,
+    product_product, user_item_similarityPred, user_product,
+    name_list, model, PRODUCT_SKU, PRODUCT_NAME, CUSTOMER_ID}
+}
+\makeatother
