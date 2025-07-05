@@ -41,59 +41,43 @@ Si segnala brevemente, tuttavia, che gli output delle due task non sono stati al
 
 Di seguito viene data una panoramica delle tecnologie e strumenti utilizzati per lo sviluppo delle due task di analisi delle vendite e raccomandazione di prodotti e clienti. Le tecnologie sono state scelte in base alle esigenze del progetto, alla facilità d'uso e alla compatibilità con le altre componenti del sistema.
 
-\subsection{Pandas}
-\gls{pandas} è una libreria Python per l'analisi dei dati, che fornisce strutture dati e funzioni per la manipolazione e l'analisi dei dati. È stata utilizzata per leggere i file CSV contenenti i dati delle vendite e per elaborare i dati in fase di preprocessing.
-
-\subsection{Babel}
-\gls{babel} è una libreria Python per la gestione della localizzazione e internazionalizzazione delle applicazioni. È stata utilizzata per gestire le date nel report, in modo da poterle visualizzare nel formato corretto in base alla lingua selezionata dall'utente.
-
-\subsection{Anthropic}
-\gls{anthropic} è una libreria che consente di interagire con i modelli di linguaggio di grandi dimensioni (\gls{llm}) sviluppati dall'azienda Anthropic tramite le loro API. In particolare, è stato usato il modello Claude 3.7 Sonnet per riconoscere le colonne del file CSV contenente i dati delle vendite, e per generare il resoconto finale che fa da ultimo passaggio del report delle vendite.
-
-\subsection{Matplotlib}
-\gls{matplotlib} è una libreria Python per la creazione di grafici e visualizzazioni dei dati. È stata utilizzata per generare i grafici presenti nel report delle vendite, in modo da rendere i dati più comprensibili e visivamente accattivanti.
-
-\subsection{Pillow}
-\gls{pillow} è una libreria Python per la manipolazione delle immagini. È stata utilizzata per generare le immagini dei grafici creati con Matplotlib e per la loro conversione in \gls{base64}, in modo da poterli inserire nel report delle vendite in formato PDF ed HTML.
-
-\subsection{ReportLab}
-\gls{reportlab} è una libreria Python per la generazione di documenti PDF, che fornisce una disposizione dinamica del contenuto in pagine. È stata utilizzata per creare il report delle vendite in formato PDF, in modo da renderlo scaricabile dal portale Oribea e da poterlo inviare via email all'utente.
-
-\subsection{Jinja2}
-\gls{jinja2} è un \gls{motoretemplate} per Python, che consente di generare documenti HTML in modo dinamico. È stata utilizzata per creare il report delle vendite in formato HTML, in modo da renderlo visualizzabile direttamente nel browser e da poterlo anche inviare via email all'utente.
-
-\subsection{Server SMTP interno}
-Per l'invio di email, è stato utilizzato un server \gls{smtp} messo a disposizione da Oribea, che consente di inviare mail personalizzate senza avere la necessità di utilizzare un indirizzo mail esistente o di collegarsi ad un servizio esterno a pagamento. 
-
-\subsection{SentenceTransformers}
-\gls{sentencetransformers} è una libreria Python per la creazione di modelli di linguaggio basati su trasformatori, che consente di generare rappresentazioni vettoriali di frasi e documenti. È stata utilizzata per calcolare le \gls{similarita} tra le descrizioni dei prodotti e i nomi dei prodotti, in modo da poter generare le raccomandazioni. In particolare, è stato utilizzato il modello \emph{all-MiniLM-L6-v2} per generare le rappresentazioni vettoriali delle descrizioni dei prodotti e dei nomi dei prodotti, e per calcolare la similarità tra di essi.
-
-\subsection{Scikit-learn}
-\gls{scikitlearn} è una libreria Python per il machine learning, che fornisce strumenti per la creazione e l'addestramento di modelli di apprendimento automatico. È stata utilizzata per calcolare la similarità tra le descrizioni dei prodotti e i nomi dei prodotti, in modo da poter generare le raccomandazioni. In particolare, è stato utilizzato il metodo \emph{cosine similarity} per calcolare la similarità tra i vettori delle descrizioni dei prodotti e i vettori dei nomi dei prodotti.
-
-\subsection{Zarr}
-\gls{zarr} è una libreria Python per la gestione di array multidimensionali, che consente di memorizzare e gestire grandi quantità di dati in modo efficiente. È stata utilizzata per memorizzare su cloud le matrici di raccomandazione generate dalla prima task, in modo da poterle utilizzare successivamente per le raccomandazioni nella seconda task.
-
-\subsection{Google Cloud Storage}
-\gls{googlecloudstorage} è un servizio di archiviazione di oggetti su cloud fornito da Google. È stato utilizzato per memorizzare i file generati dalla task di analisi delle vendite, come il report in formato PDF ed HTML, e le matrici di raccomandazione generate dalla task di raccomandazione di prodotti e clienti. In particolare, sono stati utilizzati i pacchetti \emph{google.cloud.storage} e \emph{gcsfs} per interagire con il servizio: \emph{google.cloud.storage} è stato utilizzato per scrivere i file, mentre \emph{gcsfs} è stato utilizzato per leggerli.
-
-\subsection{Google Cloud Functions}
-\gls{googlecloudfunctions} è un servizio di calcolo serverless fornito da Google, che consente di eseguire codice in risposta a eventi. È stato utilizzato per caricarvi il codice delle due task di analisi delle vendite e raccomandazione di prodotti e clienti, in modo da poterle eseguire in modo scalabile e senza doversi preoccupare della gestione dei server. Il portale Oribea è configurato per invocare le funzioni di Google Cloud Functions quando l'utente richiede l'esecuzione delle task.
-
-\subsection{Numpy}
-\gls{numpy} è una libreria Python per il calcolo scientifico, che fornisce strutture dati e funzioni per la manipolazione di array multidimensionali. È stata utilizzata per calcolare le metriche di valutazione delle raccomandazioni.
-
-\subsection{Black}
-\gls{black} è un formattatore di codice Python che consente di mantenere uno stile di codifica coerente e leggibile. È stato utilizzato per formattare il codice delle due task, in modo da renderlo più leggibile e mantenere uno stile di codifica uniforme.
-
-\subsection{Ruff}
-\gls{ruff} è un linter per Python che consente di rilevare errori di sintassi e problemi di stile nel codice. È stato utilizzato per verificare la correttezza del codice delle due task, in modo da garantire che fosse privo di errori e conforme agli standard di codifica.
-
-\subsection{MyPy}
-\gls{mypy} è un tipo di controllo per Python che consente di verificare la correttezza dei tipi di dati nel codice. È stato utilizzato per verificare la correttezza dei tipi di dati delle due task, in modo da garantire che il codice fosse privo di errori di tipo e conforme agli standard di codifica.
-
-\subsection{Pytest}
-\gls{pytest} è un framework di testing per Python che consente di scrivere e eseguire test automatizzati. È stato utilizzato per testare le due task, in modo da garantire che funzionassero correttamente e fossero prive di errori. I test sono stati scritti in modo da coprire i casi d'uso principali delle due task, e sono stati eseguiti automaticamente durante lo sviluppo per garantire la qualità del codice.
+\begin{itemize}
+    \item \textbf{\gls{pandas}}\footcite{site:pandas}: è una libreria Python per l'analisi dei dati, che fornisce strutture dati e funzioni per la manipolazione e l'analisi dei dati. È stata utilizzata per leggere i file CSV contenenti i dati delle vendite e per elaborare i dati in fase di preprocessing;
+    
+    \item \textbf{\gls{babel}}\footcite{site:babel}: è una libreria Python per la gestione della localizzazione e internazionalizzazione delle applicazioni. È stata utilizzata per gestire le date nel report, in modo da poterle visualizzare nel formato corretto in base alla lingua selezionata dall'utente;
+    
+    \item \textbf{\gls{anthropic}}\footcite{site:anthropic}: è una libreria che consente di interagire con i modelli di linguaggio di grandi dimensioni (\gls{llm}) sviluppati dall'azienda Anthropic tramite le loro API. In particolare, è stato usato il modello Claude 3.7 Sonnet per riconoscere le colonne del file CSV contenente i dati delle vendite, e per generare il resoconto finale che fa da ultimo passaggio del report delle vendite;
+    
+    \item \textbf{\gls{matplotlib}}\footcite{site:matplotlib}: è una libreria Python per la creazione di grafici e visualizzazioni dei dati. È stata utilizzata per generare i grafici presenti nel report delle vendite, in modo da rendere i dati più comprensibili e visualmente accattivanti;
+    
+    \item \textbf{\gls{pillow}}\footcite{site:pillow}: è una libreria Python per la manipolazione delle immagini. È stata utilizzata per generare le immagini dei grafici creati con Matplotlib e per la loro conversione in \gls{base64}, in modo da poterli inserire nel report delle vendite in formato PDF ed HTML;
+    
+    \item \textbf{\gls{reportlab}}\footcite{site:reportlab}: è una libreria Python per la generazione di documenti PDF, che fornisce una disposizione dinamica del contenuto in pagine. È stata utilizzata per creare il report delle vendite in formato PDF, in modo da renderlo scaricabile dal portale Oribea e da poterlo inviare via email all'utente;
+    
+    \item \textbf{\gls{jinja2}}\footcite{site:jinja2}: è un \gls{motoretemplate} per Python, che consente di generare documenti HTML in modo dinamico. È stata utilizzata per creare il report delle vendite in formato HTML, in modo da renderlo visualizzabile direttamente nel browser e da poterlo anche inviare via email all'utente;
+    
+    \item \textbf{Server SMTP interno}: per l'invio di email, è stato utilizzato un server \gls{smtp} messo a disposizione da Oribea, che consente di inviare mail personalizzate senza avere la necessità di utilizzare un indirizzo mail esistente o di collegarsi ad un servizio esterno a pagamento;
+    
+    \item \textbf{\gls{sentencetransformers}}\footcite{site:sentence-transformers}: è una libreria Python per la creazione di modelli di linguaggio basati su trasformatori, che consente di generare rappresentazioni vettoriali di frasi e documenti. È stata utilizzata per calcolare le \gls{similarita} tra le descrizioni dei prodotti e i nomi dei prodotti, in modo da poter generare le raccomandazioni. In particolare, è stato utilizzato il modello \emph{all-MiniLM-L6-v2} per generare le rappresentazioni vettoriali delle descrizioni dei prodotti e dei nomi dei prodotti, e per calcolare la similarità tra di essi;
+    
+    \item \textbf{\gls{scikitlearn}}\footcite{site:scikit-learn}: è una libreria Python per il machine learning, che fornisce strumenti per la creazione e l'addestramento di modelli di apprendimento automatico. È stata utilizzata per calcolare la similarità tra le descrizioni dei prodotti e i nomi dei prodotti, in modo da poter generare le raccomandazioni. In particolare, è stato utilizzato il metodo \emph{cosine similarity} per calcolare la similarità tra i vettori delle descrizioni dei prodotti e i vettori dei nomi dei prodotti;
+    
+    \item \textbf{\gls{zarr}}\footcite{site:zarr}: è una libreria Python per la gestione di array multidimensionali, che consente di memorizzare e gestire grandi quantità di dati in modo efficiente. È stata utilizzata per memorizzare su cloud le matrici di raccomandazione generate dalla prima task, in modo da poterle utilizzare successivamente per le raccomandazioni nella seconda task;
+    
+    \item \textbf{\gls{googlecloudstorage}}\footcite{site:google-cloud-storage}: è un servizio di archiviazione di oggetti su cloud fornito da Google. È stato utilizzato per memorizzare i file generati dalla task di analisi delle vendite, come il report in formato PDF ed HTML, e le matrici di raccomandazione generate dalla task di raccomandazione di prodotti e clienti. In particolare, sono stati utilizzati i pacchetti \emph{google.cloud.storage} e \emph{gcsfs} per interagire con il servizio: \emph{google.cloud.storage} è stato utilizzato per scrivere i file, mentre \emph{gcsfs} è stato utilizzato per leggerli;
+    
+    \item \textbf{\gls{googlecloudfunctions}}\footcite{site:google-cloud-functions}: è un servizio di calcolo serverless fornito da Google, che consente di eseguire codice in risposta a eventi. È stato utilizzato per caricarvi il codice delle due task di analisi delle vendite e raccomandazione di prodotti e clienti, in modo da poterle eseguire in modo scalabile e senza doversi preoccupare della gestione dei server. Il portale Oribea è configurato per invocare le funzioni di Google Cloud Functions quando l'utente richiede l'esecuzione delle task;
+    
+    \item \textbf{\gls{numpy}}\footcite{site:numpy}: è una libreria Python per il calcolo scientifico, che fornisce strutture dati e funzioni per la manipolazione di array multidimensionali. È stata utilizzata per calcolare le metriche di valutazione delle raccomandazioni;
+    
+    \item \textbf{\gls{black}}\footcite{site:black}: è un formattatore di codice Python che consente di mantenere uno stile di codifica coerente e leggibile. È stato utilizzato per formattare il codice delle due task, in modo da renderlo più leggibile e mantenere uno stile di codifica uniforme;
+    
+    \item \textbf{\gls{ruff}}\footcite{site:ruff}: è un linter per Python che consente di rilevare errori di sintassi e problemi di stile nel codice. È stato utilizzato per verificare la correttezza del codice delle due task, in modo da garantire che fosse privo di errori e conforme agli standard di codifica;
+    
+    \item \textbf{\gls{mypy}}\footcite{site:mypy}: è un tipo di controllo per Python che consente di verificare la correttezza dei tipi di dati nel codice. È stato utilizzato per verificare la correttezza dei tipi di dati delle due task, in modo da garantire che il codice fosse privo di errori di tipo e conforme agli standard di codifica;
+    
+    \item \textbf{\gls{pytest}}\footcite{site:pytest}: è un framework di testing per Python che consente di scrivere e eseguire test automatizzati. È stato utilizzato per testare le due task, in modo da garantire che funzionassero correttamente e fossero prive di errori. I test sono stati scritti in modo da coprire i casi d'uso principali delle due task, e sono stati eseguiti automaticamente durante lo sviluppo per garantire la qualità del codice.
+\end{itemize}
 
 
 \section{Architettura del sistema}
