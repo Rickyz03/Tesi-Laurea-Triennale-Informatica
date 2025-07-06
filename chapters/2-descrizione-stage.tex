@@ -1,7 +1,7 @@
 \chapter{Descrizione dello stage}
 \label{cap:descrizione-stage}
 
-\intro{In questo capitolo viene presentata una descrizione dell’idea e delle tecnologie utilizzate durante il percorso di stage, e una panoramica del modo di lavorare dell'azienda. Viene inoltre presentata un'analisi dei rischi e delle problematiche riscontrate durante lo sviluppo del progetto.}\\
+\intro{In questo capitolo viene presentata una descrizione dell’idea del progetto di stage, e una panoramica del modo di lavorare dell'azienda. Viene inoltre presentata un'analisi dei rischi e delle problematiche riscontrate prima e durante lo sviluppo del progetto.}\\
 
 \section{Introduzione al progetto}
 
@@ -13,15 +13,15 @@ In questo contesto, la startup Oribea, che propone soluzioni digitali intelligen
 
 Il progetto di stage si inserisce in questo scenario, con l'obiettivo di sviluppare una Task che consenta di generare un report delle vendite e un sistema di raccomandazione a partire da un file degli ordini, e un’altra Task che permetta di sfruttare il sistema di raccomandazione per generare suggerimenti personalizzati per un determinato cliente o prodotto.
 
-Le Task di Oribea sono implementate come funzioni serverless, ovvero funzioni che vengono eseguite in modo autonomo e scalabile, senza la necessità di gestire l'infrastruttura sottostante, e sono caricate ed eseguite su Google \gls{cloudfunctions}. Lo stato delle funzioni viene salvato in Google \gls{cloudstorage}{}. Il compito di stage prevede quindi lo sviluppo di due Cloud Functions serverless che implementano le funzionalità richieste, la loro comunicazione tramite Cloud Storage e la loro integrazione con la piattaforma Oribea.
+Le Task di Oribea sono implementate come funzioni serverless, ovvero funzioni che vengono eseguite in modo autonomo e scalabile, senza la necessità di gestire l'infrastruttura sottostante, e sono caricate ed eseguite su \gls{googlecloudfunctions}. Lo stato delle funzioni viene salvato in \gls{googlecloudstorage}. Il compito di stage prevede quindi lo sviluppo di due \gls{cloudfunctions} che implementano le funzionalità richieste, la loro comunicazione tramite \gls{cloudstorage} e la loro integrazione con la piattaforma Oribea.
 
 
 \section{Way of working e strumenti utilizzati}
 \label{sec:way-of-working}
 
-L’azienda Oribea adotta un modello di sviluppo \gls{agile}{}, con l’obiettivo di monitorare e controllare il progetto in modo flessibile e continuo, suddividendo le attività in piccoli incrementi e con una collaborazione asincrona e distribuita.
+L’azienda Oribea adotta un modello di sviluppo \gls{agile}, con l’obiettivo di monitorare e controllare il progetto in modo flessibile e continuo, suddividendo le attività in piccoli incrementi e con una collaborazione asincrona e distribuita.
 
-In particolare, il modello di sviluppo adottato è \gls{scrum}{}, che prevede la suddivisione del progetto in sprint, ovvero periodi di tempo di durata fissa, in cui vengono pianificate le attività da svolgere e i relativi obiettivi da raggiungere. All'inizio del progetto è stato scelto di comune accordo la lunghezza per gli sprint di una settimana. Al termine di ogni sprint, è stato effettuato un incontro approfondito con il tutor aziendale, per discutere lo stato di avanzamento del progetto e le attività da svolgere per il successivo sprint.
+In particolare, il modello di sviluppo adottato è \gls{scrum}, che prevede la suddivisione del progetto in sprint, ovvero periodi di tempo di durata fissa, in cui vengono pianificate le attività da svolgere e i relativi obiettivi da raggiungere. All'inizio del progetto è stato scelto di comune accordo la lunghezza per gli sprint di una settimana. Al termine di ogni sprint, è stato effettuato un incontro approfondito con il tutor aziendale, per discutere lo stato di avanzamento del progetto e le attività da svolgere per il successivo sprint.
 
 L’obiettivo del modello è dare maggiore importanza al ciclo di vita del software e dei processi correlati, piuttosto che al prodotto finale, con il fine ultimo di migliorare la qualità del prodotto stesso.
 
@@ -32,12 +32,13 @@ Gli strumenti principali utilizzati includono:
     \item \textbf{GitHub}: per la gestione del codice sorgente e la collaborazione tra sviluppatori;
     \item \textbf{Slack}: per la comunicazione interna e la gestione dei progetti;
     \item \textbf{Notion}: per la documentazione del progetto;
-    \item \textbf{StarUML}: per la creazione dei diagrammi UML.
+    \item \textbf{StarUML}: per la creazione dei diagrammi \gls{uml}.
 \end{itemize}
+
 
 \section{Analisi preventiva dei rischi}
 
-Durante la fase di analisi iniziale sono stati individuati alcuni possibili rischi a cui si potrà andare incontro.
+Durante la fase di analisi iniziale sono stati individuati alcuni possibili rischi a cui si potrebbe andare incontro durante lo stage.
 Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a tali rischi.
 
 \begin{risk}{Cambiamento dei requisiti in corso di sviluppo}
@@ -53,7 +54,7 @@ Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a ta
 \end{risk}
 
 \begin{risk}{Risposta dell'LLM imprecisa}
-    \riskdescription{l'LLM (Large Language Model) utilizzato per generare il report delle vendite potrebbe produrre risposte imprecise o non pertinenti, a causa di una cattiva interpretazione del file degli ordini o di una mancanza di contesto. Questo potrebbe portare a report errati o fuorvianti, che potrebbero influenzare negativamente le decisioni aziendali. Inoltre, nell'ambito del preprocessing dei dati, l'LLM potrebbe non essere in grado di riconoscere correttamente le colonne da etichettare semanticamente, causando errori nella generazione del report e del sistema di raccomandazione}
+    \riskdescription{l'\gls{llm} (Large Language Model) utilizzato per generare il report delle vendite potrebbe produrre risposte imprecise o non pertinenti, a causa di una cattiva interpretazione del file degli ordini o di una mancanza di contesto. Questo potrebbe portare a report errati o fuorvianti, che potrebbero influenzare negativamente le decisioni aziendali. Inoltre, nell'ambito del preprocessing dei dati, l'LLM potrebbe non essere in grado di riconoscere correttamente le colonne da etichettare semanticamente, causando errori nella generazione del report e del sistema di raccomandazione}
     \risksolution{è importante testare l'LLM con diversi esempi di file degli ordini e verificare la qualità delle risposte generate. In caso di risposte imprecise, è possibile migliorare il prompt utilizzato per l'LLM, fornendo istruzioni più chiare e dettagliate. Inoltre, è utile implementare un sistema di validazione dei dati in ingresso, per garantire che il file degli ordini sia formattato correttamente e contenga le informazioni necessarie. Infine, si può considerare l'utilizzo di tecniche di post-elaborazione per correggere eventuali errori nelle risposte dell'LLM}
     \label{risk:bad-llm-response}
 \end{risk}

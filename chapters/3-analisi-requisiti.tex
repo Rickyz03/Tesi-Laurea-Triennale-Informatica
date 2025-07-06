@@ -24,8 +24,8 @@ Essi sono i seguenti:
     \begin{itemize}
         \item \textbf{OO1}: acquisizione di competenze pratiche su Oribea/DialogSphere;
         \item \textbf{OO2}: connessione a database e gestione dati aziendali o pubblici;
-        \item \textbf{OO3}: implementazione di un Task AI che genera un sistema di raccomandazioni e report automatico basato su analisi delle vendite;
-        \item \textbf{OO4}: implementazione di un Task AI che permette di raccomandare prodotti ad un cliente in base ai suoi dati di vendita, e viceversa di raccomandare clienti ad un prodotto;
+        \item \textbf{OO3}: implementazione di una Task AI che genera un sistema di raccomandazioni e report automatico basato su analisi delle vendite;
+        \item \textbf{OO4}: implementazione di una Task AI che permette di raccomandare prodotti ad un cliente in base ai suoi dati di vendita, e viceversa di raccomandare clienti ad un prodotto;
         \item \textbf{OO5}: generazione automatica di report con output coerente, chiaro e adattabile;
         \item \textbf{OO6}: testing e documentazione completa del prototipo.
     \end{itemize}
@@ -791,7 +791,7 @@ RDF-9 & Il sistema deve permettere all'utente di scaricare il report generato da
 RZF-10 & Il sistema deve inviare il report generato dalla task di analisi delle vendite all'indirizzo email inserito dall'utente. Il testo della mail deve contenere l'HTML del report, e i file PDF e HTML devono essere inviati in allegato. & \hyperlink{UC18}{UC18} \\ \hline
 ROF-11 & Nel report delle vendite generato, l'utente deve visualizzare alcuni dati numerici legati alle vendite. & Azienda, \hyperlink{18.1}, \hyperlink{UC18.1.1}{UC18.1.1}, \hyperlink{UC18.1.2}{UC18.1.2}, \hyperlink{UC18.1.3}{UC18.1.3}, \hyperlink{UC18.1.4}{UC18.1.4} e \hyperlink{UC18.1.5}{UC18.1.5} \\ \hline
 ROF-12 & Nel report delle vendite generato, l'utente deve visualizzare alcuni grafici generati a partire dai dati delle vendite. & Azienda, \hyperlink{UC18.2}{UC18.2}, \hyperlink{UC18.2.1}{UC18.2.1}, \hyperlink{UC18.2.2}{UC18.2.2}, \hyperlink{UC18.2.3}{UC18.2.3}, \hyperlink{UC18.2.4}{UC18.2.4}, \hyperlink{UC18.2.5}{UC18.2.5}, \hyperlink{UC18.2.6}{UC18.2.6} e \hyperlink{UC18.2.7}{UC18.2.7} \\ \hline
-ROF-13 & Nel report delle vendite generato, l'utente deve visualizzare un resoconto dell'analisi delle vendite, generato dall'LLM. & Azienda, \hyperlink{UC18.3}{UC18.3} \\ \hline
+ROF-13 & Nel report delle vendite generato, l'utente deve visualizzare un resoconto dell'analisi delle vendite, generato dall'\gls{llm}. & Azienda, \hyperlink{UC18.3}{UC18.3} \\ \hline
 RZF-14 & Nella mail inviata all'utente, l'utente deve visualizzare il token identificativo del bucket di Google Cloud Storage in cui è stato salvato il file degli ordini, e deve poterlo copiare negli appunti. & Azienda, \hyperlink{UC18.4}{UC18.4} \\ \hline
 ROF-15 & Il sistema deve permettere all'utente di inserire il token identificativo del bucket di Google Cloud Storage in cui è stato salvato il file degli ordini, il quale era stato generato e mostrato nella task di analisi delle vendite. & \hyperlink{UC19}{UC19} \\ \hline
 ROF-16 & Il sistema deve permettere all'utente di selezionare il tipo di raccomandazione da svolgere, tra "Raccomandare prodotti per un cliente" e "Raccomandare clienti per un prodotto". & \hyperlink{UC20}{UC20}, \hyperlink{UC21}{UC21} e \hyperlink{UC22}{UC22} \\ \hline
