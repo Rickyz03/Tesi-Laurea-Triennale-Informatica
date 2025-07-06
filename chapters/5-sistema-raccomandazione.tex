@@ -277,6 +277,8 @@ Per svolgere il confronto, è stato scelto un dataset, ovvero \texttt{orders\_ex
 
 Segue l'immagine \ref{fig:recbole-surprise-orders-export} degli acquisti (o interazioni) del cliente \texttt{Ds-trading srl Ds-trading GmbH}:
 
+\newpage
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{recbole surprise comparison/Ds-trading purchased products.png}
@@ -286,7 +288,7 @@ Segue l'immagine \ref{fig:recbole-surprise-orders-export} degli acquisti (o inte
 
 Si può notare come il cliente abbia acquistato prettamente ferri da stiro, pulitori a vapore o riscaldatori d'ambiente, e dunque il sistema di raccomandazione dovrebbe raccomandare prodotti simili a questi, come ad esempio prodotti per la casa o elettrodomestici.
 
-Il sistema di raccomandazione sviluppato durante lo stage raccomanda i seguenti prodotti al cliente \texttt{Ds-trading srl Ds-trading GmbH}:
+Il sistema di raccomandazione sviluppato durante lo stage raccomanda i seguenti prodotti al cliente \texttt{Ds-trading srl Ds-trading GmbH}, mostrati in figura \ref{fig:our-system-recommendations}:
 
 \begin{figure}[h]
     \centering
@@ -297,7 +299,9 @@ Il sistema di raccomandazione sviluppato durante lo stage raccomanda i seguenti 
 
 Si può notare come il sistema abbia consigliato prodotti simili a quelli già acquistati dal cliente, prettamente ferri da stiro e pulitori a vapore, che dimostrano che la similarità tra i nomi dei prodotti ha avuto un forte impatto nelle raccomandazioni. Come previsto, questo sistema lascia poco spazio alla serendipità, siccome solamente due prodotti in fondo al ranking, la friggitrice e la tazza, non sono direttamente collegati al cliente. Quest'ultima è stata una scelta implementativa chiara, poichè si è voluto creare un sistema di raccomandazione che fosse il più possibile pertinente per il cliente, e dunque che raccomandasse prodotti simili a quelli già acquistati.
 
-Per quanto riguarda \emph{RecBole}, il sistema, prima di poter svolgere le predizioni, ha dovuto essere addestrato sui dati del cliente tramite l'algoritmo \emph{BPR}. Questa immagine rappresenta la parte finale dell'esito di training:
+Per quanto riguarda \emph{RecBole}, il sistema, prima di poter svolgere le predizioni, ha dovuto essere addestrato sui dati del cliente tramite l'algoritmo \emph{BPR}. L'immagine \ref{fig:recbole-training-outcome} rappresenta la parte finale dell'esito del training.
+
+\newpage
 
 \begin{figure}[h]
     \centering
@@ -308,7 +312,7 @@ Per quanto riguarda \emph{RecBole}, il sistema, prima di poter svolgere le predi
 
 Si può notare come il training, pur avendo avuto successo, abbia mantenuto al suo termine un punteggio di loss molto alto (non è mai sceso sotto il 5), che indica che il sistema non è riuscito a generalizzare bene sui dati. Inoltre, il validation score non è mai riuscito a superare l'11\%, che è un punteggio assai basso, sia per quanto riguarda la metrica \gls{recallatk}, sia per quanto riguarda \gls{ndcgatk}. Questo è stato attribuito al fatto che nei dataset disponibili sono presenti molti clienti occasionali che non hanno interagito con un numero sufficiente di prodotti per poter fare raccomandazioni significative, e questo ha messo in crisi il sistema di raccomandazione di \emph{RecBole} basato prettamente su Collaborative Filtering.
 
-Una volta addestrato, il sistema ha restituito le seguenti raccomandazioni per il cliente \texttt{Ds-trading srl Ds-trading GmbH}:
+Una volta addestrato, il sistema ha restituito le seguenti raccomandazioni per il cliente \texttt{Ds-trading srl Ds-trading GmbH}, mostrate in figura \ref{fig:recbole-recommendations}:
 
 \begin{figure}[h]
     \centering
@@ -319,7 +323,7 @@ Una volta addestrato, il sistema ha restituito le seguenti raccomandazioni per i
 
 I risultati ottenuti da \emph{RecBole} sono stati deludenti, poichè il sistema ha raccomandato prodotti che non sono affatto simili a quelli già acquistati dal cliente, come ad esempio macchine per caffè, robot aspirapolvere o fornelli. Questi prodotti non sono pertinenti per il cliente, che ha acquistato principalmente ferri da stiro, pulitori a vapore e riscaldatori d'ambiente. Si ricorda, inoltre, che il sistema di raccomandazione sviluppato durante lo stage ha dimostrato che sono disponibili molti ferri di stiro e pulitori a vapore in vendita ma non ancora acquistati dal cliente, quindi \emph{RecBole} avrebbe dovuto consigliarne almeno uno, ma non lo ha fatto. Si è reputato dunque che il sistema di \emph{RecBole} non abbia colto correttamente le preferenze del cliente.
 
-Per quanto riguarda \emph{Surprise}, il sistema, una volta addestrato l'algoritmo \emph{KNNBasic}, ha restituito le seguenti raccomandazioni per il cliente \texttt{Ds-trading srl Ds-trading GmbH}:
+Per quanto riguarda \emph{Surprise}, il sistema, una volta addestrato l'algoritmo \emph{KNNBasic}, ha restituito le seguenti raccomandazioni per il cliente \texttt{Ds-trading srl Ds-trading GmbH}, mostrate in figura \ref{fig:surprise-recommendations}:
 
 \begin{figure}[h]
     \centering

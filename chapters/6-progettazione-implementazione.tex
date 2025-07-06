@@ -1,7 +1,7 @@
 \chapter{Progettazione e implementazione}
 \label{cap:progettazione-implementazione}
 
-\intro{In questo capitolo, vengono descritte le scelte progettuali e le tecniche implementative utilizzate per realizzare il report delle vendite ed il sistema di raccomandazione. Si inizia con una panoramica del flusso delle attività, seguita da una descrizione delle tecnologie e degli strumenti utilizzati. Successivamente, si approfondiscono i vari componenti del sistema sviluppato.}
+\intro{In questo capitolo, vengono descritte le scelte progettuali e le tecniche implementative utilizzate per realizzare il report delle vendite ed il sistema di raccomandazione. Si inizia con una panoramica del flusso delle attività, seguita da una descrizione delle tecnologie e degli strumenti utilizzati. Successivamente, si approfondiscono i vari componenti del sistema sviluppato, ed infine viene discusso lo sviluppo del frontend e delle operazioni di ottimizzazione.}
 
 
 \section{Flusso delle attività}
@@ -84,7 +84,7 @@ Di seguito viene data una panoramica delle tecnologie e strumenti utilizzati per
 \section{Architettura del sistema}
 
 Prima di cominciare a sviluppare le due task, è stata svolta un'analisi preliminare per definire l'architettura del sistema e le interazioni tra le varie componenti. Siccome le task rappresentano due funzionalità distinte, è stato deciso di svilupparle come due funzioni separate su Google Cloud Functions, e quindi come due diversi progetti il più separati possibile, in modo da poterle gestire indipendentemente e poterle testare separatamente.
-Per entrambi i progetti, è stato deciso di utilizzare il linguaggio Python, in modo da poter sfruttare le librerie e gli strumenti già descritti nella sezione \ref{sec:tecnologie-strumenti}.
+Per entrambi i progetti, è stato deciso di utilizzare il linguaggio Python, in modo da poter sfruttare le librerie e gli strumenti già descritti nella sezione \S\ref{sec:tecnologie-strumenti}.
 Inoltre, per entrambi è stato scelto un approccio procedurale a discapito di un approccio orientato agli oggetti, poiché le task sono relativamente semplici e non richiedono una struttura complessa. In aggiunta, è stato deciso di creare dei moduli per organizzare il codice e renderne più facile la lettura e la manutenzione.
 I moduli in Python sono rappresentati da cartelle e da file con estensione \emph{.py}, e sono stati utilizzati per raggruppare le funzioni correlate e per separare le responsabilità del codice. In particolare, sono stati creati i moduli descritti di seguito.
 
@@ -156,7 +156,7 @@ A questo punto, procedere meccanicamente non è più possibile, poichè ogni fil
     \item \textbf{extract\_date\_components}: questa funzione prende in input il nome della colonna contenente il timestamp degli ordini e un parametro che indica se nel timestamp viene prima il valore del giorno o del mese, e crea quattro nuove colonne nel dataframe, che contengono rispettivamente il giorno, la settimana, il mese e l'anno dell'ordine. Inoltre, viene gestita la possibilità che la stessa colonna di timestamp presenti i suoi valori in due formati diversi, provando un secondo tentativo di parsing della data in caso di errore nel primo tentativo. Se neanche il secondo tentativo va a buon fine, vengono rimosse le righe contenenti i timestamp non validi.
 \end{itemize}
 
-Ad esempio, nel dataset \emph{Delikkaya}, che dispone delle seguenti colonne:
+Ad esempio, nel dataset \emph{Delikkaya}, che dispone delle seguenti colonne, mostrate in figura \ref{fig:columns-delikkaya-original}:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\columnwidth]{preprocessing/Colonne Delikkaya originali.png}
@@ -187,7 +187,7 @@ Terminata la parte di preprocessing dipendente dal dataset, vengono effettuate a
 
 Dopo aver eseguito tutte queste operazioni, il dataframe è pronto per essere utilizzato per l'analisi delle vendite e la generazione delle matrici di raccomandazione. In particolare, il dataframe contiene le colonne fondamentali e denominative standardizzate, le colonne con i componenti della data degli ordini, e le colonne con i prezzi e le quantità formattate numericamente. Inoltre, il dataframe è ordinato cronologicamente in base alla data degli ordini, e contiene solo le colonne necessarie per l'analisi dei dati.
 
-Per il dataset \emph{Delikkaya}, le cui colonne originali sono mostrate in figura \ref{fig:columns-delikkaya-original}, le colonne del dataframe finale dopo il preprocessing risultano essere le seguenti:
+Per il dataset \emph{Delikkaya}, le cui colonne originali sono mostrate in figura \ref{fig:columns-delikkaya-original}, le colonne del dataframe finale dopo il preprocessing risultano essere le seguenti, mostrate in figura \ref{fig:columns-delikkaya-final}:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\columnwidth]{preprocessing/Colonne Delikkaya preprocessate.png}
@@ -201,7 +201,7 @@ Inizialmente, per migliorare il report delle vendite con ulteriori informazioni 
 \subsection{Riconoscimento delle marche}
 \label{sec:recognition-brands}
 
-Per poter analizzare le vendite in modo più dettagliato, è stato pensato di introdurre una colonna "Marca" nei dataset, che potesse contenere il nome della marca del prodotto presente in tale riga. Per ottenere ciò, era dunque necessario sviluppare un sistema di riconoscimento delle marche. Sono state provate le seguenti strategie:
+Per poter analizzare le vendite in modo più dettagliato, era stato pensato di introdurre una colonna "Marca" nei dataset, che potesse contenere il nome della marca del prodotto presente in tale riga. Per ottenere ciò, era dunque necessario sviluppare un sistema di riconoscimento delle marche. Sono state provate le seguenti strategie:
 \begin{itemize}
     \item \textbf{Riconoscimento tramite dizionario}: è stato creato un dizionario contenente le marche più comuni, ma si è rivelato poco efficace, poiché molte marche non erano presenti nel dizionario e il riconoscimento era limitato;
     \item \textbf{Riconoscimento tramite regex}: è stato provato a utilizzare delle espressioni regolari per riconoscere le marche, ma si è rivelato poco efficace, poiché molte marche non seguivano uno schema comune e il riconoscimento era limitato;
@@ -216,7 +216,7 @@ Dunque, si è deciso di non implementare il riconoscimento delle marche nel sist
 \subsection{Riconoscimento delle categorie}
 \label{sec:recognition-categories}
 
-Per poter analizzare le vendite in modo più dettagliato, è stato pensato di introdurre una colonna "Categoria" nei dataset, che potesse contenere il nome della categoria del prodotto presente in tale riga. Per ottenere ciò, era dunque necessario sviluppare un sistema di riconoscimento delle categorie.
+Per poter analizzare le vendite in modo più dettagliato, era stato pensato di introdurre una colonna "Categoria" nei dataset, che potesse contenere il nome della categoria del prodotto presente in tale riga. Per ottenere ciò, era dunque necessario sviluppare un sistema di riconoscimento delle categorie.
 
 Escluse le opzioni già descritte nella sezione \S\ref{sec:recognition-brands} per il riconoscimento delle marche, è stato pensato di utilizzare un modello \gls{kmeans}{} per raggruppare i prodotti in base alle loro descrizioni, in modo da ottenere delle categorie. Tuttavia, ciò si è rivelato poco efficace, poiché il modello non era in grado di raggruppare i prodotti in categorie in modo affidabile e preciso, e il numero di categorie era troppo elevato per poterle gestire manualmente.
 
@@ -402,7 +402,7 @@ Considerati l'elevato consumo di spazio e la lentezza di accesso ai dati delle m
     \item \textbf{\gls{zarr}}\footcite{site:zarr}: Zarr è un formato per la memorizzazione di array multidimensionali che supporta la compressione e l'accesso parallelo ai dati. È stato valutato per la sua scalabilità, flessibilità e facilità di integrazione con sistemi cloud.
 \end{itemize}
 
-Sono stati dunque sviluppati dei test automatizzati per confrontare le prestazioni di lettura dei vari formati e lo spazio occupato su disco. I tempi di scrittura non sono stati considerati, poiché le matrici di raccomandazione vengono generate una sola volta e poi salvate su Google Cloud Storage, dove rimangono per essere utilizzate in seguito. I dataset che sono stati utilizzati per i test sono stati scelti cercando di variare la dimensione e la densità delle matrici, e sono qui di seguito elencati in ordine crescente di dimensione della matrice:
+Sono stati dunque sviluppati dei test automatizzati per confrontare le prestazioni di lettura dei vari formati e lo spazio occupato su disco. I tempi di scrittura non sono stati considerati, poiché le matrici di raccomandazione vengono generate una sola volta e poi salvate su Google Cloud Storage, dove rimangono per essere utilizzate in seguito. I dataset che sono stati utilizzati per i test sono stati scelti cercando di variare la dimensione e la densità delle matrici, e sono qui elencati nella tabella \ref{tab:dataset-matrici} in ordine crescente di dimensione della matrice:
 \begin{table}[h]
     \centering
     \begin{tabular}{|l|r|r|r|}
@@ -421,7 +421,9 @@ Sono stati dunque sviluppati dei test automatizzati per confrontare le prestazio
     \label{tab:dataset-matrici}
 \end{table}
 
-I risultati dei test di memoria occupata su disco sono stati i seguenti:
+I risultati dei test di memoria occupata su disco sono stati i seguenti, mostrati nella figura \ref{fig:memory-usage-recommendation-matrices}:
+
+\newpage
 
 \begin{figure}[!h]
     \centering
@@ -439,7 +441,10 @@ Si evince dunque che i dataset sono classificabili all'incirca così in ordine c
     \item CSV.
 \end{enumerate}
 
-I risultati dei test di velocità di lettura dei vari formati sono stati i seguenti:
+I risultati dei test di velocità di lettura dei vari formati sono stati i seguenti, mostrati nella figura \ref{fig:read-speed-recommendation-matrices}:
+
+\newpage
+
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.9\columnwidth]{benchmark/read_time_by_dataset_and_format.png}
@@ -456,7 +461,9 @@ Si evince dunque che i dataset sono classificabili all'incirca così in ordine c
     \item CSV.
 \end{enumerate}
 
-Il grafico finale che mette assieme i risultati dei test di memoria occupata su disco e velocità di lettura è visibile in figura \ref{fig:memory-usage-and-read-speed-recommendation-matrices}.
+Il grafico finale che mette assieme i risultati dei test di memoria occupata su disco e di velocità di lettura è visibile in figura \ref{fig:memory-usage-and-read-speed-recommendation-matrices}:
+
+\newpage
 
 \begin{figure}[!h]
     \centering
@@ -611,7 +618,7 @@ Successivamente, durante la progettazione delle interfacce, si è scelto, di com
 
 Un altro aspetto affrontato durante lo sviluppo dell'interfaccia di analisi vendite è stata la scelta di integrare un'anteprima del file csv appena caricato, che ne mostrasse i nomi delle colonne e le prime righe, in modo da permettere all'utente di verificare che il file sia stato caricato correttamente e che contenga i dati attesi. Questa funzionalità è stata implementata utilizzando la libreria React Hook Form per la gestione del form di caricamento del file, e la libreria Papaparse per il parsing del file CSV e la visualizzazione dei dati in anteprima.
 
-Un'anteprima del risultato finale delle interfacce grafiche sviluppate è mostrata nelle figure \ref{fig:frontend-sales-analysis} e \ref{fig:frontend-recommendation}.
+Le interfacce grafiche sviluppate sono mostrate nelle seguenti figure \ref{fig:frontend-sales-analysis} e \ref{fig:frontend-recommendation}:
 
 \begin{figure}[!h]
     \centering
@@ -666,7 +673,8 @@ L'ultima attività svolta durante lo sviluppo della task di analisi delle vendit
 \end{itemize}
 
 Dopo aver svolto queste ottimizzazioni, sono stati eseguiti dei test di performance per verificare i miglioramenti ottenuti: è stato cioè misurato il tempo di esecuzione della task di analisi vendite prima e dopo l'ottimizzazione. Per ottenere la versione della cloud function non ancora ottimizzata è stato fatto uso del comando \texttt{git switch}, che ha permesso di tornare all'ultimo commit prima dell'ottimizzazione, e sono stati eseguiti i test di performance su quella versione. Poi, è bastato rieseguire \texttt{git switch} verso il commit più recente per fare i test sulla versione ottimizzata. I test cronometrati sono stati eseguiti su tutti i dieci dataset disponibili.
-I risultati dei test sono mostrati nella seguente tabella (\ref{tab:performance-tests}).
+
+I risultati dei test sono mostrati nella seguente tabella \ref{tab:performance-tests}:
 
 \begin{table}[h]
     \centering
@@ -689,8 +697,6 @@ I risultati dei test sono mostrati nella seguente tabella (\ref{tab:performance-
     \caption{Risultati dei test di performance prima e dopo l'ottimizzazione}
     \label{tab:performance-tests}
 \end{table}
-
-\newpage
 
 Dall'analisi di questi risultati, si distinguono tre fasce di variazione del tempo di esecuzione:
 \begin{itemize}

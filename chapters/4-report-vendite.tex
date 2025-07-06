@@ -1,13 +1,13 @@
 \chapter{Report delle vendite}
 \label{cap:report-vendite}
 
-\intro{In questo capitolo, vengono descritte le teorie e le tecniche utilizzate per l'analisi delle vendite, con particolare attenzione allo studio dei dati, delle statistiche utili e dei grafici generati. Viene inoltre discusso il beneficio dell'automazione dell'analisi delle vendite in confronto all'alternativa manuale.}
+\intro{In questo capitolo, vengono descritte le teorie e le tecniche utilizzate per l'analisi delle vendite, con particolare attenzione all'elaborazione dei dati, alle tecniche di analisi utilizzate e ai grafici generati. Viene inoltre discusso il beneficio dell'automazione dell'analisi delle vendite in confronto all'alternativa manuale.}
 
 
 
 \section{Benefici dell’automazione dell’analisi delle vendite}
 
-La \gls{busintel}{} è un insieme di tecnologie e pratiche che consentono alle aziende di raccogliere, analizzare e presentare dati per supportare il processo decisionale. L'automazione dell'analisi delle vendite rappresenta un passo avanti significativo rispetto all'analisi manuale, offrendo numerosi vantaggi:
+La \gls{busintel} è un insieme di tecnologie e pratiche che consentono alle aziende di raccogliere, analizzare e presentare dati per supportare il processo decisionale. L'automazione dell'analisi delle vendite rappresenta un passo avanti significativo rispetto all'analisi manuale, offrendo numerosi vantaggi:
 \begin{itemize}
     \item \textbf{Efficienza}: l'automazione consente di elaborare grandi volumi di dati in tempi ridotti, riducendo il tempo necessario per generare report e analisi;
     \item \textbf{Accuratezza}: le operazioni automatizzate riducono il rischio di errori umani, garantendo risultati più precisi e affidabili;
@@ -35,10 +35,10 @@ Per poter analizzare le vendite, è fondamentale comprendere le colonne dei data
     \item \textbf{Descrizione Prodotto}: descrizione del prodotto;
     \item \textbf{Quantità}: quantità di prodotto ordinata;
     \item \textbf{Prezzo Unitario}: prezzo unitario del prodotto;
-    \item \textbf{Valore Riga}: importo totale dell'acquisto del prodotto. Ciò si deduce solo dai valori contenuti nella colonna, perchè il nominativo della stessa non è stato attribuito in modo corretto.
+    \item \textbf{Valore Riga}: importo totale dell'acquisto del prodotto. Ciò si deduce solo dai valori contenuti nella colonna, perchè il nominativo della stessa purtroppo non è stato attribuito in modo corretto dall'azienda committente.
 \end{itemize}
 
-Dopo un primo sguardo alle colonne, è apparsa chiara la necessità di operare un \gls{preprocessing}{} delle stesse, in modo da poter analizzare le vendite in modo standard ed efficace. Ne è l'esempio la colonna \emph{Valore Riga}, che non fa comprendere il suo contenuto a prima vista, e dunque necessita di un cambio di nominativo.
+Dopo un primo sguardo alle colonne, è apparsa chiara la necessità di operare un \gls{preprocessing} delle stesse, in modo da poter analizzare le vendite in modo standard ed efficace. Ne è esempio la colonna \emph{Valore Riga}, che non fa comprendere il suo contenuto subito alla prima lettura del nome, e dunque necessita di un cambio di nominativo.
 
 Dopo aver esaminato le colonne del dataset \emph{Orders\_export}, è stato sviluppato un sistema di preprocessing, descritto più nel dettaglio a livello implementativo nella sezione \S\ref{sec:preprocessing}. In questa fase, sono state scelte le seguenti colonne per l'analisi delle vendite, e il loro nome è stato tradotto in inglese per uniformità con il resto del progetto:
 \begin{itemize}
@@ -53,13 +53,14 @@ Dopo aver esaminato le colonne del dataset \emph{Orders\_export}, è stato svilu
     \item \textbf{Total Price}: importo totale relativo all'acquisto del prodotto.
 \end{itemize}
 
-Queste colonne sono state dunque prese come riferimento per cercare ulteriori dataset, che potessero essere utili per l'analisi delle vendite. In particolare, sono stati cercati dataset pubblici nella piattaforma Kaggle che contenessero le stesse colonne o colonne riconducibili a quelle standardizzate di \emph{Orders\_export}. I dataset trovati sono stati nominati con il nome dell'utente che li ha caricati su Kaggle.
+Queste colonne sono state dunque prese come riferimento per cercare ulteriori dataset che potessero essere utili per l'analisi delle vendite. In particolare, sono stati cercati dataset pubblici nella piattaforma \gls{kaggle} che contenessero le stesse colonne o colonne riconducibili a quelle standardizzate di \emph{Orders\_export}. I dataset trovati sono stati denominati con il nome dell'utente che li ha caricati su Kaggle.
+
 La tabella \ref{tab:dataset-riassunto} mostra tutti i dataset che sono stati utilizzati per il progetto, con il loro numero di righe, numero di clienti unici e numero di prodotti unici:
 \begin{table}[h]
     \centering
-    \begin{tabular}{|l|c|c|c|}
+    \begin{tabular}{|l|r|r|r|}
         \hline
-        \textbf{Dataset} & \textbf{Numero righe} & \textbf{Clienti} & \textbf{Prodotti} \\
+        \multicolumn{1}{|c|}{\textbf{Dataset}} & \multicolumn{1}{|c|}{\textbf{Numero righe}} & \multicolumn{1}{|c|}{\textbf{Clienti}} & \multicolumn{1}{|c|}{\textbf{Prodotti}} \\
         \hline
         Anwer          & 51.290 & 795   & 10.292 \\
         Cornelius      & 15.000 & 14.095 & 15.000 \\
@@ -73,12 +74,12 @@ La tabella \ref{tab:dataset-riassunto} mostra tutti i dataset che sono stati uti
         Vaghasiya      & 5.000  & 2.172  & 268 \\
         \hline
     \end{tabular}
-    \caption{Dataset utilizzati per l’analisi delle vendite, con numero di righe, clienti e prodotti.}
+    \caption{Dataset utilizzati per l'analisi delle vendite, con numero di righe, clienti e prodotti.}
     \label{tab:dataset-riassunto}
 \end{table}
 
 Ogni dataset è stato dunque trattato per ottenere le stesse colonne standardizzate, in modo da poterle confrontare e analizzare in modo efficace.
-Inoltre, sono state successivamente aggiunte le seguenti colonne, ricavate dalla colonna "Order Timestamp", per facilitare alcune operazioni di analisi:
+Inoltre, sono state successivamente aggiunte le seguenti colonne, ricavate dalla colonna \emph{Order Timestamp}, per facilitare alcune operazioni di analisi temporale e per poter generare statistiche utili:
 \begin{itemize}
     \item \textbf{Order Day}: giorno dell'ordine (1-31);
     \item \textbf{Order Week}: settimana dell'anno in cui è stato effettuato l'ordine (1-53);
@@ -88,7 +89,7 @@ Inoltre, sono state successivamente aggiunte le seguenti colonne, ricavate dalla
     \item \textbf{ISO Month}: mese dell'ordine in formato ISO (YYYY-MM).
 \end{itemize}
 
-Fatto ciò, in parallelo con lo studio delle statistiche utili e dei grafici, si è visto necessario introdurre delle ulteriori colonne legate alla data, descrittive invece che numeriche, per allinearsi con il linguaggio naturale del report. Siccome il contenuto di tali colonne dipende dalla lingua del report, la loro creazione è ulteriormente descritta a livello implementativo nella sezione \ref{sec:language-processing}, dedicata alla gestione della lingua. Le colonne aggiuntive sono le seguenti:
+Fatto ciò, in parallelo con lo studio delle statistiche utili e dei grafici, si è visto necessario introdurre delle ulteriori colonne legate alla data, ma descrittive invece che numeriche, per allinearsi con il linguaggio naturale del report. Siccome il contenuto di tali colonne dipende dalla lingua del report, la loro creazione è ulteriormente descritta a livello implementativo nella sezione \S\ref{sec:language-processing}, dedicata alla gestione della lingua. Le colonne aggiuntive sono le seguenti:
 \begin{itemize}
     \item \textbf{Date}: data dell'ordine in formato naturale, ad esempio "1 gennaio 2023";
     \item \textbf{Month}: mese dell'ordine in formato naturale, ad esempio "gennaio 2023";
