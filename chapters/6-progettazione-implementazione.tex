@@ -456,7 +456,7 @@ Si evince dunque che i dataset sono classificabili all'incirca così in ordine c
     \item CSV.
 \end{enumerate}
 
-Il grafico finale che mette assieme i risultati dei test di memoria occupata su disco e velocità di lettura è il seguente:
+Il grafico finale che mette assieme i risultati dei test di memoria occupata su disco e velocità di lettura è visibile in figura \ref{fig:memory-usage-and-read-speed-recommendation-matrices}.
 
 \begin{figure}[!h]
     \centering
@@ -670,20 +670,20 @@ I risultati dei test sono mostrati nella seguente tabella (\ref{tab:performance-
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{|l|c|c|c|}
+    \begin{tabular}{|l|r|r|r|}
         \hline
-        \textbf{Dataset} & \textbf{Tempo pre-otti} & \textbf{Tempo post-otti} & \textbf{Miglioramento (\%)} \\
+        \multicolumn{1}{|c|}{\textbf{Dataset}} & \multicolumn{1}{|c|}{\textbf{T. pre-ott. (s)}} & \multicolumn{1}{|c|}{\textbf{T. post-ott. (s)}} & \multicolumn{1}{|c|}{\textbf{Miglioramento (\%)}} \\
         \hline
-        Swillm & 01:50 & 01:08 & 38,2\% \\
-        Dee & 00:58 & 00:38 & 34,5\% \\
-        Anwer & 03:01 & 02:00 & 33,7\% \\
-        Orders\_export & 03:40 & 02:48 & 23,6\% \\
-        Cornelius & 05:21 & 04:34 & 14,6\% \\
-        Vaghasiya & 00:53 & 00:49 & 7,5\% \\
-        Segura & 00:50 & 00:47 & 6,0\% \\
-        Shaw & 00:55 & 00:53 & 3,6\% \\
-        Feroze & 00:40 & 00:39 & 2,5\% \\
-        Delikkaya & 02:02 & 02:07 & -4,1\% \\
+        Swillm & 110 & 68 & 38,2\% \\
+        Dee & 58 & 38 & 34,5\% \\
+        Anwer & 181 & 120 & 33,7\% \\
+        Orders\_export & 220 & 168 & 23,6\% \\
+        Cornelius & 321 & 274 & 14,6\% \\
+        Vaghasiya & 53 & 49 & 7,5\% \\
+        Segura & 50 & 47 & 6,0\% \\
+        Shaw & 55 & 53 & 3,6\% \\
+        Feroze & 40 & 39 & 2,5\% \\
+        Delikkaya & 122 & 127 & -4,1\% \\
         \hline
     \end{tabular}
     \caption{Risultati dei test di performance prima e dopo l'ottimizzazione}
