@@ -340,7 +340,7 @@
 
 
 
-% A new color for code highlighting
+% New colors for code highlighting
 
 \definecolor{darkgreen}{RGB}{0,100,0}
 
@@ -354,19 +354,20 @@
   language=Python,
   backgroundcolor=\color{gray!10},
   basicstyle=\ttfamily\small,
-  numbers=left,
+  numbers=none,
   numberstyle=\tiny,
   breaklines=true,
   frame=single,
-  stringstyle=\color{darkgreen},
+  stringstyle=\color{darkgreen},     % stringhe
   keywordstyle=\color{blue},         % parole chiave Python
   keywordstyle=[2]\color{orange},    % funzioni e metodi noti
   keywordstyle=[3]\color{gray},      % variabili personalizzate
-  morekeywords=[2]{cosine_similarity, dot, encode, groupby, to_dict, first, abs, sum, div, values, T},
+  morekeywords={True, False, cosine_similarity},
+  morekeywords=[2]{dot, encode, groupby, to_dict, first, abs, sum, div, values, T, keys, DataFrame, index, columns, convert_to_tensor, crosstab, axis},
   morekeywords=[3]{orders_df, user_prod, item_vectors, item_sim_matrix,
     sim_abs_sum, sim_norm, R, S_norm_T, pred_vals,
     purchase_pred_matrix, sku_to_first_name, name_embeddings,
     product_product, user_item_similarityPred, user_product,
-    name_list, model, PRODUCT_SKU, PRODUCT_NAME, CUSTOMER_ID}
+    name_list, model, PRODUCT_SKU, PRODUCT_NAME, CUSTOMER_ID, sim_name_name},
 }
 \makeatother
