@@ -405,16 +405,16 @@ Considerati l'elevato consumo di spazio e la lentezza di accesso ai dati delle m
 Sono stati dunque sviluppati dei test automatizzati per confrontare le prestazioni di lettura dei vari formati e lo spazio occupato su disco. I tempi di scrittura non sono stati considerati, poiché le matrici di raccomandazione vengono generate una sola volta e poi salvate su Google Cloud Storage, dove rimangono per essere utilizzate in seguito. I dataset che sono stati utilizzati per i test sono stati scelti cercando di variare la dimensione e la densità delle matrici, e sono qui di seguito elencati in ordine crescente di dimensione della matrice:
 \begin{table}[h]
     \centering
-    \begin{tabular}{|l|c|}
+    \begin{tabular}{|l|r|r|r|}
         \hline
-        \textbf{Dataset} & \textbf{Dimensioni della matrice} \\
+        \multicolumn{1}{|c|}{\textbf{Dataset}} & \multicolumn{1}{|c|}{\textbf{N° righe}} & \multicolumn{1}{|c|}{\textbf{N° colonne}} & \multicolumn{1}{|c|}{\textbf{Tot elementi}} \\
         \hline
-        Feroze & 10 $\times$ 10 \\
-        Vaghasiya & 2.172 $\times$ 268 \\
-        Anwer & 795 $\times$ 10.292 \\
-        Delikkaya & 35.389 $\times$ 1.000 \\
-        Orders\_export & 23.389 $\times$ 4.114 \\
-        Cornelius & 14.095 $\times$ 15.000 \\
+        Feroze & 10 & 10 & 100 \\
+        Vaghasiya & 2.172 & 268 & 582.096 \\
+        Anwer & 795 & 10.292 & 8.182.140 \\
+        Delikkaya & 35.389 & 1.000 & 35.389.000 \\
+        Orders\_export & 23.389 & 4.114 & 96.222.346 \\
+        Cornelius & 14.095 & 15.000 & 211.425.000 \\
         \hline
     \end{tabular}
     \caption{Dataset utilizzati per il confronto dei formati di archiviazione delle matrici di raccomandazione}
